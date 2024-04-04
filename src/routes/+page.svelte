@@ -1,9 +1,11 @@
 <script lang="ts">
-	import IconCard from '$lib/components/cards/IconCard.svelte';
+	import Accordian from '$lib/components/accordian/Accordian.svelte';
+	import AccordianItem from '$lib/components/accordian/AccordianItem.svelte';
+import IconCard from '$lib/components/cards/IconCard.svelte';
 </script>
 
 <section class="bg-gradient-to-t from-sky-100 to-white sticky z-10 top-0">
-	<div class="container text-center lg:min-h-screen flex flex-col gap-10 items-center justify-end pt-10">
+	<div class="container text-center xl:min-h-screen flex flex-col gap-10 items-center justify-end pt-10">
 		<div>
 			<h1 class="font-bold md:text-2xl lg:text-5xl mb-2">Equipment Management</h1>
 			<p class="md:max-w-[700px] text-xs md:text-base lg:text-lg font-light">
@@ -19,7 +21,7 @@
 	</div>
 </section>
 
-<section class="shadow relative z-20 bg-white min-h-screen">
+<section class="shadow relative z-20 bg-white min-h-[100vh]">
 	<div class="container pt-10 md:pt-20">
 		<h2 class="font-bold line-height md:text-2xl lg:text-4xl mb-2 md:mb-4 max-w-sm md:max-w-xl">
 			Where Gear Management Meets Effortless Excellence.
@@ -52,6 +54,9 @@
 		</div>
 	</div>
 </section>
+
+
+
 
 <style lang="post-css">
 	.shadow {

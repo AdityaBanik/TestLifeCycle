@@ -14,6 +14,6 @@
 
 <style>
     .fluid-description{
-        font-size: clamp(0.7rem, 1.5vw, 0.875rem);
+        font-size: clamp(0.6rem, 1.5vw, 0.875rem);
     }
 </style>

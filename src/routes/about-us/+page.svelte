@@ -1,4 +1,6 @@
 <script lang="ts">
+	import Accordian from "$lib/components/accordian/Accordian.svelte";
+    import AccordianItem from "$lib/components/accordian/AccordianItem.svelte";
     
 </script>
 
@@ -20,7 +22,21 @@
                 </article>  
             </div>
         </div> 
-    </section>      
+    </section>     
+    
+    
+    <section>
+        <Accordian>
+            <AccordianItem>
+                <svelte:fragment slot="title">hello</svelte:fragment>
+                <article>I am aditya</article>
+            </AccordianItem>
+            <AccordianItem>
+                <svelte:fragment slot="title">hello</svelte:fragment>
+                <article>I am dumb</article>
+            </AccordianItem>
+        </Accordian>
+    </section>
 
 <style>
     .About-cover-title {
@@ -31,6 +47,5 @@
     }
     .container{
         background-image: linear-gradient(#a1a9e9, #c283e5, #fff);
-
     }
 </style>

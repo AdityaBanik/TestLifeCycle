@@ -2,7 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
-body{
-    font-family: "Montserrat", sans-serif;
-    @apply text-blue-950 ;
+body {
+	font-family: 'Montserrat', sans-serif;
+	@apply text-blue-950;
+}
+
+.tippy-box {
+	border-radius: 1em !important;
+}
+
+.fluid-font {
+	font-size: clamp(0.625em, 1.5vw, 1rem);
 }
