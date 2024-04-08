@@ -1,5 +1,6 @@
 <script lang="ts">
 import { onMount } from 'svelte';
+import Cta from '$lib/components/shared/CTA.svelte';
 let title = 'Passive Safety (Crash)';
 let subtitle = 'No Margin For Error';
 let src =
@@ -14,7 +15,7 @@ onMount(() => {
 	setInterval(toggleScale, 900);	
 	})
 </script>
-
+<Cta  btnText='Click me' title='Title' description='this one is demo'/>
 <section class="headerTemplate bg-blue-50 bg-no-repeat bg-cover py-7 lg:py-0 xl:bg-auto ">
 	<div class="container flex justify-between items-baseline md:gap-12 ">
 		<div
@@ -61,7 +62,7 @@ onMount(() => {
 		</div>
 	</div>
 </section>
-
+<!-- <Cta/> -->
 <style>
 	.headerTemplate {
 		background-image: url('https://static.wixstatic.com/media/454d4b_9cc8ee97f786412c8fb983ff9f28bb63~mv2.png/v1/fill/w_944,h_464,al_c,q_90,usm_0.66_1.00_0.01,enc_auto/454d4b_9cc8ee97f786412c8fb983ff9f28bb63~mv2.png');
