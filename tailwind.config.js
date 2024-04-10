@@ -1,13 +1,12 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-	content: ['./src/**/*.{html,js,svelte,ts}'],
-	theme: {
-		extend: {
+
+theme: {
+    extend: {
       minHeight: {
         'screen': 'calc(100vh - 90px)',
       }
-			
-		},
+    },
     container: {
       center: true,
       padding: {
@@ -15,6 +14,12 @@ export default {
         '2xl': '3rem'
       }
     }
-	},
-	plugins: []
+  },
+  plugins: [
+    require('@tailwindcss/typography'),
+   
+  ],
+  content: [
+    './src/**/*.{html,js,svelte,ts}'
+  ]
 };

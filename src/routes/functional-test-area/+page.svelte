@@ -1,33 +1,26 @@
 <script lang="ts">
-import { onMount } from 'svelte';
-import Cta from '$lib/components/shared/CTA.svelte';
-let title = 'Passive Safety (Crash)';
-let subtitle = 'No Margin For Error';
-let src =
+	import Cta from '$lib/components/shared/CTA.svelte';
+	import CTC from '$lib/components/shared/CTC.svelte';
+	let title = 'Passive Safety (Crash)';
+	let subtitle = 'No Margin For Error';
+	let src =
 		'https://static.wixstatic.com/media/454d4b_f78241a2c7e3436c839327796491aaa6~mv2.jpeg/v1/fill/w_848,h_516,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/powertrain-scaled-1-1920x1080.jpeg';
-		
-
-let scaleUp = true; 
-function toggleScale() {
-  scaleUp = !scaleUp;
-}
-onMount(() => {
-	setInterval(toggleScale, 900);	
-	})
 </script>
-<Cta  btnText='Click me' title='Title' description='this one is demo'/>
-<section class="headerTemplate bg-blue-50 bg-no-repeat bg-cover py-7 lg:py-0 xl:bg-auto ">
-	<div class="container flex justify-between items-baseline md:gap-12 ">
+<CTC btnText="Learn more" title="Test Lifecycle Simplified" description="The adaptable platform that lets you validate products,"/>
+<Cta btnText="Click me" title="Title" description="this one is demo" />
+
+<section class="headerTemplate bg-blue-50 bg-no-repeat bg-cover py-7 lg:py-0 xl:bg-auto">
+	<div class="container flex justify-between items-baseline md:gap-12">
 		<div
-			class="flex flex-col justify-end gap-2 p-1 translate-y-8 md:translate-y-18 xl:translate-y-0 "
+			class="flex flex-col justify-end gap-2 p-1 translate-y-8 md:translate-y-18 xl:translate-y-0"
 		>
 			<h3 class="text-sm font-bold md:text-3xl xl:text-4xl">{title}</h3>
 			<h5 class="text-xs xl:font-bold md:font-bold md:text-lg xl:text-xl">
 				{subtitle}
 			</h5>
 		</div>
-		<div class="info translate-y-28 w-6/12 md:translate-y-60 rounded-md xl:translate-y-72 ">
-			<img {src} alt="car img" class="block  {scaleUp ? 'scaled-up' : 'scaled-down'}  transition-all duration-1000 "/>
+		<div class="info translate-y-28 w-6/12 md:translate-y-60 rounded-md xl:translate-y-72">
+			<img {src} alt="car img" class="block" />
 		</div>
 	</div>
 </section>
@@ -62,20 +55,9 @@ onMount(() => {
 		</div>
 	</div>
 </section>
-<!-- <Cta/> -->
+
 <style>
 	.headerTemplate {
 		background-image: url('https://static.wixstatic.com/media/454d4b_9cc8ee97f786412c8fb983ff9f28bb63~mv2.png/v1/fill/w_944,h_464,al_c,q_90,usm_0.66_1.00_0.01,enc_auto/454d4b_9cc8ee97f786412c8fb983ff9f28bb63~mv2.png');
 	}
-
-	.scaled-up {
-
-transform: translateY(10px);
-
-  }
-
-  .scaled-down {
-   
-	transform: translateY(0.9px);
-  }
 </style>
