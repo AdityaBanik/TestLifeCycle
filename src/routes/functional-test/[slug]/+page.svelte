@@ -1,9 +1,8 @@
 <script lang="ts">
 	import type { PageData } from './$types';
-
 	import { onMount } from 'svelte';
+	import { resolveRichText } from '$lib';
 	import Cta from '$lib/components/shared/CTA.svelte';
-	import {resolveRichText} from '$lib';
 
 	export let data: PageData;
 </script>
