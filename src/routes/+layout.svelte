@@ -26,12 +26,7 @@
 	//ToDo improve focs
 	function dropdown(element: HTMLElement, id: string) {
 		const contentElement = document.getElementById(id);
-		element?.addEventListener('click', (e) => {
-			console.log('hello');
-			if (e.target && (e.target as HTMLElement).tagName === 'A') {
-				
-			}
-		});
+
 		const tooltip = tippy(element, {
 			arrow: false,
 			content: contentElement?.innerHTML,
@@ -41,8 +36,19 @@
 			allowHTML: true,
 			theme: 'light',
 			offset: [0, 28],
-			trigger: 'click'
+			
+			onShown(instance) {
+				const content = instance.popper.querySelector('.tippy-content');
+				const clickHandler = (e: any) => {
+					if (e.target && (e.target as HTMLElement).tagName === 'A') {
+						tooltip.hide();
+						content?.removeEventListener('click', clickHandler);
+					}
+				};
+				content?.addEventListener('click', clickHandler);
+			}
 		});
+
 		return {
 			destroy() {
 				tooltip.destroy();
