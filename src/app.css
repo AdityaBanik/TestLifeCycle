@@ -19,3 +19,7 @@ button{
 .fluid-font {
 	font-size: clamp(0.625em, 1vw, 1rem);
 }
+
+.highlight {
+	@apply text-blue-500;
+}
