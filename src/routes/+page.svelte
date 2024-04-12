@@ -10,12 +10,11 @@
 <section class="text-center lg:py-10 p-3 md:px-14 md:py-10">
 	<div class="container flex flex-col items-center gap-4 md:gap-7">
 		<div>
-	
-				<h1 class=" leading-normal text-lg   font-bold">
-					Test Lifecycle Simplified
-				</h1>
-	
-			<h2 class=" font-bold">The adaptable platform that lets you validate products,<strong>your way!</strong></h2>
+			<h1 class="fluid-title leading-normal text-lg font-bold">Test Lifecycle Simplified</h1>
+
+			<h2 class="fluid-subtitle font-semibold">
+				The adaptable platform that lets you validate products,<br /><strong>YOUR WAY!</strong>
+			</h2>
 		</div>
 
 		<Button text={btnText} />
@@ -36,12 +35,10 @@
 <TitanHome />
 
 <style>
-
-
-.fluid-title{
-
-}
-h1 {
-   font-size: clamp(0.6rem,2.5vw,2rem) !important;
-}
+	.fluid-title {
+		font-size: clamp(1.2rem, 4.8vw, 5rem) !important;
+	}
+	.fluid-subtitle {
+		font-size: clamp(0.5rem, 1.8vw, 4rem) !important;
+	}
 </style>

@@ -20,7 +20,7 @@
 				guide you to the service you requiren.
 			</p>
 
-			<section class="flex flex-col gap-3 py-2 md:gap-5">
+			<section class="flex flex-col gap-3 py-4 md:gap-5">
 				<div class="location flex items-center gap-3">
 					<i class="ri-map-pin-line ri-xl text-blue-500"></i>
 					<span> 5890 Stoneridge Dr, Suite 216 Pleasanton CA 94588 USA +1 (415) 851-1284 </span>
@@ -57,13 +57,10 @@
 		font-size: clamp(0.75rem, 2.5vw, 2rem) !important;
 	}
 
-    .backImg{
-        background-position: center;
+	.backImg {
+		background-position: center;
 		background-size: cover;
 		background-repeat: no-repeat;
 		background-image: url('https://static.wixstatic.com/media/454d4b_c9b32a84459b47c293ce262ae0bf71df~mv2.jpg/v1/fill/w_429,h_1234,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/454d4b_c9b32a84459b47c293ce262ae0bf71df~mv2.jpg');
-    }
-
-
-   
+	}
 </style>
