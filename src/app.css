@@ -7,10 +7,15 @@ body {
 	@apply text-blue-950;
 }
 
+button{
+	font-family: 'Montserrat', sans-serif;
+}
+
 .tippy-box {
-	border-radius: 1em !important;
+ 
+    @apply rounded-b-xl shadow-lg !important;
 }
 
 .fluid-font {
-	font-size: clamp(0.625em, 1.5vw, 1rem);
+	font-size: clamp(0.625em, 1vw, 1rem);
 }
