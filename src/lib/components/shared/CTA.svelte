@@ -2,35 +2,31 @@
 	import Button from '$lib/components/buttons/Button.svelte';
 	export let btnText: string;
 	export let title: string;
-	export let className = 'bg-black';
+	export let className = 'bg-black text-white';
 	export let description = '';
 	export let BtnClass = '';
 </script>
 
-<section class="{className} text-center lg:py-10 p-6 md:px-14 md:py-10">
+<section class="{className} text-center lg:py-10 p-6 md:px-14 md:py-10 ">
 	<div class="container flex flex-col items-center gap-4 md:gap-7">
 		<div>
-			<h3 class="text-white leading-normal">
+			<h3 class="leading-normal">
 				{title}
 			</h3>
-			<p class="text-white">{description}</p>
+			<p>{description}</p>
 		</div>
 		<Button text={btnText} className={BtnClass} />
 	</div>
 </section>
 
-<style>
+<style type="postcss">
 	h3 {
-		font-size: clamp(1rem, 3vw, 2rem) !important;
+		font-size: clamp(1rem, 2.5vw, 2.5rem);
 		font-family: 'Bebas Neue', sans-serif;
-		font-weight: 200;
-		font-style: normal;
 	}
 
 	p {
-		font-size: clamp(0.75rem, 1.5vw, 1rem) !important;
-		font-family: 'Bebas Neue', sans-serif;
-		font-weight: 100;
-		font-style: normal;
+		font-size: clamp(0.75rem, 1.5vw, 1rem);
+		@apply italic;
 	}
 </style>

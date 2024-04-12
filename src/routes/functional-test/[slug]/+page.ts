@@ -35,7 +35,7 @@ export const load = (async ({ params }) => {
 	const variables = { slug };
 	try {
 		const responseData = await client.request(query, variables);
-		console.log(responseData);
+	
 		return {
 			seo: responseData.titanFunctionals?.data[0].attributes?.seo,
 			page: {
