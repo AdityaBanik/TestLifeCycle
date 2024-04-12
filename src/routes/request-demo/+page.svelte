@@ -32,7 +32,7 @@
 				</ol>
 			</article>
 			<div
-				class="nimble-form table-shadow rounded-md lg:w-[40%] xl:w-[40%] "
+				class="nimble-form table-shadow rounded-md lg:w-[40%] xl:w-[40%]"
 				data-form-id="65d7bc143841fd0baf097895"
 				data-company-id="5b261c76cef070b143c79181"
 			></div>
@@ -46,7 +46,7 @@
 		background-position: center;
 		background-size: contain;
 		background-repeat: no-repeat;
-		background-image: url('https://static.wixstatic.com/media/454d4b_c9b32a84459b47c293ce262ae0bf71df~mv2.jpg/v1/fill/w_429,h_1234,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/454d4b_c9b32a84459b47c293ce262ae0bf71df~mv2.jpg');
+		background-image: url($lib/assets/backgroundImage.webp);
 	}
 	.table-shadow{
 		box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;

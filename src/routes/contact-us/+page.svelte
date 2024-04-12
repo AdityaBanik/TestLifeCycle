@@ -10,9 +10,9 @@
 
 <div class="backImg">
 	<section
-		class="container  prose prose-sm prose-h4:py-2 prose-h4:m-0 prose-p:mt-8 md:container max-auto md:prose-p:text-lg md:prose-h4:py-3 xl:flex-row lg:flex lg:justify-between lg:gap-9"
+		class="container  md:container max-auto  xl:flex-row lg:flex lg:justify-between lg:gap-9"
 	>
-		<article class="lg:w-[60%] xl:w-[60%]">
+		<article class="lg:w-[60%] xl:w-[60%]  prose prose-sm prose-h4:py-2 prose-h4:m-0 prose-p:mt-8 md:prose-p:text-lg md:prose-h4:py-3">
 			<h4>Contact our Support Team or make an appointment with our consultant</h4>
 
 			<p>
@@ -36,7 +36,7 @@
 			</section>
 		</article>
 		<div
-			class="nimble-form rounded-md bg-white shadow-md lg:w-[40%] xl:w-[40%]"
+			class="nimble-form table-shadow rounded-md lg:w-[40%] xl:w-[40%]"
 			data-form-id="65d7bc143841fd0baf097895"
 			data-company-id="5b261c76cef070b143c79181"
 		></div>
@@ -59,8 +59,12 @@
 
 	.backImg {
 		background-position: center;
-		background-size: cover;
+		background-size: contain;
 		background-repeat: no-repeat;
-		background-image: url('https://static.wixstatic.com/media/454d4b_c9b32a84459b47c293ce262ae0bf71df~mv2.jpg/v1/fill/w_429,h_1234,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/454d4b_c9b32a84459b47c293ce262ae0bf71df~mv2.jpg');
+		background-image: url($lib/assets/backgroundImage.webp);
+	}
+
+	.table-shadow{
+		box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
 	}
 </style>
