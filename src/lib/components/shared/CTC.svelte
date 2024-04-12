@@ -7,14 +7,14 @@
     
 </script>
 
-<section class=" text-center lg:py-10 p-3 md:px-14 md:py-10">
+<section class="text-center lg:py-10 p-3 md:px-14 md:py-10">
 	<div class="container flex flex-col items-center gap-7 md:gap-7">
 		<div>
-			<h3 class=" text-blue-1000 leading-normal">
+			<h3 class="text-blue-900 leading-normal">
 				{title}
 			</h3>
-			<p class="text-blue-1000">{description}</p>
-			<h4 class="text-blue-1000">Your way!</h4>
+			<p class="text-blue-900">{description}</p>
+			<h4 class="text-blue-900">Your way!</h4>
 		</div>
 
 		<Button text={btnText} className={BtnClass} />

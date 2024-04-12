@@ -2,8 +2,10 @@
 	import Accordian from '$lib/components/accordian/Accordian.svelte';
 	import AccordianItem from '$lib/components/accordian/AccordianItem.svelte';
 import IconCard from '$lib/components/cards/IconCard.svelte';
-</script>
+import Ctc from '$lib/components/shared/CTC.svelte';
 
+</script>
+<Ctc btnText="Learn more" title="Test Lifecycle Simplified" description="The adaptable platform that lets you validate products,"/>
 <section class="bg-gradient-to-t from-sky-100 to-white sticky z-10 top-0">
 	<div class="container text-center xl:min-h-screen flex flex-col gap-10 items-center justify-end pt-10">
 		<div>
@@ -51,6 +53,8 @@ import IconCard from '$lib/components/cards/IconCard.svelte';
 				title="Effortless Organization"
 				description="Easily trace equipment locations, ensuring no movement goes unsupervised. "
 			/>
+
+
 		</div>
 	</div>
 </section>
