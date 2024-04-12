@@ -1,6 +1,7 @@
 <script lang="ts">
 	import Accordian from '$lib/components/accordian/Accordian.svelte';
 	import AccordianItem from '$lib/components/accordian/AccordianItem.svelte';
+	import TitanHome from '$lib/components/animation/TitanHome.svelte';
 	import IconCard from '$lib/components/cards/IconCard.svelte';
 </script>
 
@@ -17,4 +18,5 @@
 	</div>
 </section>
 
+<TitanHome />
 

@@ -12,7 +12,8 @@ button{
 }
 
 .tippy-box {
-	border-radius: 1em !important;
+ 
+    @apply rounded-b-xl shadow-lg !important;
 }
 
 .fluid-font {

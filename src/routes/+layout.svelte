@@ -33,7 +33,9 @@
 			maxWidth: 1200,
 			allowHTML: true,
 			theme: 'light',
-			offset: [0, 12]
+			offset: [0, 28],
+
+			
 		});
 		return {
 			destroy() {
@@ -127,7 +129,7 @@
 </Sidebar>
 
 <style type="postcss">
-	nav div {
+	nav div button {
 		@apply capitalize hover:bg-blue-50 px-2 py-1 rounded-lg cursor-pointer;
 	}
 
