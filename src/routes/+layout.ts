@@ -13,7 +13,7 @@ export const load = (async ({url}) => {
 					}
 				}
 			}
-			titanSolutions {
+			titanSolutions(sort: "publishedAt:asc") {
 				data {
 					attributes {
 						name
@@ -21,7 +21,7 @@ export const load = (async ({url}) => {
 					}
 				}
 			}
-			titanCustomerServices {
+			titanCustomerServices(sort: "publishedAt:asc") {
 				data {
 					attributes {
 						name
