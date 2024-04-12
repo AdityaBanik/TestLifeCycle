@@ -4,7 +4,7 @@
 	import TitanHome from '$lib/components/animation/TitanHome.svelte';
 	import IconCard from '$lib/components/cards/IconCard.svelte';
 </script>
-
+<!-- 
 
 <section class=" relative  z-20 bg-white ">
 	<div class="container pt-10 md:pt-20">
@@ -16,7 +16,7 @@
 			offers the following benefits:
 		</p>
 	</div>
-</section>
+</section> -->
 
 <TitanHome />
 

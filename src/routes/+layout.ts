@@ -2,7 +2,7 @@ import type { LayoutLoad } from './$types';
 import { graphql } from '$lib/gql';
 import { client } from '$lib';
 
-export const load = (async () => {
+export const load = (async ({url}) => {
 	const query = graphql(`
 		query navLinks {
 			titanFunctionals {
@@ -42,7 +42,8 @@ export const load = (async () => {
 		};
 
 		return {
-			navLinks: navLinks
+			navLinks: navLinks,
+            url: url.pathname
 		};
 	} catch (error) {
 		return {

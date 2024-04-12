@@ -15,6 +15,7 @@
 	import Sidebar from '$lib/components/sidebar/Sidebar.svelte';
 	import Accordian from '$lib/components/accordian/Accordian.svelte';
 	import AccordianItem from '$lib/components/accordian/AccordianItem.svelte';
+	import { fly } from 'svelte/transition';
 
 	let isOpen: boolean;
 
@@ -25,6 +26,12 @@
 	//ToDo improve focs
 	function dropdown(element: HTMLElement, id: string) {
 		const contentElement = document.getElementById(id);
+		element?.addEventListener('click', (e) => {
+			console.log('hello');
+			if (e.target && (e.target as HTMLElement).tagName === 'A') {
+				
+			}
+		});
 		const tooltip = tippy(element, {
 			arrow: false,
 			content: contentElement?.innerHTML,
@@ -34,8 +41,7 @@
 			allowHTML: true,
 			theme: 'light',
 			offset: [0, 28],
-
-			
+			trigger: 'click'
 		});
 		return {
 			destroy() {
@@ -48,38 +54,47 @@
 </script>
 
 <header class="flex justify-between items-center py-4 container">
-	<section class="flex items-center gap-32">
+	<section class="flex items-center md:gap-20 xl:gap-32">
 		<a href="/">
 			<img src={logo} alt="Titan Logo" class="logo" />
 		</a>
-		<nav class="gap-10 hidden lg:flex">
-			{#each Object.entries(data.navLinks || []) as [key, value]}
+		<nav class="gap-8 hidden lg:flex items-center">
+			<div>
+				<a
+					href="/"
+					class="fluid-font capitalize hover:bg-blue-50 px-2 py-1 rounded-lg cursor-pointer">home</a
+				>
+			</div>
+			{#each Object.entries(data.navLinks || []) as [key, value], index}
 				<div>
 					<button use:dropdown={key} class="capitalize fluid-font"> {key} </button>
 					<div id={key} class="hidden">
 						<section class="grid grid-cols-2 gap-x-28 gap-y-6 p-6">
 							{#each value || [] as links}
-								<a href={links?.slug} class="link">{links?.name}</a>
+								<a href={`/${key.split(' ').join('-')}/` + links?.slug} class="link">
+									{links?.name}
+								</a>
 							{/each}
 						</section>
 					</div>
 				</div>
+				{#if index === 1}
+					<div>
+						<button use:dropdown={'company'} class="capitalize fluid-font"> company </button>
+
+						<div id="company" class="hidden">
+							<section class="grid grid-cols-2 gap-x-28 gap-y-6 p-6">
+								<a class="link" href="/about-us">about us</a>
+								<a class="link" href="/blog">blog</a>
+								<a class="link" href="/faq">faqs</a>
+								<a class="link" href="/resource-center">resource center</a>
+								<a class="link" href="/why-choose-us">why choose us?</a>
+								<a class="link" href="/news-and-events">news and events</a>
+							</section>
+						</div>
+					</div>
+				{/if}
 			{/each}
-
-			<div>
-				<button use:dropdown={'company'} class="capitalize fluid-font"> company </button>
-
-				<div id="company" class="hidden">
-					<section class="grid grid-cols-2 gap-x-28 gap-y-6 p-6">
-						<a class="link" href="/about-us">about us</a>
-						<a class="link" href="/blog">blog</a>
-						<a class="link" href="/faq">faqs</a>
-						<a class="link" href="/resource-center">resource center</a>
-						<a class="link" href="/why-choose-us">why choose us?</a>
-						<a class="link" href="/news-and-events">news and events</a>
-					</section>
-				</div>
-			</div>
 		</nav>
 	</section>
 
@@ -95,9 +110,15 @@
 	</section>
 </header>
 
-<!--  Dropdown PopUps -->
-
-<slot />
+{#key data.url}
+	<main
+		class="min-h-screen"
+		in:fly={{ x: -200, duration: 300, delay: 300 }}
+		out:fly={{ x: 200, duration: 300 }}
+	>
+		<slot />
+	</main>
+{/key}
 
 <Sidebar {isOpen} on:closed={closeSidebar}>
 	<nav class="container">
@@ -107,7 +128,9 @@
 					<svelte:fragment slot="title">{key}</svelte:fragment>
 					<article class="flex flex-col text-xs pl-12 pb-3 pt-1 gap-3">
 						{#each value || [] as links}
-							<a href={links?.slug} class="accordian-links">{links?.name}</a>
+							<a href={`/${key.split(' ').join('-')}/` + links?.slug} class="accordian-links"
+								>{links?.name}</a
+							>
 						{/each}
 					</article>
 				</AccordianItem>

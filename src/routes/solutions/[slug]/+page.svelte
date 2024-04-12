@@ -15,7 +15,7 @@
 				<h1 class="font-bold md:text-2xl lg:text-5xl mb-2">
 					{data.hero?.title}
 				</h1>
-				<p class="md:max-w-[700px] text-xs md:text-base lg:text-lg font-light">
+				<p class="md:max-w-[700px] text-xs md:text-base  2xl:text-lg font-light">
 					{data.hero?.subtitle}
 				</p>
 			</div>
