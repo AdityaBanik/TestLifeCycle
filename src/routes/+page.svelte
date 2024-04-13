@@ -1,13 +1,13 @@
 <script lang="ts">
-	import Accordian from '$lib/components/accordian/Accordian.svelte';
-	import AccordianItem from '$lib/components/accordian/AccordianItem.svelte';
+
 	import TitanHome from '$lib/components/animation/TitanHome.svelte';
-	import IconCard from '$lib/components/cards/IconCard.svelte';
+	
 	import Button from '$lib/components/buttons/Button.svelte';
+	import Cta from '$lib/components/shared/CTA.svelte';
 	export let btnText: string = 'Learn more';
 </script>
 
-<section class="text-center lg:py-10 p-3 md:px-14 md:py-10">
+<section class="text-center lg:pt-10 p-3 md:px-14 md:t-10">
 	<div class="container flex flex-col items-center gap-4 md:gap-7">
 		<div>
 			<h1 class="fluid-title leading-normal text-lg font-bold">Test Lifecycle Simplified</h1>
@@ -20,19 +20,12 @@
 		<Button text={btnText} />
 	</div>
 </section>
-<section class=" relative z-20 bg-white">
-	<div class="container pt-10 md:pt-20">
-		<h2 class="font-bold line-height md:text-2xl lg:text-4xl mb-2 md:mb-4 max-w-sm md:max-w-xl">
-			Where Gear Management Meets Effortless Excellence.
-		</h2>
-		<p class="max-w-sm md:max-w-2xl text-xs md:text-base">
-			For engineers and management teams, our valued customers, TITAN's Equipment Management feature
-			offers the following benefits:
-		</p>
-	</div>
-</section>
 
 <TitanHome />
+
+<Cta title="REMOVE MUNDANE TESTING ASPECTS TO FOCUS ON WHAT MATTERS THE MOST WITH TITAN
+" btnText="Request Personalized Demo !" className="bg-black text-white mt-10 md:mt-16 " />
+
 
 <style>
 	.fluid-title {

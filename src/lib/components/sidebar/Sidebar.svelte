@@ -17,7 +17,7 @@
 <svelte:body class:overflow-hidden={isOpen} />
 
 {#if isOpen}
-	<div class="bg-indigo-900/80 backdrop-blur-sm fixed w-full h-screen top-0 z-40">
+	<div class="bg-indigo-900/80 backdrop-blur-sm fixed w-full h-screen top-0 z-[200]">
 		<div class="bg-white absolute w-[60%] top-0 h-full right-0 py-14 rounded-l-lg">
 			<button
 				class="absolute top-4 right-4 px-1 rounded-md border hover:bg-red-500 hover:text-white"

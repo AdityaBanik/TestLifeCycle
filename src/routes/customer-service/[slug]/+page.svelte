@@ -15,7 +15,7 @@
 			</h2>
 		</div>
 
-		<div class="mt-10 md:mt-28 grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6 xl:gap-y-16">
+		<div class="mt-10 md:mt-28 grid grid-cols-2  lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6 xl:gap-y-16">
 			{#each data.page?.cards || [] as card}
 				<IconCard
 					title={card?.title || ''}
@@ -43,6 +43,6 @@
     }
 
     .fluid-subtitle {
-        font-size: clamp(0.85rem, 1.2vw, 1.5rem);
+        font-size: clamp(0.85rem, 1.125vw, 1.5rem);
     }
 </style>

@@ -5,17 +5,18 @@
 	export let className = 'bg-black text-white';
 	export let description = '';
 	export let BtnClass = '';
+	export let btnLink = '';
 </script>
 
 <section class="{className} text-center lg:py-10 p-6 md:px-14 md:py-10 ">
 	<div class="container flex flex-col items-center gap-4 md:gap-7">
 		<div>
-			<h3 class="leading-normal">
+			<h3 class="leading-normal tracking-wide">
 				{title}
 			</h3>
 			<p>{description}</p>
 		</div>
-		<Button text={btnText} className={BtnClass} />
+		<Button text={btnText} className={BtnClass}  link={btnLink}/>
 	</div>
 </section>
 

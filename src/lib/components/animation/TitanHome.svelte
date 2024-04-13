@@ -50,7 +50,7 @@
 		/>
 		<img
 			src="https://static.wixstatic.com/media/b8fe2a_3d2bdeb64f2041daad948acc134f2217~mv2.webp"
-			style="opacity: 1; z-index: 50;"
+			style="opacity: 1; z-index: 30;"
 			alt="animation"
 		/>
 		<img
