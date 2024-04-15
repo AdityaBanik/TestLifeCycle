@@ -4,7 +4,7 @@
 	import { fade, fly, slide } from 'svelte/transition';
 
 	const { registerItem, selectItem, openItem, items } = getContext(ACCORDION);
-	
+   export let key=0;
   export let className = '';
   export let selected = '';
   export let openfirst = false;
@@ -41,6 +41,7 @@
 	{/if}
 
 	<slot name="title" />
+	
 </button>
 
 {#if $openItem === id}
@@ -48,4 +49,5 @@
 		<slot />
 	</section>
 {/if}
+
 
