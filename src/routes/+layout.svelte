@@ -159,7 +159,7 @@
 <footer class="min-h-96 bg-[#253858] py-10 md:py-20">
 	<div class="container">
 	<section
-		class="grid grid-cols-2 gap-y-8 gap-x-5 md:grid-cols-3 lg:grid-cols-4 text-xs md:text-sm 2xl:text-base font-light capitalize"
+		class="grid grid-cols-2 gap-y-8 gap-x-5 md:grid-cols-3 lg:grid-cols-4 text-xs md:text-sm 2xl:text-base  capitalize"
 	>
 		<article>
 			<h4 class="text-amber-600 font-bold text-base 2xl:text-lg tracking-wider mb-3">company</h4>
