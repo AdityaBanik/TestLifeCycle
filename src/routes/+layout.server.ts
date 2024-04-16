@@ -1,78 +1,37 @@
 import type { LayoutServerLoad } from './$types';
 import { graphql } from '$lib/gql';
 import { client } from '$lib';
-import type { Actions } from '@sveltejs/kit';
 
-  
-
-
-export const load = (async ({ cookies, url, locals }) => {
-
-	const nav = cookies.get('nav');
-	if (nav) {
-		const navLinks:[] = JSON.parse(nav);
-		return {
-			navLinks: navLinks,
-			url: url.pathname,
-			lang: locals.lang
-		};
-	}
-
+export const load = (async ({ locals }) => {
+	const lang = locals.lang;
+    
 	const query = graphql(`
-		query navLinks {
-			titanFunctionals {
+		query navMenu($lang: I18NLocaleCode) {
+			navMenu(locale: $lang) {
 				data {
 					attributes {
-						name
-						slug
-					}
-				}
-			}
-			titanSolutions(sort: "publishedAt:asc") {
-				data {
-					attributes {
-						name
-						slug
-					}
-				}
-			}
-			titanCustomerServices(sort: "publishedAt:asc") {
-				data {
-					attributes {
-						name
-						slug
+						NavComponent {
+							title
+							Links {
+								name
+								link
+							}
+						}
 					}
 				}
 			}
 		}
 	`);
 
+	const variables = { lang: lang };
+
 	try {
-		const responseData = await client.request(query);
-
-		const navLinks = {
-			solutions: responseData.titanSolutions?.data.map(({ attributes }) => attributes),
-			'customer service': responseData.titanCustomerServices?.data.map(
-				({ attributes }) => attributes
-			),
-			'functional test area': responseData.titanFunctionals?.data.map(
-				({ attributes }) => attributes
-			)
-		};
-		cookies.set('nav', JSON.stringify(navLinks), {
-			path: '/',
-			maxAge: 10 * 60 
-		});
-
+		const responseData = await client.request(query, variables);
+        console.log(responseData);
 		return {
-			navLinks: navLinks,
-			url: url.pathname,
-			lang: locals.lang
+			navMenu: responseData.navMenu?.data?.attributes?.NavComponent,
 		};
 	} catch (error) {
-		return {
-			status: 500,
-			error: 'Internal server error'
-		};
+		return Error(`Failed to load nav menu ${error}`);
 	}
 }) satisfies LayoutServerLoad;

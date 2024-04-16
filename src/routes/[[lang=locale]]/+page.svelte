@@ -15,6 +15,7 @@
 	import icon6 from '$lib/assets/Home/icon 6.png';
 	import img1 from '$lib/assets/Home/pc.png';
 	import HomeFeatures from '$lib/components/sections/HomeFeatures.svelte';
+	import type { PageData } from './$types';
 
 	let animation = false;
 
@@ -50,18 +51,19 @@
 			image: 'https://static.wixstatic.com/media/43794f_cca6ab06d6a8420aacec8e823436c90d~mv2.png'
 		}
 	];
+	export let data: PageData;
 </script>
 
 {#key animation}
 	<section
-		class="text-center   pt-10 container flex flex-col items-center justify-center gap-4 md:gap-8"
+		class="text-center pt-10 container flex flex-col items-center justify-center gap-4 md:gap-8"
 	>
 		<div>
 			<h1
 				in:fly|global={{ y: 200, delay: 500, easing: backOut }}
 				class="fluid-title leading-normal text-lg font-bold"
 			>
-				Test Lifecycle Simplified
+				{data.page?.Hero?.title}
 			</h1>
 
 			<h2 class="fluid-subtitle font-semibold" in:fly|global={{ y: 100, delay: 900 }}>
@@ -70,7 +72,11 @@
 			</h2>
 		</div>
 		<div in:fade|global={{ delay: 1100, easing: backOut }}>
-			<Button text="Learn more" className="lg:py-3" />
+			<Button
+				text={data.page?.Hero?.Button?.name || ''}
+				link={data.page?.Hero?.Button?.link || ''}
+				className="lg:py-3"
+			/>
 		</div>
 	</section>
 	<div in:fly|global={{ y: 200, delay: 1100, easing: backOut }}>
@@ -90,13 +96,12 @@
 		title="<span class='highlight'>All-in-one</span> verification hub to optimize your product testing process"
 		{items}
 	/>
-	<HomeFeatures 
+	<HomeFeatures
 		alignRight={true}
 		title="<span class='highlight'>All-in-one</span> verification hub to optimize your product testing process"
 		{items}
 	/>
 </section>
-
 
 <Cta
 	title="REMOVE MUNDANE TESTING ASPECTS TO FOCUS ON WHAT MATTERS THE MOST WITH TITAN
@@ -108,7 +113,9 @@
 <section class=" py-10 md:py-20 container flex items-center">
 	<div class=" flex flex-col gap-10">
 		<div>
-			<h2 class=" border-orange-400 text-xl md:text-3xl text-gray-600 border-l-4 pl-5 font-semibold mb-2">
+			<h2
+				class=" border-orange-400 text-xl md:text-3xl text-gray-600 border-l-4 pl-5 font-semibold mb-2"
+			>
 				<span class="text-orange-400 font-bold">TITAN</span> is accelerating digital transformation
 			</h2>
 			<p class="text-gray-600 text-sm md:text-base lg:text-lg max-w-xl font-semibold pt-3 pl-6">
@@ -173,6 +180,6 @@
 		font-size: clamp(1.5rem, 4.8vw, 5rem) !important;
 	}
 	.fluid-subtitle {
-		font-size: clamp(.65rem, 1.8vw, 2rem) !important;
+		font-size: clamp(0.65rem, 1.8vw, 2rem) !important;
 	}
 </style>

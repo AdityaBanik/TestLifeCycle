@@ -4,19 +4,18 @@ import type { RequestHandler } from './$types';
 export const POST: RequestHandler = async ({ request, cookies }) => {
 	const formData = await request.formData();
 	const locale = formData.get('locale');
-	cookies.set('lang', locale as string, { path: '/' });
 
 	const referrer = request.headers.get('referer');
-    const baseUrl = new URL(referrer as string).origin;
-
-
-    if (referrer as string === baseUrl + '/') {
-        redirect(302, baseUrl + '/');  
-    }
-
+	const baseUrl = new URL(referrer as string).pathname;
+	
+	// Handle the case when switching from 'ja' to 'en' on the home page
+	if (baseUrl === '/ja' && locale === 'en') {
+		return redirect(302, '/');
+	  }
+	
 	if (locale === 'ja') {
-		return redirect(302, referrer + '-ja');
+		return redirect(302, 'ja' + baseUrl);
 	}
 
-	redirect(302, referrer!.slice(0, -3));
+	return redirect(302, baseUrl.slice(3, baseUrl.length));
 };
