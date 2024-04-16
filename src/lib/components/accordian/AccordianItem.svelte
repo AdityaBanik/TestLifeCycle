@@ -49,7 +49,7 @@
 	</section>
 {/key}
 
-<style>
+<style lang="postcss">
 	.show {
 		@apply block;
 	}

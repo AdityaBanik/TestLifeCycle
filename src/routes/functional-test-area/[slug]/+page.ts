@@ -6,7 +6,7 @@ export const load = (async ({ params }) => {
 	let slug = params.slug;
 	const query = graphql(`
 		query getFunctionalTestArea($slug: String!) {
-			titanFunctionals(filters: { slug: { eq: $slug } }) {
+			titanFunctionals(filters: { slug: { eq: $slug } } locale: "all") {
 				data {
 					attributes {
 						seo {

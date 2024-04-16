@@ -54,7 +54,7 @@
 
 {#key animation}
 	<section
-		class="text-center lg:pt-10 md:t-10 container flex flex-col items-center justify-center gap-4 md:gap-8"
+		class="text-center   pt-10 container flex flex-col items-center justify-center gap-4 md:gap-8"
 	>
 		<div>
 			<h1
@@ -102,16 +102,16 @@
 	title="REMOVE MUNDANE TESTING ASPECTS TO FOCUS ON WHAT MATTERS THE MOST WITH TITAN
 "
 	btnText="Request Personalized Demo !"
-	className="bg-sky-50 text-blue-950 mt-10  "
+	className="bg-sky-50 text-blue-950   "
 />
 
 <section class=" py-10 md:py-20 container flex items-center">
 	<div class=" flex flex-col gap-10">
 		<div>
-			<h2 class=" border-orange-400 text-3xl text-gray-600 border-l-4 pl-5 font-semibold mb-2">
+			<h2 class=" border-orange-400 text-xl md:text-3xl text-gray-600 border-l-4 pl-5 font-semibold mb-2">
 				<span class="text-orange-400 font-bold">TITAN</span> is accelerating digital transformation
 			</h2>
-			<p class="text-gray-600 text-base lg:text-lg max-w-xl font-semibold pt-3 pl-6">
+			<p class="text-gray-600 text-sm md:text-base lg:text-lg max-w-xl font-semibold pt-3 pl-6">
 				It's all about creating engaging experiences, fostering collaboration, and building a
 				happier workplace
 			</p>
@@ -170,9 +170,9 @@
 
 <style>
 	.fluid-title {
-		font-size: clamp(1.2rem, 4.8vw, 5rem) !important;
+		font-size: clamp(1.5rem, 4.8vw, 5rem) !important;
 	}
 	.fluid-subtitle {
-		font-size: clamp(0.5rem, 1.8vw, 2rem) !important;
+		font-size: clamp(.65rem, 1.8vw, 2rem) !important;
 	}
 </style>

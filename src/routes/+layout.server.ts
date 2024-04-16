@@ -1,6 +1,10 @@
 import type { LayoutServerLoad } from './$types';
 import { graphql } from '$lib/gql';
 import { client } from '$lib';
+import type { Actions } from '@sveltejs/kit';
+
+  
+
 
 export const load = (async ({ cookies, url }) => {
 

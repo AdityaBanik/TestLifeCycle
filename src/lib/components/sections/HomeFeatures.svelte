@@ -12,20 +12,20 @@
 	let currentAlt = items[0].title;
 </script>
 
-<section class="py-10 md:py-16" class:text-right={alignRight}>
+<section class="py-5 md:py-16" >
 	<div class="flex items-center gap-10" class:flex-row-reverse={alignRight}>
-		<div class="w-full lg:w-1/2 flex flex-col gap-16" class:items-end={alignRight}>
-			<h2 class="text-lg font-bold max-w-lg lg:text-3xl">
+		<div class="w-full lg:w-1/2 flex flex-col gap-5 md:gap-16 lg:{alignRight?'items-end':''}" >
+			<h2 class="text-xl font-bold max-w-lg lg:text-3xl">
 				{@html title}
 			</h2>
 			<Accordian>
 				{#each items as item}
 					<AccordianItem
 						keepOpen={true}
-						className="text-base tracking-wide  p-4   rounded-t-xl transition-colors {alignRight
+						className="text-base tracking-wide  p-4   rounded-t-xl transition-colors text-start  lg:{alignRight
 							? 'text-right'
-							: 'text-start'}"
-						selected="bg-gray-100 font-semibold {alignRight ? 'text-purple-400' : 'text-blue-500 '}"
+							: ''}"
+						selected="bg-gray-100 font-semibold {alignRight ? 'text-violet-400' : 'text-blue-500 '}"
 						onClick={() => {
 							currentImage = item.image;
 
