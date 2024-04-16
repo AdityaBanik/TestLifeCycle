@@ -4,7 +4,7 @@ import { client } from '$lib';
 
 export const load = (async ({ params }) => {
 	let slug = params.slug;
-    //fragments are not understood by the compiler [not unused code]
+	//fragments are not understood by the compiler [not unused code]
 	const Hero = graphql(`
 		fragment Hero on ComponentTestLifeCycleHeroSection {
 			__typename
@@ -20,35 +20,55 @@ export const load = (async ({ params }) => {
 			}
 		}
 	`);
-    //fragments are not understood by the compiler [not unused code]
+	//fragments are not understood by the compiler [not unused code]
 	const Highlights = graphql(`
 		fragment Highlights on ComponentTestLifeCycleHighlights {
 			__typename
 			title
 			subtitle
-            cards {
-                title
-                description
-                media {
-                    data {
-                        attributes {
-                            url
-                            alternativeText
-                        }
-                    }
-                }
-            }
+			cards {
+				title
+				description
+				media {
+					data {
+						attributes {
+							url
+							alternativeText
+						}
+					}
+				}
+			}
+		}
+	`);
+
+	const Features = graphql(`
+		fragment Features on ComponentTestLifeCycleFeatures {
+			__typename
+			title
+			features {
+				title
+				description
+				media {
+					data {
+						attributes {
+							url
+							alternativeText
+						}
+					}
+				}
+			}
 		}
 	`);
 
 	const query = graphql(`
 		query solutions($slug: String!) {
-			titanSolutions(filters: { slug: { eq: $slug } }) {
+			titanSolutions(filters: { slug: { eq: $slug } }, locale: "all") {
 				data {
 					attributes {
 						sections {
 							...Hero
 							...Highlights
+							...Features
 						}
 					}
 				}
@@ -63,13 +83,18 @@ export const load = (async ({ params }) => {
 
 		const heroSection = responseData.titanSolutions?.data[0]?.attributes?.sections?.find(
 			(section) => section?.__typename === 'ComponentTestLifeCycleHeroSection'
-		) 
+		);
 		const highlights = responseData.titanSolutions?.data[0]?.attributes?.sections?.find(
 			(section) => section?.__typename === 'ComponentTestLifeCycleHighlights'
-		) 
+		);
+
+		const features = responseData.titanSolutions?.data[0]?.attributes?.sections?.find(
+			(section) => section?.__typename === 'ComponentTestLifeCycleFeatures'
+		);
 		return {
 			hero: heroSection,
-			highlights: highlights
+			highlights: highlights,
+			features: features
 		};
 	} catch (error) {
 		return {

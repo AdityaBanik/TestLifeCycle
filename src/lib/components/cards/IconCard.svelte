@@ -7,7 +7,7 @@
 </script>
 
 <article class="{className} flex flex-col gap-2 p-4 md:p-6 border rounded-lg md:rounded-2xl max-w-80 hover:bg-slate-50 transition-colors">
-	<img class="object-contain max-w-12 md:max-w-24 " src={imgSrc} alt={imgAlt} />
+	<img class="object-contain max-w-12 md:max-w-20 " src={imgSrc} alt={imgAlt} />
 	<h3 class="font-medium text-xs md:text-base">{title}</h3>
 	<p class="fluid-description font-normal">{description}</p>
 </article>
