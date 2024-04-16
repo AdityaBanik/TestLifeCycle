@@ -80,17 +80,17 @@
 		</section>
 	</div>
 
-	<section class="accordian">
+	<!-- <section class="accordian">
 		<Accordian>
 			{#each data as item, i}
 				<AccordianItem>
 					<svelte:fragment slot="title">{item.title}</svelte:fragment>
 					<p>{item.description}</p>
-					<!-- <img src={item.image} alt={item.title} /> -->
+					<img src={item.image} alt={item.title} />
 				</AccordianItem>
 			{/each}
 		</Accordian>
-	</section>
+	</section> -->
 
 
 <style>

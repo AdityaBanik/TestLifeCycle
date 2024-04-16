@@ -7,13 +7,7 @@
 	import Button from '$lib/components/buttons/Button.svelte';
 	import Cta from '$lib/components/shared/CTA.svelte';
 
-	import icon1 from '$lib/assets/Home/icon 1.png';
-	import icon2 from '$lib/assets/Home/icon 2.png';
-	import icon3 from '$lib/assets/Home/icon 3.png';
-	import icon4 from '$lib/assets/Home/icon 4.png';
-	import icon5 from '$lib/assets/Home/icon 5.png';
-	import icon6 from '$lib/assets/Home/icon 6.png';
-	import img1 from '$lib/assets/Home/pc.png';
+	import monitorImage from '$lib/assets/Home/pc.png';
 	import HomeFeatures from '$lib/components/sections/HomeFeatures.svelte';
 	import type { PageData } from './$types';
 
@@ -25,32 +19,6 @@
 		}
 	});
 
-	const items = [
-		{
-			title: 'Requirement Analysis',
-			description:
-				'Trace, record, analyze, and prioritize the requirements to successfully fulfill all product testing goals.',
-			image: 'https://static.wixstatic.com/media/43794f_bbc6cbbe424c4c8ebe4ac6b519cbd45d~mv2.png'
-		},
-		{
-			title: 'Verification Planning',
-			description:
-				"Easily verify your product's performance as per the requirements defined by engineers during the design phase. You can also easily track progress while the test is going on.",
-			image: 'https://static.wixstatic.com/media/43794f_cca6ab06d6a8420aacec8e823436c90d~mv2.png'
-		},
-		{
-			title: 'Maximum Test Coverage',
-			description:
-				'Test coverage improves the quality of test cases while you create and reuse the same test cases several times. All you have to do is change the testing parameters with different values.',
-			image: 'https://static.wixstatic.com/media/43794f_1e87966fdfbc4982b002bcb988717bab~mv2.png'
-		},
-		{
-			title: 'Traceability Matrix',
-			description:
-				'The TITAN traceability matrix helps keep track of every level of testing, enables 100% test coverage for all business and functional requirements, updates all requirements status in real-time, and analyzes the impact of requirement changes.',
-			image: 'https://static.wixstatic.com/media/43794f_cca6ab06d6a8420aacec8e823436c90d~mv2.png'
-		}
-	];
 	export let data: PageData;
 </script>
 
@@ -85,94 +53,60 @@
 {/key}
 
 <Cta
-	title="REMOVE MUNDANE TESTING ASPECTS TO FOCUS ON WHAT MATTERS THE MOST WITH TITAN
-"
-	btnText="Request Personalized Demo !"
+	title={data.page?.Cta?.title || ''}
+	btnText={data.page?.Cta?.Button?.name || ''}
+	btnLink={data.page?.Cta?.Button?.link || ''}
 	className="bg-black text-white mt-10 md:mt-16 "
 />
 
 <section class="container py-10">
-	<HomeFeatures
-		title="<span class='highlight'>All-in-one</span> verification hub to optimize your product testing process"
-		{items}
-	/>
-	<HomeFeatures
-		alignRight={true}
-		title="<span class='highlight'>All-in-one</span> verification hub to optimize your product testing process"
-		{items}
-	/>
+	{#each data.page?.Features || [] as item, i}
+		<HomeFeatures title={item?.title || ''} items={item?.features || []} alignRight={i == 1} />
+	{/each}
 </section>
 
 <Cta
-	title="REMOVE MUNDANE TESTING ASPECTS TO FOCUS ON WHAT MATTERS THE MOST WITH TITAN
-"
-	btnText="Request Personalized Demo !"
+	title={data.page?.Cta?.title || ''}
+	btnText={data.page?.Cta?.Button?.name || ''}
+	btnLink={data.page?.Cta?.Button?.link || ''}
 	className="bg-sky-50 text-blue-950   "
 />
 
-<section class=" py-10 md:py-20 container flex items-center">
+<section class=" py-10 md:py-28 container flex items-center">
 	<div class=" flex flex-col gap-10">
 		<div>
 			<h2
 				class=" border-orange-400 text-xl md:text-3xl text-gray-600 border-l-4 pl-5 font-semibold mb-2"
 			>
-				<span class="text-orange-400 font-bold">TITAN</span> is accelerating digital transformation
+				{@html data.page?.acceleratingSection?.title || ''}
 			</h2>
 			<p class="text-gray-600 text-sm md:text-base lg:text-lg max-w-xl font-semibold pt-3 pl-6">
-				It's all about creating engaging experiences, fostering collaboration, and building a
-				happier workplace
+				{data.page?.acceleratingSection?.subtitle || ''}
 			</p>
 		</div>
 
-		<img src={img1} alt="img1" class="w-full lg:hidden" />
+		<img src={monitorImage} alt="img1" class="w-full lg:hidden" />
 
 		<div class="grid grid-cols-3 md:grid-cols-2 gap-2 md:gap-4 pt-5">
-			<article class="flex fluid-font items-center">
-				<img class="w-10 md:w-24" src={icon1} alt="Icon" />
-				<p>
-					<span class=" text-orange-400 font-bold block text-xs md:text-2xl">25%</span>Turnaround
-					time reduced.
-				</p>
-			</article>
-			<article class="flex fluid-font items-center">
-				<img class="w-10 md:w-24" src={icon2} alt="Icon" />
-				<p>
-					<span class="text-orange-400 font-bold block text-xs md:text-2xl">70%</span> Increase in collaboration
-					productivity
-				</p>
-			</article>
-			<article class="flex fluid-font items-center">
-				<img class="w-10 md:w-24" src={icon6} alt="Icon" />
-				<p>
-					<span class="text-orange-400 font-bold block text-xs md:text-2xl">50%</span> Time saved to
-					search & reuse information
-				</p>
-			</article>
-			<article class="flex fluid-font items-center">
-				<img class="w-10 md:w-24" src={icon4} alt="Icon" />
-				<p>
-					<span class="text-orange-400 font-bold block text-xs md:text-2xl">30%</span> Decrease in quality
-					issues
-				</p>
-			</article>
-			<article class="flex fluid-font items-center">
-				<img class="w-10 md:w-24" src={icon5} alt="Icon" />
-				<p>
-					<span class="text-orange-400 font-bold block text-xs md:text-2xl">20%</span> Increase in operational
-					efficiency
-				</p>
-			</article>
-			<article class="flex fluid-font items-center">
-				<img class="w-10 md:w-24" src={icon3} alt="Icon" />
-				<p>
-					<span class=" text-orange-400 font-bold block text-xs md:text-2xl">40%</span> Reduction in
-					error rate
-				</p>
-			</article>
+			{#each data.page?.acceleratingSection?.cards || [] as iconCard}
+				<article class="flex fluid-font items-center">
+					<img
+						class="w-10 md:w-24"
+						src={iconCard?.media?.data?.attributes?.url}
+						alt={iconCard?.media?.data?.attributes?.alternativeText}
+					/>
+					<p>
+						<span class=" text-orange-400 font-bold block text-xs md:text-2xl">
+							{iconCard?.title}%
+						</span>
+						{iconCard?.description}
+					</p>
+				</article>
+			{/each}
 		</div>
 	</div>
 
-	<img src={img1} alt="dimg" class="hidden lg:block w-[55%]" />
+	<img src={monitorImage} alt="Monitor" class="hidden lg:block w-[55%]" />
 </section>
 
 <style>

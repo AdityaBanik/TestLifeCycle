@@ -18,14 +18,12 @@
 	import Accordian from '$lib/components/accordian/Accordian.svelte';
 	import AccordianItem from '$lib/components/accordian/AccordianItem.svelte';
 	import { fly } from 'svelte/transition';
-	
+
 	export let data: LayoutData;
 
 	let isOpen: boolean;
 
-
-	let selectedLocale:string = data.lang || '';
-
+	let selectedLocale: string = data.lang || '';
 
 	let form: HTMLFormElement;
 	function closeSidebar() {
@@ -33,7 +31,6 @@
 	}
 
 	function changeLocale(event: Event) {
-		
 		form.submit();
 	}
 
@@ -70,8 +67,6 @@
 			}
 		};
 	}
-
-	
 </script>
 
 <header class="flex justify-between items-center py-4 px-4 xl:container">
@@ -82,7 +77,7 @@
 		<nav class="gap-6 hidden lg:flex items-center">
 			<div>
 				<a
-					href={data.lang === 'ja' ?'/ja':'/'}
+					href={data.lang === 'ja' ? '/ja' : '/'}
 					class="fluid-font capitalize hover:bg-blue-50 px-2 py-1 rounded-lg cursor-pointer">home</a
 				>
 			</div>
@@ -143,7 +138,7 @@
 					<svelte:fragment slot="title">{navItem?.title}</svelte:fragment>
 					<article class="flex flex-col text-xs pl-12 pb-3 pt-1 gap-3">
 						{#each navItem?.Links || [] as links}
-							<a href={links?.link} class="accordian-links">
+							<a href={links?.link} class="accordian-links" on:click={closeSidebar}>
 								{links?.name}
 							</a>
 						{/each}
@@ -175,26 +170,34 @@
 			{/each}
 		</section>
 
-		<div class=" text-white font-light mt-20">
+		<div class=" text-white font-light mt-20 flex flex-col gap-5">
 			<div class="flex items-center gap-4">
-				<i class="ri-phone-fill text-2xl text-amber-600"></i>
+				<i class="ri-phone-fill text-3xl text-amber-600"></i>
 				<a href="tel:+1-415-851-1284">+1 (415) 851-1284</a>
 			</div>
 			<div class="flex items-center gap-4">
-				<i class="ri-map-2-line text-2xl text-amber-600"></i>
+				<i class="ri-map-2-line text-3xl text-amber-600"></i>
 				<p>5890 Stoneridge Dr, suite 216 | Pleasanton | CA 94588 United</p>
+			</div>
+			<div>
+				<a href="mailto:info@12thwonder.com" class="flex items-center gap-4">
+					<i class="ri-mail-line text-3xl text-amber-600"></i>
+					info@12thwonder.com
+				</a>
 			</div>
 		</div>
 
 		<div class="flex justify-center items-center gap-10 mt-16">
 			<span class="w-[400px] h-[1px] bg-white/70"></span>
-			<a href="https://www.linkedin.com/products/12thwonder-titan"
-				><i class="ri-linkedin-box-fill bg-white rounded-sm text-blue-500 text-4xl"></i></a
-			>
+			<a href="https://www.linkedin.com/products/12thwonder-titan" class="flex items-center gap-2 text-base">
+				<i class="ri-linkedin-box-line rounded-sm text-amber-500 text-5xl"></i>
+				<span>LinkedIn</span>
+			</a>
+
 			<span class="w-[400px] h-[1px] bg-white/70"></span>
 		</div>
 
-		<div class="flex flex-col gap-5 items-center md:flex-row justify-between mt-20">
+		<div class="flex flex-col gap-5 items-center md:flex-row justify-between mt-10 md:mt-20">
 			<p class="text-white font-light">&copy; 2021 12th Wonder. All rights reserved.</p>
 			<a href="https://www.12thwonder.com" class="flex items-center">
 				<img src={logo12thwonder} alt="12th Wonder Logo" class="w-24 pb-0.5" />
