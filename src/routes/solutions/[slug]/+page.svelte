@@ -5,7 +5,7 @@
 	import type { PageData } from './$types';
 
 	export let data: PageData;
-	console.log(data);
+	
 </script>
 
 {#if data.hero && data.hero.__typename === 'ComponentTestLifeCycleHeroSection'}

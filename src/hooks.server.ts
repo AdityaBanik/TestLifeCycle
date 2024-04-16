@@ -2,6 +2,7 @@ import type { Handle } from '@sveltejs/kit';
 
 export const handle: Handle = ({ event, resolve }) => {
 	let lang = event.cookies.get('lang');
+	
 	if (!lang) {
 		const acceptLanguage = event.request.headers.get('Accept-Language');
 		if (acceptLanguage && acceptLanguage.includes('ja')) {

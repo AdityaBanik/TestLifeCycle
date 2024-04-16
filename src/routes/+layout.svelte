@@ -18,9 +18,10 @@
 	import Accordian from '$lib/components/accordian/Accordian.svelte';
 	import AccordianItem from '$lib/components/accordian/AccordianItem.svelte';
 	import { fade, fly } from 'svelte/transition';
-	import type { ChangeEventHandler } from 'svelte/elements';
+	export let data: LayoutData;
 
 	let isOpen: boolean;
+	let selectedLocale: string = data.lang || 'en';
 
 	let form: HTMLFormElement;
 	function closeSidebar() {
@@ -28,7 +29,6 @@
 	}
 
 	function changeLocale(event: Event) {
-		const selectedOption = (event.target as HTMLSelectElement).value;
 		form.submit();
 	}
 
@@ -66,7 +66,7 @@
 		};
 	}
 
-	export let data: LayoutData;
+	
 </script>
 
 <header class="flex justify-between items-center py-4 px-4 xl:container">
@@ -116,7 +116,7 @@
 
 	<section class="flex items-center gap-5">
 		<form bind:this={form} method="POST" action="/locale" class="flex" >
-			<select name="locale" on:change={changeLocale} class=" fluid-font py-0 md:py-1 rounded-full " >
+			<select name="locale" bind:value={selectedLocale}  on:change={changeLocale} class=" fluid-font py-0 md:py-1 rounded-full " >
 				<option value="en">EN</option>
 				<option value="ja">JA</option>
 			</select>

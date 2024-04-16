@@ -6,14 +6,15 @@ import type { Actions } from '@sveltejs/kit';
   
 
 
-export const load = (async ({ cookies, url }) => {
+export const load = (async ({ cookies, url, locals }) => {
 
 	const nav = cookies.get('nav');
 	if (nav) {
 		const navLinks:[] = JSON.parse(nav);
 		return {
 			navLinks: navLinks,
-			url: url.pathname
+			url: url.pathname,
+			lang: locals.lang
 		};
 	}
 
@@ -65,7 +66,8 @@ export const load = (async ({ cookies, url }) => {
 
 		return {
 			navLinks: navLinks,
-			url: url.pathname
+			url: url.pathname,
+			lang: locals.lang
 		};
 	} catch (error) {
 		return {
