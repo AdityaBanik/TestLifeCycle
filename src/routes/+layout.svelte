@@ -9,18 +9,27 @@
 	import type { LayoutData } from './$types';
 
 	import logo from '$lib/assets/titanLogo.svg';
+	import logo12thwonder from '$lib/assets/Home/12thwonderlogo.png';
+
 	import Button from '$lib/components/buttons/Button.svelte';
 	import tippy from 'tippy.js';
 
 	import Sidebar from '$lib/components/sidebar/Sidebar.svelte';
 	import Accordian from '$lib/components/accordian/Accordian.svelte';
 	import AccordianItem from '$lib/components/accordian/AccordianItem.svelte';
-	import { fly } from 'svelte/transition';
+	import { fade, fly } from 'svelte/transition';
+	export let data: LayoutData;
 
 	let isOpen: boolean;
+	let selectedLocale: string = data.lang || 'en';
 
+	let form: HTMLFormElement;
 	function closeSidebar() {
 		isOpen = false;
+	}
+
+	function changeLocale(event: Event) {
+		form.submit();
 	}
 
 	//ToDo improve focs
@@ -36,7 +45,8 @@
 			allowHTML: true,
 			theme: 'light',
 			offset: [0, 28],
-			
+			appendTo: () => document.body,
+
 			onShown(instance) {
 				const content = instance.popper.querySelector('.tippy-content');
 				const clickHandler = (e: any) => {
@@ -56,15 +66,15 @@
 		};
 	}
 
-	export let data: LayoutData;
+	
 </script>
 
-<header class="flex justify-between items-center py-4 container">
-	<section class="flex items-center md:gap-20 xl:gap-32">
+<header class="flex justify-between items-center py-4 px-4 xl:container">
+	<section class="flex items-center gap-16 ">
 		<a href="/">
 			<img src={logo} alt="Titan Logo" class="logo" />
 		</a>
-		<nav class="gap-8 hidden lg:flex items-center">
+		<nav class="gap-6 hidden lg:flex items-center">
 			<div>
 				<a
 					href="/"
@@ -105,7 +115,14 @@
 	</section>
 
 	<section class="flex items-center gap-5">
-		<Button text="Request Demo" className="text-sm" />
+		<form bind:this={form} method="POST" action="/locale" class="flex" >
+			<select name="locale" bind:value={selectedLocale}  on:change={changeLocale} class=" fluid-font py-0 md:py-1 rounded-full " >
+				<option value="en">EN</option>
+				<option value="ja">JA</option>
+			</select>
+		</form>
+
+		<Button text="Request Demo" className="text-sm" link="/request-demo" />
 
 		<button
 			class="lg:hidden px-2 p-1 border rounded-md hover:bg-slate-200 active:bg-slate-50"
@@ -117,11 +134,7 @@
 </header>
 
 {#key data.url}
-	<main
-		class="min-h-screen"
-		in:fly={{ x: -200, duration: 300, delay: 300 }}
-		out:fly={{ x: 200, duration: 300 }}
-	>
+	<main in:fly={{ x: -300, duration: 300, delay: 300 }} out:fly={{ x: 300, duration: 300 }}>
 		<slot />
 	</main>
 {/key}
@@ -157,6 +170,66 @@
 	</nav>
 </Sidebar>
 
+<footer class="min-h-96 bg-[#253858] py-10 md:py-20 text-xs md:text-sm 2xl:text-base">
+	<div class="container">
+		<section class="grid grid-cols-2 gap-y-8 gap-x-5 md:grid-cols-3 lg:grid-cols-4 capitalize">
+			<article>
+				<h4 class="text-amber-600 font-bold text-base 2xl:text-lg tracking-wider mb-3">company</h4>
+				<ul class="flex flex-col gap-3">
+					<li><a href="/about-us">about us</a></li>
+					<li><a href="/why-choose-us">why choose us?</a></li>
+					<li><a href="/blog">blog</a></li>
+					<li><a href="/faq">faqs</a></li>
+					<li><a href="/resource-center">resource center</a></li>
+					<li><a href="/contact-us">contact us</a></li>
+					<li><a href="/news-and-events">news and events</a></li>
+				</ul>
+			</article>
+			{#each Object.entries(data.navLinks || []) as [key, value], index}
+				<article class:order-1={index === 0} class:order-2={index === 2}>
+					<h4 class="text-amber-600 font-bold text-base 2xl:text-lg tracking-wider mb-3">{key}</h4>
+					<ul class="flex flex-col gap-3">
+						{#each value || [] as links}
+							<li>
+								<a href={`/${key.split(' ').join('-')}/` + links?.slug}>
+									{links?.name}
+								</a>
+							</li>
+						{/each}
+					</ul>
+				</article>
+			{/each}
+		</section>
+
+		<div class=" text-white font-light mt-20">
+			<div class="flex items-center gap-4">
+				<i class="ri-phone-fill text-2xl text-amber-600"></i>
+				<a href="tel:+1-415-851-1284">+1 (415) 851-1284</a>
+			</div>
+			<div class="flex items-center gap-4">
+				<i class="ri-map-2-line text-2xl text-amber-600"></i>
+				<p>5890 Stoneridge Dr, suite 216 | Pleasanton | CA 94588 United</p>
+			</div>
+		</div>
+
+		<div class="flex justify-center items-center gap-10 mt-16">
+			<span class="w-[400px] h-[1px] bg-white/70"></span>
+			<a href="https://www.linkedin.com/products/12thwonder-titan"
+				><i class="ri-linkedin-box-fill bg-white rounded-sm text-blue-500 text-4xl"></i></a
+			>
+			<span class="w-[400px] h-[1px] bg-white/70"></span>
+		</div>
+
+		<div class="flex flex-col gap-5 items-center md:flex-row justify-between mt-20">
+			<p class="text-white font-light">&copy; 2021 12th Wonder. All rights reserved.</p>
+			<a href="https://www.12thwonder.com" class="flex items-center">
+				<img src={logo12thwonder} alt="12th Wonder Logo" class="w-24 pb-0.5" />
+				A 12th Wonder Product
+			</a>
+		</div>
+	</div>
+</footer>
+
 <style type="postcss">
 	nav div button {
 		@apply capitalize hover:bg-blue-50 px-2 py-1 rounded-lg cursor-pointer;
@@ -171,5 +244,9 @@
 	}
 	.logo {
 		width: clamp(100px, 10vw, 200px);
+	}
+
+	footer a {
+		@apply text-white/90 hover:text-orange-300  transition-colors  cursor-pointer;
 	}
 </style>

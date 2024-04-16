@@ -6,11 +6,11 @@
 	export let data: PageData;
 </script>
 
-<section class="bg-gradient-to-b from-white to-pink-50  py-20">
+<section class="card py-20  bg-gradient-to-b from-purple-600 to-white">
 	<div class="container">
 		<div class="border-l-pink-500 border-l-8 pl-8">
-			<h1 class="fluid-title  font-bold mb-3">{data.page?.title}</h1>
-			<h2 class="max-w-xl fluid-subtitle ">
+			<h1 class="fluid-title text-white font-bold mb-3">{data.page?.title}</h1>
+			<h2 class="max-w-xl fluid-subtitle text-white">
 				{data.page?.subtitle}
 			</h2>
 		</div>
@@ -45,4 +45,5 @@
     .fluid-subtitle {
         font-size: clamp(0.85rem, 1.125vw, 1.5rem);
     }
+
 </style>

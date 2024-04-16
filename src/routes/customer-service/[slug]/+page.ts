@@ -6,7 +6,7 @@ export const load = (async ({ params }) => {
 	let slug = params.slug;
 	const query = graphql(`
 		query customer($slug: String!) {
-			titanCustomerServices(filters: { slug: { eq: $slug } }) {
+			titanCustomerServices(filters: { slug: { eq: $slug } }, locale: "all" ) {
 				data {
 					attributes {
 						section {
@@ -36,12 +36,12 @@ export const load = (async ({ params }) => {
 		const responseData = await client.request(query, variables);
 
 		return {
-            page: {
-                title: responseData.titanCustomerServices?.data[0].attributes?.section?.title,
-                subtitle: responseData.titanCustomerServices?.data[0].attributes?.section?.subtitle,
-                cards: responseData.titanCustomerServices?.data[0].attributes?.section?.cards
-            }
-        };
+			page: {
+				title: responseData.titanCustomerServices?.data[0].attributes?.section?.title,
+				subtitle: responseData.titanCustomerServices?.data[0].attributes?.section?.subtitle,
+				cards: responseData.titanCustomerServices?.data[0].attributes?.section?.cards
+			}
+		};
 	} catch (error) {
 		return {
 			status: 500,
