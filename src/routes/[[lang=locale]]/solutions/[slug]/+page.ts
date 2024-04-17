@@ -1,10 +1,10 @@
-import type { PageServerLoad } from './$types';
+import type { PageLoad } from './$types';
 import { graphql } from '$lib/gql';
 import { client } from '$lib';
 
-export const load = (async ({ params, locals }) => {
+export const load = (async ({ params, parent }) => {
 	let slug = params.slug;
-	
+	const data = await parent();
 	//fragments are not understood by the compiler [not unused code]
 	const Hero = graphql(`
 		fragment Hero on ComponentTestLifeCycleHeroSection {
@@ -77,7 +77,7 @@ export const load = (async ({ params, locals }) => {
 		}
 	`);
 
-	const variables = { slug , lang: locals.lang};
+	const variables = { slug , lang: data.lang};
 
 	try {
 		const responseData = await client.request(query, variables);
@@ -103,4 +103,4 @@ export const load = (async ({ params, locals }) => {
 			error: 'Internal server error'
 		};
 	}
-}) satisfies PageServerLoad;
+}) satisfies PageLoad;

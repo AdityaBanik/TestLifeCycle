@@ -1,9 +1,10 @@
-import type { PageServerLoad } from './$types';
 import { graphql } from '$lib/gql';
 import { client } from '$lib';
+import type { PageLoad } from './$types';
 
-export const load = (async ({ locals }) => {
-	const lang = locals.lang;
+export const load = (async ({ parent }) => {
+	const data = await parent();
+	const lang = data.lang;
 	const query = graphql(`
 		query getHomePage($lang: I18NLocaleCode) {
 			titanHomepage(locale: $lang) {
@@ -66,9 +67,9 @@ export const load = (async ({ locals }) => {
 		const responseData = await client.request(query, variables);
 
 		return {
-            page: responseData.titanHomepage?.data?.attributes
-        };
+			page: responseData.titanHomepage?.data?.attributes
+		};
 	} catch (error) {
 		return Error(`Failed to home page ${error}`);
 	}
-}) satisfies PageServerLoad;
+}) satisfies PageLoad;

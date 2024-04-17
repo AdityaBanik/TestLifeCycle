@@ -2,11 +2,12 @@ import type { PageLoad } from './$types';
 import { graphql } from '$lib/gql';
 import { client } from '$lib';
 
-export const load = (async () => {
-	
+export const load = (async ({ parent }) => {
+	const data = await parent();
+	const lang = data.lang;
 	const query = graphql(`
-		query getBlogs {
-			titanBlogs {
+		query getBlogs($lang: I18NLocaleCode) {
+			titanBlogs (locale: $lang){
 				data {
 					attributes {
 						title
@@ -25,10 +26,10 @@ export const load = (async () => {
 			}
 		}
 	`);
-
+	const variables = { lang };
 	try {
-		const responseData = await client.request(query);
-
+		const responseData = await client.request(query, variables);
+		console.log(responseData);
 		return {
 			blogs: responseData.titanBlogs?.data
 		};
