@@ -10,7 +10,7 @@
 <div class="gradient">
 	<section class=" pt-16 pb-10">
 		<div class="container">
-			<div class="border-l-blue-500 border-l-8 pl-8 drop-shadow-md">
+			<div class="border-l-white border-l-[6px] pl-8 drop-shadow-md">
 				<h1 class="fluid-title text-white font-bold mb-3">{data.page?.title}</h1>
 				<h2 class="max-w-xl fluid-subtitle text-white">
 					{data.page?.subtitle}
@@ -54,7 +54,7 @@
 	}
 
 	.fluid-subtitle {
-		font-size: clamp(0.85rem, 1.125vw, .85rem);
+		font-size: clamp(0.85rem, 1.125vw, 0.85rem);
 	}
 
 	.prose {
@@ -62,16 +62,16 @@
 	}
 
 	.gradient {
-		background-color: #c799ff;
-		background-image: radial-gradient(at 91% 92%, hsla(0, 0%, 100%, 1) 0px, transparent 50%),
-			radial-gradient(at 19% 100%, hsla(0, 0%, 100%, 1) 0px, transparent 50%),
-			radial-gradient(at 60% 58%, hsla(271, 75%, 70%, 1) 0px, transparent 50%),
-			radial-gradient(at 98% 44%, hsla(172, 95%, 72%, 1) 0px, transparent 50%),
-			radial-gradient(at 32% 81%, hsla(206, 86%, 79%, 1) 0px, transparent 50%),
-			radial-gradient(at 80% 88%, hsla(160, 62%, 75%, 1) 0px, transparent 50%),
-			radial-gradient(at 22% 33%, hsla(297, 79%, 77%, 1) 0px, transparent 50%),
-			radial-gradient(at 34% 14%, hsla(247, 83%, 79%, 1) 0px, transparent 50%),
-			radial-gradient(at 91% 66%, hsla(236, 94%, 61%, 1) 0px, transparent 50%),
-			radial-gradient(at 10% 74%, hsla(19, 69%, 70%, 1) 0px, transparent 50%);
+		background-color: hsla(292, 89%, 48%, 1);
+		background-image: radial-gradient(at 97% 100%, hsla(305, 0%, 100%, 1) 0px, transparent 50%),
+			radial-gradient(at 72% 100%, hsla(251, 0%, 100%, 1) 0px, transparent 50%),
+			radial-gradient(at 43% 100%, hsla(251, 0%, 100%, 1) 0px, transparent 50%),
+			radial-gradient(at 86% 58%, hsla(224, 100%, 70%, 0.99) 0px, transparent 50%),
+			radial-gradient(at 7% 94%, hsla(251, 0%, 100%, 1) 0px, transparent 50%),
+			radial-gradient(at 9% 53%, hsla(270, 85%, 62%, 1) 0px, transparent 50%),
+			radial-gradient(at 68% 81%, hsla(99, 0%, 100%, 1) 0px, transparent 50%),
+			radial-gradient(at 51% 60%, hsla(180, 100%, 50%, 0.49) 0px, transparent 50%),
+			radial-gradient(at 9% 18%, hsla(238, 100%, 76%, 1) 0px, transparent 50%),
+			radial-gradient(at 82% 21%, hsla(169, 93%, 52%, 0.45) 0px, transparent 50%);
 	}
 </style>
