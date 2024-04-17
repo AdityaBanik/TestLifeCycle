@@ -19,42 +19,42 @@
 		</div>
 
 		<img
-			src="https://static.wixstatic.com/media/b8fe2a_04d85dabfacd484da52ce26d5709df59~mv2.webp"
+			src="src/lib/assets/TitanAnimation/img1.webp"
 			id="img-1"
 			alt="animation"
 		/>
 		<img
-			src="https://static.wixstatic.com/media/b8fe2a_c5692d6a9c2d4f1e9506d036646c9263~mv2.webp"
+			src="src/lib/assets/TitanAnimation/img2.webp"
 			id="img-2"
 			alt="animation"
 		/>
 		<img
-			src="https://static.wixstatic.com/media/b8fe2a_e7a3d273b552458a8614b335bee7c499~mv2.webp"
+			src="src/lib/assets/TitanAnimation/img3.webp"
 			id="img-3"
 			alt="animation"
 		/>
 		<img
-			src="https://static.wixstatic.com/media/b8fe2a_9c574d912c8b430d956f1cbed9828b1d~mv2.webp"
+			src="src/lib/assets/TitanAnimation/img4.webp"
 			id="img-4"
 			alt="animation"
 		/>
 		<img
-			src="https://static.wixstatic.com/media/b8fe2a_ae0a62cb94fd4bcdaee6bb69a2e7110b~mv2.webp"
+			src="src/lib/assets/TitanAnimation/img5.webp"
 			id="img-5"
 			alt="animation"
 		/>
 		<img
-			src="https://static.wixstatic.com/media/b8fe2a_130ffdea5cea4037b76dce033c5292f1~mv2.webp"
+			src="src/lib/assets/TitanAnimation/img6.webp"
 			id="img-6"
 			alt="animation"
 		/>
 		<img
-			src="https://static.wixstatic.com/media/b8fe2a_3d2bdeb64f2041daad948acc134f2217~mv2.webp"
+			src="src/lib/assets/TitanAnimation/pinimg.webp"
 			style="opacity: 1; z-index: 30;"
 			alt="animation"
 		/>
 		<img
-			src="https://static.wixstatic.com/media/b8fe2a_902be84ee74747c69df72010eb819ee7~mv2.webp"
+			src="src/lib/assets/TitanAnimation/animationimg.webp"
 			id="frame"
 			alt="animation"
 		/>
