@@ -1,9 +1,11 @@
 <script lang="ts">
 	import IconCard from '$lib/components/cards/IconCard.svelte';
+	import SolutionsScrollable from '$lib/components/sections/SolutionsScrollable.svelte';
 	import Cta from '$lib/components/shared/CTA.svelte';
 	import type { PageData } from './$types';
 
 	export let data: PageData;
+	
 </script>
 
 {#if data.hero && data.hero.__typename === 'ComponentTestLifeCycleHeroSection'}
@@ -15,7 +17,7 @@
 				<h1 class="font-bold md:text-2xl lg:text-5xl mb-2">
 					{data.hero?.title}
 				</h1>
-				<p class="md:max-w-[700px] text-xs md:text-base  2xl:text-lg font-light">
+				<p class="md:max-w-[700px] text-xs md:text-base 2xl:text-lg font-light">
 					{data.hero?.subtitle}
 				</p>
 			</div>
@@ -53,24 +55,24 @@
 	</section>
 {/if}
 
+{#if data.features && data.features?.__typename === 'ComponentTestLifeCycleFeatures'}
 
-<!-- <section class=" relative z-20 bg-white">
-	<div class="container pt-10 md:pt-20">
-		<h2 class="font-bold line-height md:text-2xl lg:text-4xl mb-2 md:mb-4 max-w-sm md:max-w-xl">
-			Where Gear Management Meets Effortless Excellence.
-		</h2>
-		<p class="max-w-sm md:max-w-2xl text-xs md:text-base">
-			For engineers and management teams, our valued customers, TITAN's Equipment Management feature
-			offers the following benefits:
-		</p>
-	</div>
-</section> -->
+	<section class=" relative z-20 bg-white">
+		<div class="container pt-10 md:pt-20">
+			<h2 class="font-bold line-height md:text-2xl lg:text-4xl pb-2 md:pb-4">
+				  {@html data.features?.title}
+			</h2>
+			
+			<SolutionsScrollable data={data.features?.features || []} />
+		</div>
+
+	</section>
+{/if}
 
 <Cta
 	title="REMOVE MUNDANE TESTING ASPECTS TO FOCUS ON WHAT MATTERS THE MOST WITH TITAN"
 	description="Experience live with one of our experts"
 	btnText="Request Demo"
-
 	className="z-20 relative bg-sky-50 text-blue-950 "
 />
 
@@ -79,13 +81,10 @@
 		box-shadow: 0 -10px 20px -10px rgba(0, 0, 0, 0.3);
 	}
 
-    .cover-img-shadow {
+	.cover-img-shadow {
 		box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
 	}
 
-	.highlight {
-		@apply bg-blue-400;
-	}
 
 	.line-height {
 		line-height: 1.2 !important;

@@ -1,14 +1,14 @@
 <script>
 	import { getContext, onMount } from 'svelte';
 	import { ACCORDION } from './Accordian.svelte';
-	import { fade, fly, slide } from 'svelte/transition';
+	import { slide } from 'svelte/transition';
 
 	const { registerItem, selectItem, openItem, items } = getContext(ACCORDION);
-	
-  export let className = '';
-  export let selected = '';
-  export let openfirst = false;
 
+	export let className = '';
+	export let selected = '';
+	export let onClick = () => {};
+	export let keepOpen = false;
 
 	// This component's unique id
 	let id = Math.random();
@@ -17,23 +17,18 @@
 	registerItem(id);
 
 	function toggle() {
-		if ($openItem === id) {
-      selectItem(null);
-    } else {
-      selectItem(id);
-    }
+		if ($openItem === id && !keepOpen) {
+			selectItem(null);
+		} else {
+			selectItem(id);
+		}
 	}
-
-  onMount(() => {
-    if (openfirst && items.length === 1) {
-      selectItem(id);
-    }
-  });
-
-	
+	if (keepOpen && items.length === 1) {
+		selectItem(id);
+	}
 </script>
 
-<button on:click={toggle} class="w-full {className} {$openItem === id ? selected : ''}"  >
+<button on:click={toggle}  on:click={onClick} class="w-full {className} {$openItem === id ? selected : ''}">
 	{#if $openItem === id}
 		<i class="ri-arrow-down-s-line"></i>
 	{:else}
@@ -43,9 +38,19 @@
 	<slot name="title" />
 </button>
 
-{#if $openItem === id}
-	<section in:slide={{ duration: 200 }} out:slide={{ duration: 200 }}>
+{#key $openItem === id}
+	<section
+		class="hidden"
+		class:show={$openItem === id}
+		in:slide={{ duration: 200 }}
+		out:slide={{ duration: 200 }}
+	>
 		<slot />
 	</section>
-{/if}
+{/key}
 
+<style lang="postcss">
+	.show {
+		@apply block;
+	}
+</style>

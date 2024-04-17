@@ -24,6 +24,7 @@
 	h3 {
 		font-size: clamp(1rem, 2.5vw, 2.5rem);
 		font-family: 'Bebas Neue', sans-serif;
+		font-weight: 200;
 	}
 
 	p {

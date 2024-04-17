@@ -28,6 +28,6 @@
 	});
 </script>
 
-
-<slot />
-
+<div>
+	<slot />
+</div>
