@@ -34,7 +34,7 @@
 			</ol>
 		</article>
 		<div
-			class="nimble-form min-h-[680px] min-w-[50%]"
+			class="nimble-form min-h-[680px] min-w-[50%] shadow-md rounded-2xl"
 			data-form-id="65d7bc143841fd0baf097895"
 			data-company-id="5b261c76cef070b143c79181"
 		></div>
