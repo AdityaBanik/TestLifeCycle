@@ -34,7 +34,7 @@
 				{data.page?.Hero?.title}
 			</h1>
 
-			<h2 class="fluid-subtitle font-semibold" in:fly|global={{ y: 100, delay: 900 }}>
+			<h2 class="fluid-subtitle font-semibold  " in:fly|global={{ y: 100, delay: 900 }}>
 				The adaptable platform that lets you validate products,<br />
 				<strong class="font-bold">YOUR WAY!</strong>
 			</h2>

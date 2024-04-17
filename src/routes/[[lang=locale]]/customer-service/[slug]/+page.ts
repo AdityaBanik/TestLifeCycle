@@ -1,10 +1,11 @@
-import type { PageServerLoad } from './$types';
+import type { PageLoad } from './$types';
 import { graphql } from '$lib/gql';
 import { client } from '$lib';
 
-export const load = (async ({ params, locals }) => {
+export const load = (async ({ params,parent }) => {
 	const slug = params.slug;
-	const lang = locals.lang;
+	const data = await parent();
+	const lang = data.lang;
 
 	const query = graphql(`
 		query customer($slug: String!, $lang: I18NLocaleCode) {
@@ -52,4 +53,4 @@ export const load = (async ({ params, locals }) => {
 			error: 'Internal server error'
 		};
 	}
-}) satisfies PageServerLoad;
+}) satisfies PageLoad;
