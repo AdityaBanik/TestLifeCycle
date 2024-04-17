@@ -11,6 +11,7 @@ export const load = (async ({ params, locals }) => {
 			titanCustomerServices(filters: { slug: { eq: $slug } }, locale: $lang) {
 				data {
 					attributes {
+						content
 						section {
 							title
 							subtitle
@@ -41,7 +42,8 @@ export const load = (async ({ params, locals }) => {
 			page: {
 				title: responseData.titanCustomerServices?.data[0].attributes?.section?.title,
 				subtitle: responseData.titanCustomerServices?.data[0].attributes?.section?.subtitle,
-				cards: responseData.titanCustomerServices?.data[0].attributes?.section?.cards
+				cards: responseData.titanCustomerServices?.data[0].attributes?.section?.cards,
+				content: responseData.titanCustomerServices?.data[0].attributes?.content
 			}
 		};
 	} catch (error) {
