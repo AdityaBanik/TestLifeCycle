@@ -59,7 +59,7 @@
 
 	<section class=" relative z-20 bg-white">
 		<div class="container pt-10 md:pt-20">
-			<h2 class="font-bold line-height md:text-2xl lg:text-4xl mb-2 md:mb-4">
+			<h2 class="font-bold line-height md:text-2xl lg:text-4xl pb-2 md:pb-4">
 				  {@html data.features?.title}
 			</h2>
 			

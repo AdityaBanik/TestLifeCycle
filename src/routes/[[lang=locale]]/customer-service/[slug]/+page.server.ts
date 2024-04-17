@@ -1,14 +1,17 @@
-import type { PageLoad } from './$types';
+import type { PageServerLoad } from './$types';
 import { graphql } from '$lib/gql';
 import { client } from '$lib';
 
-export const load = (async ({ params }) => {
-	let slug = params.slug;
+export const load = (async ({ params, locals }) => {
+	const slug = params.slug;
+	const lang = locals.lang;
+
 	const query = graphql(`
-		query customer($slug: String!) {
-			titanCustomerServices(filters: { slug: { eq: $slug } }, locale: "all" ) {
+		query customer($slug: String!, $lang: I18NLocaleCode) {
+			titanCustomerServices(filters: { slug: { eq: $slug } }, locale: $lang) {
 				data {
 					attributes {
+						content
 						section {
 							title
 							subtitle
@@ -31,7 +34,7 @@ export const load = (async ({ params }) => {
 		}
 	`);
 
-	const variables = { slug };
+	const variables = { slug, lang };
 	try {
 		const responseData = await client.request(query, variables);
 
@@ -39,7 +42,8 @@ export const load = (async ({ params }) => {
 			page: {
 				title: responseData.titanCustomerServices?.data[0].attributes?.section?.title,
 				subtitle: responseData.titanCustomerServices?.data[0].attributes?.section?.subtitle,
-				cards: responseData.titanCustomerServices?.data[0].attributes?.section?.cards
+				cards: responseData.titanCustomerServices?.data[0].attributes?.section?.cards,
+				content: responseData.titanCustomerServices?.data[0].attributes?.content
 			}
 		};
 	} catch (error) {
@@ -48,4 +52,4 @@ export const load = (async ({ params }) => {
 			error: 'Internal server error'
 		};
 	}
-}) satisfies PageLoad;
+}) satisfies PageServerLoad;

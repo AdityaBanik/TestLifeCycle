@@ -1,9 +1,10 @@
-import type { PageLoad } from './$types';
+import type { PageServerLoad } from './$types';
 import { graphql } from '$lib/gql';
 import { client } from '$lib';
 
-export const load = (async ({ params }) => {
+export const load = (async ({ params, locals }) => {
 	let slug = params.slug;
+	
 	//fragments are not understood by the compiler [not unused code]
 	const Hero = graphql(`
 		fragment Hero on ComponentTestLifeCycleHeroSection {
@@ -61,8 +62,8 @@ export const load = (async ({ params }) => {
 	`);
 
 	const query = graphql(`
-		query solutions($slug: String!) {
-			titanSolutions(filters: { slug: { eq: $slug } }, locale: "all") {
+		query solutions($slug: String!, $lang: I18NLocaleCode!) {
+			titanSolutions(filters: { slug: { eq: $slug } }, locale: $lang) {
 				data {
 					attributes {
 						sections {
@@ -76,7 +77,7 @@ export const load = (async ({ params }) => {
 		}
 	`);
 
-	const variables = { slug };
+	const variables = { slug , lang: locals.lang};
 
 	try {
 		const responseData = await client.request(query, variables);
@@ -102,4 +103,4 @@ export const load = (async ({ params }) => {
 			error: 'Internal server error'
 		};
 	}
-}) satisfies PageLoad;
+}) satisfies PageServerLoad;
