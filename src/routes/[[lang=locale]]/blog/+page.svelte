@@ -5,7 +5,7 @@
 	import type { PageData } from './$types';
 
 	export let data: PageData;
-	export let blogs: any[] ;
+	
     
 
 </script>
@@ -21,7 +21,7 @@
 			description={blog.attributes?.description || ''}
 			image={blog.attributes?.coverImage?.data?.attributes?.url || ''}
 			imageAlt={blog.attributes?.coverImage?.data?.attributes?.alternativeText || ''}
-			
+			slug={'/post/'+ blog.attributes?.slug || ''}
 		/>
 	{/each}
 </section>
