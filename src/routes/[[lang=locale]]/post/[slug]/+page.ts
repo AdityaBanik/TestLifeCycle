@@ -2,16 +2,16 @@ import type { PageLoad } from './$types';
 import { graphql } from '$lib/gql';
 import { client } from '$lib';
 
-export const load = (async ({ parent }) => {
+export const load = (async ({ params, parent }) => {
+	const slug = params.slug;
 	const data = await parent();
 	const lang = data.lang;
 	const query = graphql(`
-		query getBlogs($lang: I18NLocaleCode) {
-			titanBlogs (locale: $lang){
+		query getBlogPost($slug: String!, $lang: I18NLocaleCode) {
+			titanBlogs(filters: { slug: { eq: $slug } }, locale: $lang) {
 				data {
 					attributes {
 						title
-						description
 						date
 						slug
 						coverImage {
@@ -22,17 +22,19 @@ export const load = (async ({ parent }) => {
 								}
 							}
 						}
+						content
 					}
 				}
 			}
 		}
 	`);
-	const variables = { lang };
+
+	const variables = { slug, lang };
 	try {
 		const responseData = await client.request(query, variables);
-		console.log(responseData);
+
 		return {
-			blogs: responseData.titanBlogs?.data
+			blog: responseData.titanBlogs?.data[0].attributes
 		};
 	} catch (error) {
 		return {
