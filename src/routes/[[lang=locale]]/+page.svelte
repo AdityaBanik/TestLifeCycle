@@ -59,7 +59,7 @@
 	className="bg-black text-white mt-10 md:mt-16 "
 />
 
-<section class="container py-10">
+<section class="container py-10 span ">
 	{#each data.page?.Features || [] as item, i}
 		<HomeFeatures title={item?.title || ''} items={item?.features || []} alignRight={i == 1} />
 	{/each}

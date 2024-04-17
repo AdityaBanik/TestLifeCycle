@@ -2,7 +2,7 @@
 <script>
 	import AccordianItem from '$lib/components/accordian/AccordianItem.svelte'; // Import the AccordionItem component
 	import Accordian from '$lib/components/accordian/Accordian.svelte'; // Import the Accordion component
-	import bgimage from '$lib/assets/gradient.webp';
+	
 
 	// Define static questions and answers
 	const accordionItems = [
@@ -60,8 +60,7 @@
 	}
 </script>
 
-<div class="p-20 border-2 border-black"
-	style="background-image: url({bgimage}); background-size: cover; background-repeat: no-repeat;">
+<div class=" gradient p-20 ">
 	<h1 class="text-white font-bold text-3xl text-center mb-10">FAQs - Frequently Asked Questions</h1>
 	<div class="flex justify-between ">
 		<div class=" border bg-white rounded p-4 flex-1 mr-4 ml-10 lg:w-[70%]">
@@ -121,3 +120,19 @@
 		</div>
 	</div>
 </div>
+
+<style>
+	.gradient {
+		background-color: #c799ff;
+		background-image: radial-gradient(at 91% 92%, hsla(0, 0%, 100%, 1) 0px, transparent 50%),
+			radial-gradient(at 19% 100%, hsla(0, 0%, 100%, 1) 0px, transparent 50%),
+			radial-gradient(at 60% 58%, hsla(271, 75%, 70%, 1) 0px, transparent 50%),
+			radial-gradient(at 98% 44%, hsla(172, 95%, 72%, 1) 0px, transparent 50%),
+			radial-gradient(at 32% 81%, hsla(206, 86%, 79%, 1) 0px, transparent 50%),
+			radial-gradient(at 80% 88%, hsla(160, 62%, 75%, 1) 0px, transparent 50%),
+			radial-gradient(at 22% 33%, hsla(297, 79%, 77%, 1) 0px, transparent 50%),
+			radial-gradient(at 34% 14%, hsla(247, 83%, 79%, 1) 0px, transparent 50%),
+			radial-gradient(at 91% 66%, hsla(236, 94%, 61%, 1) 0px, transparent 50%),
+			radial-gradient(at 10% 74%, hsla(19, 69%, 70%, 1) 0px, transparent 50%);
+	}
+</style>

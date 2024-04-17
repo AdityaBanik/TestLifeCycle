@@ -3,15 +3,14 @@
 	import Cta from '$lib/components/shared/CTA.svelte';
 	import type { PageData } from './$types';
 	import bgimage from '$lib/assets/white-titan-logo.webp';
-	import bgimage1 from '$lib/assets/gradient.webp';
 	import iconImage from '$lib/assets/1.webp';
 	import iconImage1 from '$lib/assets/2.webp';
 	import iconImage2 from '$lib/assets/3.webp';
 </script>
 
 <main
-	class="min-h-screen flex flex-col justify-center items-center"
-	style="background-image: url({bgimage1});"
+	class=" gradient min-h-screen flex flex-col justify-center items-center"
+	
 >
 	<section class="mb-4 lg:text-center">
 		<img src={bgimage} alt="Image1" class="w-64 h-64 mx-auto mb-2 rounded-full" />
@@ -77,5 +76,19 @@
 <style type="postcss">
 	.fluid-subtitle {
 		font-size: clamp(0.85rem, 1.125vw, 1.5rem);
+	}
+
+	.gradient {
+		background-color: #c799ff;
+		background-image: radial-gradient(at 91% 92%, hsla(0, 0%, 100%, 1) 0px, transparent 50%),
+			radial-gradient(at 19% 100%, hsla(0, 0%, 100%, 1) 0px, transparent 50%),
+			radial-gradient(at 60% 58%, hsla(271, 75%, 70%, 1) 0px, transparent 50%),
+			radial-gradient(at 98% 44%, hsla(172, 95%, 72%, 1) 0px, transparent 50%),
+			radial-gradient(at 32% 81%, hsla(206, 86%, 79%, 1) 0px, transparent 50%),
+			radial-gradient(at 80% 88%, hsla(160, 62%, 75%, 1) 0px, transparent 50%),
+			radial-gradient(at 22% 33%, hsla(297, 79%, 77%, 1) 0px, transparent 50%),
+			radial-gradient(at 34% 14%, hsla(247, 83%, 79%, 1) 0px, transparent 50%),
+			radial-gradient(at 91% 66%, hsla(236, 94%, 61%, 1) 0px, transparent 50%),
+			radial-gradient(at 10% 74%, hsla(19, 69%, 70%, 1) 0px, transparent 50%);
 	}
 </style>
