@@ -50,6 +50,9 @@
 	</div>
 {/key}
 
+
+
+
 <Cta
 	title={data.page?.Cta?.title || ''}
 	btnText={data.page?.Cta?.Button?.name || ''}
@@ -61,6 +64,21 @@
 	{#each data.page?.Features || [] as item, i}
 		<HomeFeatures title={item?.title || ''} items={item?.features || []} alignRight={i == 1} />
 	{/each}
+</section>
+
+
+<section>
+	<h5 class="text-center">Our Clients</h5>
+	<div class="flex overflow-x-auto items-center justify-center gap-3">
+		
+        <img src="src\lib\assets\svgIconForClientsLogo\Asset 1.svg" alt="logo1" >
+        <img src="src/lib/assets/volkswaganLogo.webp" alt="logo2" >
+        <img src="src/lib/assets/hondaLogo.webp" alt="logo3" >
+        <img src="src/lib/assets/toyotoLogo.webp" alt="logo4" >
+        <img src="src/lib/assets/canooLogo.webp" alt="logo5" >
+        <img src="src/lib/assets/CalspanLogo.webp" alt="logo6">
+    </div>
+
 </section>
 
 <Cta
