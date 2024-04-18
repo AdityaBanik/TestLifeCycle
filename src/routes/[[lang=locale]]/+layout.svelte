@@ -78,8 +78,10 @@
 			<div>
 				<a
 					href={data.lang === 'ja' ? '/ja' : '/'}
-					class="fluid-font capitalize hover:bg-blue-50 px-2 py-1 rounded-lg cursor-pointer">home</a
+					class="fluid-font capitalize hover:bg-blue-50 px-2 py-1 rounded-lg cursor-pointer"
 				>
+					{data.lang === 'ja' ? 'ホーム' : 'Home'}
+				</a>
 			</div>
 			{#each data.navMenu || [] as navItem}
 				<div>
@@ -113,7 +115,7 @@
 			</select>
 		</form>
 
-		<Button text="Request Demo" className="text-sm lg:px-6" link="/request-demo" />
+		<Button text={data.lang === 'ja' ? 'デモを依頼する' : 'Request Demo'} className="text-sm lg:px-6" link="/request-demo" />
 
 		<button
 			class="lg:hidden px-2 p-1 border rounded-md hover:bg-slate-200 active:bg-slate-50"
@@ -153,7 +155,7 @@
 	<div class="container">
 		<section class="grid grid-cols-2 gap-y-8 gap-x-5 md:grid-cols-3 lg:grid-cols-4 capitalize">
 			{#each data.navMenu || [] as navItem, index}
-				<article class:order-1={index === 0} class:order-2={index === 2}>
+				<article class:order-3={index === 0 } class:order-2={index === 1 } class:order-4={index ===3}>
 					<h4 class="text-amber-600 font-bold text-base 2xl:text-lg tracking-wider mb-3">
 						{navItem?.title}
 					</h4>
@@ -189,8 +191,11 @@
 
 		<div class="flex justify-center items-center gap-10 mt-16">
 			<span class="w-[400px] h-[1px] bg-white/70"></span>
-			<a href="https://www.linkedin.com/products/12thwonder-titan" class="flex items-center gap-2 text-base">
-				<i class="ri-linkedin-box-line rounded-sm text-amber-500 text-5xl"></i>
+			<a
+				href="https://www.linkedin.com/products/12thwonder-titan"
+				class="flex items-center gap-2 text-base"
+			>
+				<i class="ri-linkedin-box-fill rounded-sm text-amber-500 text-5xl"></i>
 				<span>LinkedIn</span>
 			</a>
 

@@ -1,8 +1,7 @@
 <script lang="ts">
 	import { fade, fly } from 'svelte/transition';
 	import { backOut } from 'svelte/easing';
-	import { onMount } from 'svelte';
-
+	
 	import TitanHome from '$lib/components/animation/TitanHome.svelte';
 	import Button from '$lib/components/buttons/Button.svelte';
 	import Cta from '$lib/components/shared/CTA.svelte';
@@ -10,19 +9,14 @@
 	import monitorImage from '$lib/assets/Home/pc.png';
 	import HomeFeatures from '$lib/components/sections/HomeFeatures.svelte';
 	import type { PageData } from './$types';
+	import Testimonial from '$lib/components/cards/Testimonial.svelte';
 
-	let animation = false;
-
-	onMount(() => {
-		if (window.matchMedia('(min-width: 768px)').matches) {
-			animation = true;
-		}
-	});
+	
 
 	export let data: PageData;
 </script>
 
-{#key animation}
+{#key data.url}
 	<section
 		class="text-center pt-10 container flex flex-col items-center justify-center gap-4 md:gap-8"
 	>
@@ -34,9 +28,8 @@
 				{data.page?.Hero?.title}
 			</h1>
 
-			<h2 class="fluid-subtitle font-semibold  " in:fly|global={{ y: 100, delay: 900 }}>
-				The adaptable platform that lets you validate products,<br />
-				<strong class="font-bold">YOUR WAY!</strong>
+			<h2 class="fluid-subtitle font-semibold" in:fly|global={{ y: 100, delay: 900 }}>
+				{@html data.page?.Hero?.description}
 			</h2>
 		</div>
 		<div in:fade|global={{ delay: 1100, easing: backOut }}>
@@ -50,7 +43,7 @@
 	<div in:fly|global={{ y: 200, delay: 1100, easing: backOut }}>
 		<TitanHome />
 	</div>
-{/key}
+	{/key}
 
 <Cta
 	title={data.page?.Cta?.title || ''}
@@ -59,11 +52,12 @@
 	className="bg-black text-white mt-10 md:mt-16 "
 />
 
-<section class="container py-10 span ">
+<section class="container pt-10">
 	{#each data.page?.Features || [] as item, i}
 		<HomeFeatures title={item?.title || ''} items={item?.features || []} alignRight={i == 1} />
 	{/each}
 </section>
+
 
 <Cta
 	title={data.page?.Cta?.title || ''}
@@ -71,6 +65,14 @@
 	btnLink={data.page?.Cta?.Button?.link || ''}
 	className="bg-sky-50 text-blue-950   "
 />
+
+<section class="container flex flex-col lg:flex-row  justify-between lg:items-center pt-20">
+	<h2 class="text-xl lg:text-3xl font-bold mb-6 md:mb-16">
+		See how our customers drive impact
+	</h2>
+	<Testimonial />
+</section>
+
 
 <section class=" py-10 md:py-28 container flex items-center">
 	<div class=" flex flex-col gap-10">
@@ -105,9 +107,10 @@
 			{/each}
 		</div>
 	</div>
-
 	<img src={monitorImage} alt="Monitor" class="hidden lg:block w-[55%]" />
 </section>
+
+
 
 <style>
 	.fluid-title {
