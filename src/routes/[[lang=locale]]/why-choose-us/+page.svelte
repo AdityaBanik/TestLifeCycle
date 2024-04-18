@@ -3,9 +3,8 @@
 	import Cta from '$lib/components/shared/CTA.svelte';
 	import type { PageData } from './$types';
 	import bgimage from '$lib/assets/white-titan-logo.webp';
-	import iconImage from '$lib/assets/1.webp';
-	import iconImage1 from '$lib/assets/2.webp';
-	import iconImage2 from '$lib/assets/3.webp';
+	
+	export let data: PageData;
 </script>
 
 <main
@@ -16,53 +15,27 @@
 		<img src={bgimage} alt="Image1" class="w-64 h-64 mx-auto mb-2 rounded-full" />
 		<div class="lg:w-[50%] sm:p-5  mx-auto">
 			<h2 class="text-lg text-white mb-10 pr-10 fluid-subtitle ">
-				A streamlined, robust, and transparent testing process can save your enterprise 1000s of
-				hours. TITAN does this and more, without the need for expensive testing infrastructure
-				upgrades.
+				{data.page?.highlights.title}
 			</h2>
 		</div>
 	</section>
 
 	<section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-16 p-10">
-		<!-- Card 1 -->
-		<div class="bg-white p-6 rounded-lg shadow-md">
-			<div class="flex items-center justify-center mb-4">
-				<!-- Center align the icon image -->
-				<img src={iconImage} alt="Icon" class="w-12 h-12" />
-				<!-- Icon image -->
-			</div>
-			<h2 class="text-md text-center font-semibold text-gray-800 mb-2">SEAMLESS INTEGRATION</h2>
-			<p class="text-gray-600 text-center fluid-subtitle">
-				TITAN can be seamlessly integrated with your organization’s existing database infrastructure
-				as well as project management and simulation tools
-			</p>
-		</div>
-
-		<!-- Card 2 -->
-		<div class="bg-white p-6 rounded-lg shadow-md">
-			<div class="flex items-center justify-center mb-4">
-				<!-- Center align the icon image -->
-				<img src={iconImage1} alt="Icon" class="w-12 h-12" />
-				<!-- Icon image -->
-			</div>
-			<h2 class="text-md text-center font-semibold text-gray-800 mb-2">EXTREMELY CONFIGURABLE</h2>
-			<p class="text-gray-600 text-center fluid-subtitle">
-				TITAN can be Configured to match your organization’s unique and specific requirements to
-				synergize your organization’s processes, testing activities, and data management
-			</p>
-		</div>
-
-		<!-- Card 3 -->
-		<div class="bg-white p-6 rounded-lg shadow-md">
-			<div class="flex items-center justify-center mb-4">
-				<img src={iconImage2} alt="Icon" class="w-12 h-12" />
-			</div>
-			<h2 class="text-md text-center font-semibold text-gray-800 mb-2">24 x 7 SUPPORT</h2>
-			<p class="text-gray-600 text-center fluid-subtitle">
-				TITAN’s dedicated support team is available 24 X 7 to address your issues with a guaranteed
-				turnaround time of fewer than 48 hours.
-			</p>
-		</div>
+	
+		<div
+		class="mt-10 md:mt-28 grid grid-cols-2  gap-4 md:gap-6 xl:gap-y-14"
+	>
+	
+		{#each data.page?.highlights.cards || [] as card}
+			<IconCard
+				title={card?.title || ''}
+				description={card?.description || ''}
+				imgSrc={card?.media?.data?.attributes?.url}
+				imgAlt={card?.media?.data?.attributes?.alternativeText || ''}
+				className="items-center text-center gap-5 md:py-10  shadow border  bg-white"
+			/>
+		{/each}
+	</div>
 	</section>
 </main>
 

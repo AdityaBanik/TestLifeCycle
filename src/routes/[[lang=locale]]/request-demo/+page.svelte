@@ -16,7 +16,7 @@
 
 <section class="container pt-20 pb-10 flex flex-col lg:flex-row-reverse justify-between gap-16">
 	<article
-		class="w-1/2 prose prose-sm prose-ol:max-w-sm prose-li:m-0 prose-h1:text-blue-500 prose-h1:mb-2 prose-h2:mt-0 lg:prose"
+		class="w-full lg:w-1/2 prose prose-sm prose-ol:max-w-sm prose-li:m-0 prose-h1:text-blue-500 prose-h1:mb-2 prose-h2:mt-0 lg:prose"
 	>
 		<h1>{data.page?.title}</h1>
 		<h2>{data.page?.subtitle}</h2>

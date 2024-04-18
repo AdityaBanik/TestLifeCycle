@@ -2,7 +2,7 @@ import type { PageLoad } from './$types';
 import { graphql } from '$lib/gql';
 import { client } from '$lib';
 
-export const load = (async ({ params,parent }) => {
+export const load = (async ({ params, parent }) => {
 	const slug = params.slug;
 	const data = await parent();
 	const lang = data.lang;
@@ -12,6 +12,14 @@ export const load = (async ({ params,parent }) => {
 			titanCustomerServices(filters: { slug: { eq: $slug } }, locale: $lang) {
 				data {
 					attributes {
+						image {
+							data {
+								attributes {
+									url
+									alternativeText
+								}
+							}
+						}
 						content
 						section {
 							title
@@ -44,7 +52,8 @@ export const load = (async ({ params,parent }) => {
 				title: responseData.titanCustomerServices?.data[0].attributes?.section?.title,
 				subtitle: responseData.titanCustomerServices?.data[0].attributes?.section?.subtitle,
 				cards: responseData.titanCustomerServices?.data[0].attributes?.section?.cards,
-				content: responseData.titanCustomerServices?.data[0].attributes?.content
+				content: responseData.titanCustomerServices?.data[0].attributes?.content,
+				image: responseData.titanCustomerServices?.data[0].attributes?.image?.data?.attributes
 			}
 		};
 	} catch (error) {

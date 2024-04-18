@@ -7,44 +7,50 @@
 	export let data: PageData;
 </script>
 
-<section class=" py-20">
-	<div class="container">
+<section class="pt-10 xl:py-20 md:pt-20 bg-gradient-to-t from-violet-50 to-white">
+	<div class="container ">
 		
-		<div>
-			<h1 class="text-base md:text-3xl  p-4 font-bold border-l-blue-500 border-l-[6px] mb-10 drop-shadow-md">
-				{data.page?.title}
-			</h1>
-			<h2 class="max-w-xl prose text-justify ">
-				{data.page?.subtitle}
-			</h2>
-		</div>
+		<section class="flex flex-col xl:flex-row gap-10 items-start justify-between ">
+			<div>
+				<h1 class="text-base md:text-3xl  p-4 font-bold border-l-blue-500 border-l-[6px] mb-10 drop-shadow-md">
+					{data.page?.title}
+				</h1>
+				<h2 class="max-w-xl  text-sm md:text-base 2xl:text-lg text-justify ">
+					{data.page?.subtitle}
+				</h2>
 
-
-		{#if data.page?.cards}
-			<div
-				class="mt-10 md:mt-28 grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6 xl:gap-y-14"
-			>
-				{#each data.page?.cards || [] as card}
-					<IconCard
-						title={card?.title || ''}
-						description={card?.description || ''}
-						imgSrc={card?.media?.data?.attributes?.url}
-						imgAlt={card?.media?.data?.attributes?.alternativeText || ''}
-						className="items-center text-center gap-5 md:py-10  shadow-lg border-none bg-white"
-					/>
-				{/each}
+				{#if data.page?.cards}
+				<div
+					class="mt-10 md:mt-28 grid grid-cols-2  gap-4 md:gap-6 xl:gap-y-14"
+				>
+					{#each data.page?.cards || [] as card}
+						<IconCard
+							title={card?.title || ''}
+							description={card?.description || ''}
+							imgSrc={card?.media?.data?.attributes?.url}
+							imgAlt={card?.media?.data?.attributes?.alternativeText || ''}
+							className="items-center text-center gap-5 md:py-10  shadow border  bg-white"
+						/>
+					{/each}
+				</div>
+			{/if}
 			</div>
-		{/if}
-	</div>
-</section>
 
-{#if data.page?.content}
+			<img class="lg:max-w-xl md:max-w-md" src={data.page?.image?.url} alt={data.page?.image?.alternativeText}>
+		</section>
+
+		{#if data.page?.content}
 	<section
-		class="container drop-shadow-xl prose prose-sm md:prose prose-img:shadow-md prose-img:bg-white prose-img:p-6 prose-img:rounded-xl pb-20"
+		class=" drop-shadow-xl prose prose-sm md:prose prose-img:shadow-md prose-img:bg-white prose-img:p-6 prose-img:rounded-xl pb-20"
 	>
 		{@html resolveRichText(data.page?.content)}
 	</section>
 {/if}
+
+	</div>
+</section>
+
+
 
 <Cta
 	title="Know more about TITAN"
@@ -65,6 +71,12 @@
 	.prose {
 		@apply container;
 	}
+
+	.shadow{
+		box-shadow: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px, rgba(9, 30, 66, 0.08) 0px 0px 0px 1px;
+	}
+
+
 
 	/* .gradient {
 		background-color: rgba(129, 13, 231, 0.592);
