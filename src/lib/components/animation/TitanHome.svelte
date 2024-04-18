@@ -1,3 +1,17 @@
+
+<script>
+	import img1 from '$lib/assets/TitanAnimation/img1.webp';
+	import img2 from '$lib/assets/TitanAnimation/img2.webp';
+	import img3 from '$lib/assets/TitanAnimation/img3.webp';
+	import img4 from '$lib/assets/TitanAnimation/img4.webp';
+	import img5 from '$lib/assets/TitanAnimation/img5.webp';
+	import img6 from '$lib/assets/TitanAnimation/img6.webp';
+	import pinimg from '$lib/assets/TitanAnimation/pinimg.webp';
+	import animationimg from '$lib/assets/TitanAnimation/animationimg.webp';
+	
+</script>
+
+
 <section>
 	<div class="image-container">
 		<div class="hover-container" id="hover-zone-1"></div>
