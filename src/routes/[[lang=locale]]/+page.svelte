@@ -14,9 +14,7 @@
 	import logo4 from '$lib/assets/svgIconForClientsLogo/Asset4.svg';
 	import logo5 from '$lib/assets/svgIconForClientsLogo/Asset5.svg';
 	import logo6 from '$lib/assets/svgIconForClientsLogo/Asset6.svg';
-	import logo7 from '$lib/assets/svgIconForClientsLogo/Asset7.svg';
-
-	export let data: PageData;
+    export let data: PageData;
 	export let btnText: string = 'Learn more';
 	let animation = false;
 
@@ -25,7 +23,7 @@
 			animation = true;
 		}
 	});
-</script>
+	</script>
 
 {#key animation}
 	<section
@@ -64,7 +62,7 @@
 	className="bg-black text-white mt-10 md:mt-16 "
 />
 
-<section class="container py-10 span ">
+<section class="container py-10 span">
 	{#each data.page?.Features || [] as item, i}
 		<HomeFeatures title={item?.title || ''} items={item?.features || []} alignRight={i == 1} />
 	{/each}
@@ -76,28 +74,22 @@
 	btnLink={data.page?.Cta?.Button?.link || ''}
 	className="bg-sky-50 text-blue-950  "
 />
-<section class="pt-6">
+<section class="py-3">
 	<div class=" flex justify-center items-center gap-6 lg:gap-12 md:gap-16">
-		<hr class="w-14">
-		<h5 class="text-center text-xs text-gray-800 font-medium lg:text-4xl md:text-2xl">Our Clients</h5>
-		<hr class="w-14">
+		<hr />
+		<h5 class="text-center text-xs text-gray-500 font-medium lg:text-4xl md:text-2xl py-1 lg:py-6">
+			Our Clients
+		</h5>
+		<hr />
 	</div>
-	<div class="flex items-center justify-around gap-3 px-3 py-2">
-		<!-- <img src={logo1} alt="logo1" class="h-14 w-14 md:h-24 md:w-24"/>
-		<img src={logo2} alt="logo2" class="h-7 w-7 md:h-20 md:w-20"/>
-		<img src={logo3} alt="logo3" class="h-9 w-9 md:h-20 md:w-20"/>
-		<img src={logo4} alt="logo4" class="h-14 w-14 md:h-20 md:w-20" />
-		<img src={logo5} alt="logo5" class="h-10 w-10 md:h-20 md:w-20" />
-		<img src={logo6} alt="logo6" class="h-10 w-10 md:h-20 md:w-20" />
-		<img src={logo7} alt="logo7" class="h-10 w-10 md:h-20 md:w-20" /> -->
 
-		<img src={logo1} alt="logo1" class="logo"/>
-		<img src={logo2} alt="logo2" class="logo"/>
-		<img src={logo3} alt="logo3" class="logo"/>
-		<!-- <img src={logo4} alt="logo4" class="logo" /> -->
-		<img src={logo5} alt="logo5" class="logo" />
-		<img src={logo6} alt="logo6" class="logo" />
-		<img src={logo7} alt="logo7" class="logo" />
+	<div class="gallery flex items-center justify-around gap-2 mt-2">
+		<img src={logo1} class="logo  h-10 w-10 md:h-24 md:w-24 lg:h-32 lg:w-32" id="1" />
+		<img src={logo2} class="logo  h-8 w-8 md:h-20 md:w-20 lg:h-32 lg:w-32" id="2" />
+		<img src={logo3} class="logo  h-10 w-10 md:h-20 md:w-20 lg:h-32 lg:w-32" id="3" />
+		<img src={logo4} class="logo  h-10 w-10 md:h-20 md:w-20 lg:h-32 lg:w-32" id="4" />
+		<img src={logo5} class="logo  h-10 w-10 md:h-20 md:w-20 lg:h-32 lg:w-32" id="5" />
+		<img src={logo6} class="logo  h-10 w-10 md:h-20 md:w-20 lg:h-32 lg:w-32" id="6" />
 	</div>
 </section>
 <section class=" py-10 md:py-28 container flex items-center">
@@ -145,12 +137,14 @@
 		font-size: clamp(0.65rem, 1.8vw, 2rem) !important;
 	}
 
-	.logo{
-	height: clamp(2.8rem, 11vw, 10rem) !important;
-	width: clamp(2.8rem,11vw, 10rem) !important;
+	/* .logo {
+		height: clamp(2.8rem, 11vw, 10rem) !important;
+		width: clamp(2.8rem, 11vw, 10rem) !important;
+		animation: scroll 10s linear infinite;
+	} */
+
+	hr {
+		width: clamp(5rem, 20vw, 20rem) !important;
 	}
 
-	hr{
-		width: clamp(5rem, 20vw,20rem) !important;
-	}
 </style>

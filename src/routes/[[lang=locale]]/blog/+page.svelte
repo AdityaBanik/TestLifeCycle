@@ -11,7 +11,7 @@
 </script>
 
 
-<h1 class="container text-3xl font-bold mt-10 md:mt-15" >All Blogs</h1>
+<h1 class="container text-3xl font-bold mt-10 md:mt-15">All Blogs</h1>
 <section class="container grid md:grid-cols-2 items-stretch lg:grid-cols-3 2xl:grid-cols-4 gap-10 py-10">
     
 	{#each data.blogs|| [] as blog}
