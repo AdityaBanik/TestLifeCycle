@@ -32,6 +32,6 @@ export const load = (async ({ locals }) => {
 			navMenu: responseData.navMenu?.data?.attributes?.NavComponent,
 		};
 	} catch (error) {
-		return Error(`Failed to load nav menu ${error}`);
+		return { error: 'nav failed to load'}
 	}
 }) satisfies LayoutServerLoad;
