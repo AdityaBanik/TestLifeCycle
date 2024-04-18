@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { fade, fly } from 'svelte/transition';
 	import { backOut } from 'svelte/easing';
-	import { onMount } from 'svelte';
+	
 	import TitanHome from '$lib/components/animation/TitanHome.svelte';
 	import Button from '$lib/components/buttons/Button.svelte';
 	import Cta from '$lib/components/shared/CTA.svelte';
@@ -25,7 +25,7 @@
 	});
 	</script>
 
-{#key animation}
+{#key data.url}
 	<section
 		class="text-center pt-10 container flex flex-col items-center justify-center gap-4 md:gap-8"
 	>
@@ -38,8 +38,7 @@
 			</h1>
 
 			<h2 class="fluid-subtitle font-semibold" in:fly|global={{ y: 100, delay: 900 }}>
-				The adaptable platform that lets you validate products,<br />
-				<strong class="font-bold">YOUR WAY!</strong>
+				{@html data.page?.Hero?.description}
 			</h2>
 		</div>
 		<div in:fade|global={{ delay: 1100, easing: backOut }}>
@@ -53,7 +52,7 @@
 	<div in:fly|global={{ y: 200, delay: 1100, easing: backOut }}>
 		<TitanHome />
 	</div>
-{/key}
+	{/key}
 
 <Cta
 	title={data.page?.Cta?.title || ''}
@@ -62,11 +61,12 @@
 	className="bg-black text-white mt-10 md:mt-16 "
 />
 
-<section class="container py-10 span">
+<section class="container pt-10">
 	{#each data.page?.Features || [] as item, i}
 		<HomeFeatures title={item?.title || ''} items={item?.features || []} alignRight={i == 1} />
 	{/each}
 </section>
+
 
 <Cta
 	title={data.page?.Cta?.title || ''}
@@ -84,12 +84,12 @@
 	</div>
 
 	<div class="gallery flex items-center justify-around gap-2 mt-2">
-		<img src={logo1} class="logo  h-10 w-10 md:h-24 md:w-24 lg:h-32 lg:w-32" id="1" />
-		<img src={logo2} class="logo  h-8 w-8 md:h-20 md:w-20 lg:h-32 lg:w-32" id="2" />
-		<img src={logo3} class="logo  h-10 w-10 md:h-20 md:w-20 lg:h-32 lg:w-32" id="3" />
-		<img src={logo4} class="logo  h-10 w-10 md:h-20 md:w-20 lg:h-32 lg:w-32" id="4" />
-		<img src={logo5} class="logo  h-10 w-10 md:h-20 md:w-20 lg:h-32 lg:w-32" id="5" />
-		<img src={logo6} class="logo  h-10 w-10 md:h-20 md:w-20 lg:h-32 lg:w-32" id="6" />
+		<img src={logo1} class="logo  h-10 w-10 md:h-24 md:w-24 lg:h-32 lg:w-32" id="1" alt="lightyear"/>
+		<img src={logo2} class="logo  h-8 w-8 md:h-20 md:w-20 lg:h-32 lg:w-32" id="2" alt="toyota"/>
+		<img src={logo3} class="logo  h-10 w-10 md:h-20 md:w-20 lg:h-32 lg:w-32" id="3" alt="honda"/>
+		<img src={logo4} class="logo  h-10 w-10 md:h-20 md:w-20 lg:h-32 lg:w-32" id="4" alt="lucid"/>
+		<img src={logo5} class="logo  h-10 w-10 md:h-20 md:w-20 lg:h-32 lg:w-32" id="5" alt="canoo"/>
+		<img src={logo6} class="logo  h-10 w-10 md:h-20 md:w-20 lg:h-32 lg:w-32" id="6" alt="volkswagen"/>
 	</div>
 </section>
 <section class=" py-10 md:py-28 container flex items-center">
@@ -125,9 +125,10 @@
 			{/each}
 		</div>
 	</div>
-
 	<img src={monitorImage} alt="Monitor" class="hidden lg:block w-[55%]" />
 </section>
+
+
 
 <style>
 	.fluid-title {

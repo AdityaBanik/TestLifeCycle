@@ -7,16 +7,20 @@
 	export let data: PageData;
 </script>
 
-<div class="gradient">
-	<section class=" pt-16 pb-10">
-		<div class="container">
-			<div class="border-l-white border-l-[6px] pl-8 drop-shadow-md">
-				<h1 class="fluid-title text-white font-bold mb-3">{data.page?.title}</h1>
-				<h2 class="max-w-xl fluid-subtitle text-white">
-					{data.page?.subtitle}
-				</h2>
-			</div>
+<section class=" py-20">
+	<div class="container">
+		
+		<div>
+			<h1 class="text-base md:text-3xl  p-4 font-bold border-l-blue-500 border-l-[6px] mb-10 drop-shadow-md">
+				{data.page?.title}
+			</h1>
+			<h2 class="max-w-xl prose text-justify ">
+				{data.page?.subtitle}
+			</h2>
+		</div>
 
+
+		{#if data.page?.cards}
 			<div
 				class="mt-10 md:mt-28 grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6 xl:gap-y-14"
 			>
@@ -30,17 +34,18 @@
 					/>
 				{/each}
 			</div>
-		</div>
-	</section>
+		{/if}
+	</div>
+</section>
 
-	{#if data.page?.content}
-		<section
-			class="container drop-shadow-xl prose prose-sm md:prose prose-img:shadow-md prose-img:bg-white prose-img:p-6 prose-img:rounded-xl pb-20"
-		>
-			{@html resolveRichText(data.page?.content)}
-		</section>
-	{/if}
-</div>
+{#if data.page?.content}
+	<section
+		class="container drop-shadow-xl prose prose-sm md:prose prose-img:shadow-md prose-img:bg-white prose-img:p-6 prose-img:rounded-xl pb-20"
+	>
+		{@html resolveRichText(data.page?.content)}
+	</section>
+{/if}
+
 <Cta
 	title="Know more about TITAN"
 	description="Experience live with one of our experts"
@@ -61,8 +66,8 @@
 		@apply container;
 	}
 
-	.gradient {
-		background-color: hsla(292, 89%, 48%, 1);
+	/* .gradient {
+		background-color: rgba(129, 13, 231, 0.592);
 		background-image: radial-gradient(at 97% 100%, hsla(305, 0%, 100%, 1) 0px, transparent 50%),
 			radial-gradient(at 72% 100%, hsla(251, 0%, 100%, 1) 0px, transparent 50%),
 			radial-gradient(at 43% 100%, hsla(251, 0%, 100%, 1) 0px, transparent 50%),
@@ -73,5 +78,5 @@
 			radial-gradient(at 51% 60%, hsla(180, 100%, 50%, 0.49) 0px, transparent 50%),
 			radial-gradient(at 9% 18%, hsla(238, 100%, 76%, 1) 0px, transparent 50%),
 			radial-gradient(at 82% 21%, hsla(169, 93%, 52%, 0.45) 0px, transparent 50%);
-	}
+	} */
 </style>

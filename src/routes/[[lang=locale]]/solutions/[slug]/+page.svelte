@@ -1,11 +1,34 @@
 <script lang="ts">
 	import IconCard from '$lib/components/cards/IconCard.svelte';
-	import SolutionsScrollable from '$lib/components/sections/SolutionsScrollable.svelte';
+
 	import Cta from '$lib/components/shared/CTA.svelte';
+	import { onMount } from 'svelte';
 	import type { PageData } from './$types';
+	import { inview } from 'svelte-inview';
+	import type { ObserverEventDetails, Options } from 'svelte-inview';
 
 	export let data: PageData;
-	
+	let scrollable: HTMLElement;
+	let selected = 0;
+	let sections: HTMLElement[] = [];
+
+	const options = {
+		root: null as HTMLElement | null,
+		rootMargin: '0px',
+		threshold: 0.1
+	};
+	onMount(() => {
+		options.root = scrollable;
+	});
+
+	function handleView(index: number): void {
+		selected = index;
+	}
+
+	function jumpToSection(index: number): any {
+		const section = sections[index];
+		scrollable.scrollTop = section.offsetTop - scrollable.offsetTop;
+	}
 </script>
 
 {#if data.hero && data.hero.__typename === 'ComponentTestLifeCycleHeroSection'}
@@ -56,16 +79,52 @@
 {/if}
 
 {#if data.features && data.features?.__typename === 'ComponentTestLifeCycleFeatures'}
-
-	<section class=" relative z-20 bg-white">
-		<div class="container pt-10 md:pt-20">
-			<h2 class="font-bold line-height md:text-2xl lg:text-4xl pb-2 md:pb-4">
-				  {@html data.features?.title}
+	<section class=" relative z-20 bg-white hidden  lg:block pb-20">
+		<div class="container pt-10">
+			<h2 class="font-bold line-height md:text-2xl lg:text-4xl pb-16">
+				{@html data.features?.title}
 			</h2>
-			
-			<SolutionsScrollable data={data.features?.features || []} />
+			<section class=" scroll-section pt-14 px-10 rounded-2xl">
+				<p class="font-bold text-gray-500/90 text-lg">JUMP TO FEATURE</p>
+				<div class="flex gap-10 justify-between py-10 ">
+					<ul class="flex flex-col justify-between">
+						{#each data.features?.features || [] as feature, i}
+							<li>
+								<button
+									on:click={() => jumpToSection(i)}
+									class:selected={selected === i}
+									class="px-5 py-3.5 whitespace-nowrap text-base 2xl:text-lg text-gray-500/80"
+									>{feature?.title}</button
+								>
+							</li>
+						{/each}
+					</ul>
+					<section
+						bind:this={scrollable}
+						class="overflow-scroll h-[520px] 2xl:h-[700px] mx-auto snap-y snap-mandatory"
+					>
+						{#each data.features?.features || [] as feature, index}
+							<article
+								bind:this={sections[index]}
+								use:inview={options}
+								on:inview_enter={() => handleView(index)}
+								class="snap-center flex flex-col bg-white h-full justify-center items-center container text-center"
+							>
+								<div>
+									<h3 class="font-semibold tracking-wide mb-3">{feature?.title}</h3>
+									<p class="max-w-2xl font-light">{feature?.description}</p>
+								</div>
+								<img
+									class="max-w-xl 2xl:max-w-4xl aspect-video object-contain"
+									src={feature?.media?.data?.attributes?.url}
+									alt={feature?.media?.data?.attributes?.alternativeText}
+								/>
+							</article>
+						{/each}
+					</section>
+				</div>
+			</section>
 		</div>
-
 	</section>
 {/if}
 
@@ -81,12 +140,37 @@
 		box-shadow: 0 -10px 20px -10px rgba(0, 0, 0, 0.3);
 	}
 
+	.scroll-section{
+		box-shadow: 0px 0px 8px 0px #00000020;
+	}
+
 	.cover-img-shadow {
 		box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
 	}
 
-
 	.line-height {
 		line-height: 1.2 !important;
+	}
+
+	.selected {
+		@apply relative transition-colors;
+		color: orangered;
+	}
+
+	button::after {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 6px;
+		height: 0;
+		background-color: orangered;
+		/* Transition effect for height */
+		transition: height 0s;
+	}
+	button.selected::after {
+		height: 100%;
+		background-color: orangered; /* Sets the height to 100% when button is selected */
+		transition: height 1s ease;
 	}
 </style>

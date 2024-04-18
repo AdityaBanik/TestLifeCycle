@@ -24,4 +24,6 @@ button{
 	@apply text-blue-500;
 }
 
-
+strong{
+	@apply font-bold;
+}
