@@ -1,6 +1,6 @@
 <script lang="ts">
 	import IconCard from '$lib/components/cards/IconCard.svelte';
-	import SolutionsScrollable from '$lib/components/sections/SolutionsScrollable.svelte';
+
 	import Cta from '$lib/components/shared/CTA.svelte';
 	import { onMount } from 'svelte';
 	import type { PageData } from './$types';
