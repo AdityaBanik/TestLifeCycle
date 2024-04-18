@@ -10,19 +10,15 @@
 
 	import logo from '$lib/assets/titanLogo.svg';
 	import logo12thwonder from '$lib/assets/Home/12thwonderlogo.png';
-
 	import Button from '$lib/components/buttons/Button.svelte';
 	import tippy from 'tippy.js';
-
 	import Sidebar from '$lib/components/sidebar/Sidebar.svelte';
 	import Accordian from '$lib/components/accordian/Accordian.svelte';
 	import AccordianItem from '$lib/components/accordian/AccordianItem.svelte';
 	import { fly } from 'svelte/transition';
-
 	export let data: LayoutData;
 
 	let isOpen: boolean;
-
 	let selectedLocale: string = data.lang || '';
 
 	let form: HTMLFormElement;
@@ -103,7 +99,7 @@
 	</section>
 
 	<section class="flex items-center gap-5">
-		<form bind:this={form} method="POST" action="/locale" class="flex">
+		<form bind:this={form} method="POST" action="/locale" class="flex form">
 			<select
 				name="locale"
 				bind:value={selectedLocale}
@@ -133,9 +129,13 @@
 {/key}
 
 <Sidebar {isOpen} on:closed={closeSidebar}>
+
+
 	<nav class="container">
 		<Accordian>
-			{#each data.navMenu || [] as navItem}
+			<a href="/" on:click={closeSidebar} class="ml-8 capitalize text-md py-2">Home</a>
+				
+		{#each data.navMenu || [] as navItem}
 				<AccordianItem className="text-start capitalize py-2 flex gap-4" selected="font-semibold">
 					<svelte:fragment slot="title">{navItem?.title}</svelte:fragment>
 					<article class="flex flex-col text-xs pl-12 pb-3 pt-1 gap-3">
@@ -149,6 +149,19 @@
 			{/each}
 		</Accordian>
 	</nav>
+	<div class="flex justify-end px-5 py-5">
+	<form bind:this={form} method="POST" action="/locale" class="flex">
+		<select
+			name="locale"
+			bind:value={selectedLocale}
+			on:change={changeLocale}
+			class=" fluid-font py-0 md:py-1 rounded-full"
+		>
+			<option value="en">EN</option>
+			<option value="ja">JA</option>
+		</select>
+	</form>
+</div>
 </Sidebar>
 
 <footer class="min-h-96 bg-[#253858] py-10 md:py-20 text-xs md:text-sm 2xl:text-base">
@@ -230,5 +243,11 @@
 
 	footer a {
 		@apply text-white/90 hover:text-orange-300  transition-colors  cursor-pointer;
+	}
+
+	@media only screen and (max-width: 600px) {
+		.form {
+			display: none;
+		}
 	}
 </style>

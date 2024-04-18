@@ -1,19 +1,27 @@
 <script lang="ts">
 	import { fade, fly } from 'svelte/transition';
 	import { backOut } from 'svelte/easing';
-	
 	import TitanHome from '$lib/components/animation/TitanHome.svelte';
 	import Button from '$lib/components/buttons/Button.svelte';
 	import Cta from '$lib/components/shared/CTA.svelte';
-
 	import monitorImage from '$lib/assets/Home/pc.png';
 	import HomeFeatures from '$lib/components/sections/HomeFeatures.svelte';
 	import type { PageData } from './$types';
-	import Testimonial from '$lib/components/cards/Testimonial.svelte';
-
-	
-
+	import logo1 from '$lib/assets/svgIconForClientsLogo/Asset1.svg';
+	import logo2 from '$lib/assets/svgIconForClientsLogo/Asset2.svg';
+	import logo3 from '$lib/assets/svgIconForClientsLogo/Asset3.svg';
+	import logo4 from '$lib/assets/svgIconForClientsLogo/Asset4.svg';
+	import logo5 from '$lib/assets/svgIconForClientsLogo/Asset5.svg';
+	import logo6 from '$lib/assets/svgIconForClientsLogo/Asset6.svg';
+	import { onMount } from 'svelte';
 	export let data: PageData;
+    let animation = false;
+
+	onMount(() => {
+		if (window.matchMedia('(min-width: 768px)').matches) {
+			animation = true;
+		}
+	});
 </script>
 
 {#key data.url}
@@ -43,7 +51,7 @@
 	<div in:fly|global={{ y: 200, delay: 1100, easing: backOut }}>
 		<TitanHome />
 	</div>
-	{/key}
+{/key}
 
 <Cta
 	title={data.page?.Cta?.title || ''}
@@ -58,22 +66,40 @@
 	{/each}
 </section>
 
-
 <Cta
 	title={data.page?.Cta?.title || ''}
 	btnText={data.page?.Cta?.Button?.name || ''}
 	btnLink={data.page?.Cta?.Button?.link || ''}
-	className="bg-sky-50 text-blue-950   "
+	className="bg-sky-50 text-blue-950  "
 />
+<section class="py-3">
+	<div class=" flex justify-center items-center gap-6 lg:gap-12 md:gap-16">
+		<hr />
+		<h5 class="text-center text-xs text-gray-500 font-medium lg:text-4xl md:text-2xl py-1 lg:py-6">
+			Our Clients
+		</h5>
+		<hr />
+	</div>
 
-<section class="container flex flex-col lg:flex-row  justify-between lg:items-center pt-20">
-	<h2 class="text-xl lg:text-3xl font-bold mb-6 md:mb-16">
-		See how our customers drive impact
-	</h2>
-	<Testimonial />
+	<div class="gallery flex items-center justify-around gap-2 mt-2">
+		<img
+			src={logo1}
+			class="logo h-10 w-10 md:h-24 md:w-24 lg:h-32 lg:w-32"
+			id="1"
+			alt="lightyear"
+		/>
+		<img src={logo2} class="logo h-8 w-8 md:h-20 md:w-20 lg:h-32 lg:w-32" id="2" alt="toyota" />
+		<img src={logo3} class="logo h-10 w-10 md:h-20 md:w-20 lg:h-32 lg:w-32" id="3" alt="honda" />
+		<img src={logo4} class="logo h-10 w-10 md:h-20 md:w-20 lg:h-32 lg:w-32" id="4" alt="lucid" />
+		<img src={logo5} class="logo h-10 w-10 md:h-20 md:w-20 lg:h-32 lg:w-32" id="5" alt="canoo" />
+		<img
+			src={logo6}
+			class="logo h-10 w-10 md:h-20 md:w-20 lg:h-32 lg:w-32"
+			id="6"
+			alt="volkswagen"
+		/>
+	</div>
 </section>
-
-
 <section class=" py-10 md:py-28 container flex items-center">
 	<div class=" flex flex-col gap-10">
 		<div>
@@ -110,13 +136,21 @@
 	<img src={monitorImage} alt="Monitor" class="hidden lg:block w-[55%]" />
 </section>
 
-
-
 <style>
 	.fluid-title {
 		font-size: clamp(1.5rem, 4.8vw, 5rem) !important;
 	}
 	.fluid-subtitle {
 		font-size: clamp(0.65rem, 1.8vw, 2rem) !important;
+	}
+
+	/* .logo {
+		height: clamp(2.8rem, 11vw, 10rem) !important;
+		width: clamp(2.8rem, 11vw, 10rem) !important;
+		animation: scroll 10s linear infinite;
+	} */
+
+	hr {
+		width: clamp(5rem, 20vw, 20rem) !important;
 	}
 </style>
