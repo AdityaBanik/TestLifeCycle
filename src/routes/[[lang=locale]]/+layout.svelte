@@ -108,7 +108,7 @@
 				name="locale"
 				bind:value={selectedLocale}
 				on:change={changeLocale}
-				class=" fluid-font py-0 md:py-1 rounded-full"
+				class=" fluid-font py-0 md:py-1 rounded-full  focus:outline-2 focus:ring-1 focus:ring-blue-500 shadow-sm hover:shadow-md  "
 			>
 				<option value="en">EN</option>
 				<option value="ja">JA</option>
