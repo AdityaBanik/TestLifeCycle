@@ -80,6 +80,6 @@ function resolveRichTextNode(node: {
 
 const serverUrl = 'https://strapi.12thwonder.com';
 
-const client = new GraphQLClient('https://strapi.12thwonder.com/graphql');
+const client = new GraphQLClient(serverUrl + '/graphql',{fetch,});
 
 export { serverUrl, resolveRichText, client };

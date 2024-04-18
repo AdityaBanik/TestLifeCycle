@@ -1,45 +1,37 @@
 import type { LayoutServerLoad } from './$types';
+import { graphql } from '$lib/gql';
+import { client } from '$lib';
 
-export const load = async ({ locals,fetch }) => {
-	const url = 'https://strapi.12thwonder.com/graphql';
+export const load = (async ({ locals }) => {
 	const lang = locals.lang;
-
-	const query = `
-	  query navMenu($lang: I18NLocaleCode) {
-		navMenu(locale: $lang) {
-		  data {
-			attributes {
-			  NavComponent {
-				title
-				Links {
-				  name
-				  link
+    
+	const query = graphql(`
+		query navMenu($lang: I18NLocaleCode) {
+			navMenu(locale: $lang) {
+				data {
+					attributes {
+						NavComponent {
+							title
+							Links {
+								name
+								link
+							}
+						}
+					}
 				}
-			  }
 			}
-		  }
 		}
-	  }
-	`;
+	`);
 
 	const variables = { lang: lang };
 
-	const response = await fetch(url, {
-		method: 'POST',
-		headers: { 'Content-Type': 'application/json' },
-		body: JSON.stringify({
-			query: query,
-			variables: variables
-		})
-	});
-
-	if (!response.ok) {
-		throw new Error(`HTTP error! status: ${response.status}`);
+	try {
+		const responseData = await client.request(query, variables);
+       
+		return {
+			navMenu: responseData.navMenu?.data?.attributes?.NavComponent,
+		};
+	} catch (error) {
+		return Error(`Failed to load nav menu ${error}`);
 	}
-
-	const responseData = await response.json();
-
-	return {
-		navMenu: responseData.data.navMenu.data.attributes.NavComponent
-	};
-};
+}) satisfies LayoutServerLoad;

@@ -13,6 +13,7 @@ import type { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-
  * Therefore it is highly recommended to use the babel or swc plugin for production.
  */
 const documents = {
+    "\n\t\tquery navMenu($lang: I18NLocaleCode) {\n\t\t\tnavMenu(locale: $lang) {\n\t\t\t\tdata {\n\t\t\t\t\tattributes {\n\t\t\t\t\t\tNavComponent {\n\t\t\t\t\t\t\ttitle\n\t\t\t\t\t\t\tLinks {\n\t\t\t\t\t\t\t\tname\n\t\t\t\t\t\t\t\tlink\n\t\t\t\t\t\t\t}\n\t\t\t\t\t\t}\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t": types.NavMenuDocument,
     "\n\t\tquery getHomePage($lang: I18NLocaleCode) {\n\t\t\ttitanHomepage(locale: $lang) {\n\t\t\t\tdata {\n\t\t\t\t\tattributes {\n\t\t\t\t\t\tHero {\n\t\t\t\t\t\t\ttitle\n\t\t\t\t\t\t\tdescription\n\t\t\t\t\t\t\tButton {\n\t\t\t\t\t\t\t\tname\n\t\t\t\t\t\t\t\tlink\n\t\t\t\t\t\t\t}\n\t\t\t\t\t\t}\n\t\t\t\t\t\tCta {\n\t\t\t\t\t\t\ttitle\n\t\t\t\t\t\t\tButton {\n\t\t\t\t\t\t\t\tlink\n\t\t\t\t\t\t\t\tname\n\t\t\t\t\t\t\t}\n\t\t\t\t\t\t}\n\t\t\t\t\t\tFeatures {\n\t\t\t\t\t\t\ttitle\n\t\t\t\t\t\t\tfeatures {\n\t\t\t\t\t\t\t\ttitle\n\t\t\t\t\t\t\t\tdescription\n\t\t\t\t\t\t\t\tmedia {\n\t\t\t\t\t\t\t\t\tdata {\n\t\t\t\t\t\t\t\t\t\tattributes {\n\t\t\t\t\t\t\t\t\t\t\turl\n\t\t\t\t\t\t\t\t\t\t\talternativeText\n\t\t\t\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\t}\n\t\t\t\t\t\t}\n\t\t\t\t\t\tacceleratingSection {\n\t\t\t\t\t\t\ttitle\n\t\t\t\t\t\t\tsubtitle\n\t\t\t\t\t\t\tcards {\n\t\t\t\t\t\t\t\ttitle\n\t\t\t\t\t\t\t\tdescription\n\t\t\t\t\t\t\t\tmedia {\n\t\t\t\t\t\t\t\t\tdata {\n\t\t\t\t\t\t\t\t\t\tattributes {\n\t\t\t\t\t\t\t\t\t\t\turl\n\t\t\t\t\t\t\t\t\t\t\talternativeText\n\t\t\t\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\t}\n\t\t\t\t\t\t}\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t": types.GetHomePageDocument,
     "\n\t\tquery getAboutUs($lang: I18NLocaleCode) {\n\t\t\ttitanAboutUs(locale: $lang) {\n\t\t\t\tdata {\n\t\t\t\t\tattributes {\n\t\t\t\t\t\ttitle\n\t\t\t\t\t\tcontent\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t": types.GetAboutUsDocument,
     "\n\t\tquery getBlogs($lang: I18NLocaleCode) {\n\t\t\ttitanBlogs (locale: $lang){\n\t\t\t\tdata {\n\t\t\t\t\tattributes {\n\t\t\t\t\t\ttitle\n\t\t\t\t\t\tdescription\n\t\t\t\t\t\tdate\n\t\t\t\t\t\tslug\n\t\t\t\t\t\tcoverImage {\n\t\t\t\t\t\t\tdata {\n\t\t\t\t\t\t\t\tattributes {\n\t\t\t\t\t\t\t\t\turl\n\t\t\t\t\t\t\t\t\talternativeText\n\t\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\t}\n\t\t\t\t\t\t}\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t": types.GetBlogsDocument,
@@ -42,6 +43,10 @@ const documents = {
  */
 export function graphql(source: string): unknown;
 
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "\n\t\tquery navMenu($lang: I18NLocaleCode) {\n\t\t\tnavMenu(locale: $lang) {\n\t\t\t\tdata {\n\t\t\t\t\tattributes {\n\t\t\t\t\t\tNavComponent {\n\t\t\t\t\t\t\ttitle\n\t\t\t\t\t\t\tLinks {\n\t\t\t\t\t\t\t\tname\n\t\t\t\t\t\t\t\tlink\n\t\t\t\t\t\t\t}\n\t\t\t\t\t\t}\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t"): (typeof documents)["\n\t\tquery navMenu($lang: I18NLocaleCode) {\n\t\t\tnavMenu(locale: $lang) {\n\t\t\t\tdata {\n\t\t\t\t\tattributes {\n\t\t\t\t\t\tNavComponent {\n\t\t\t\t\t\t\ttitle\n\t\t\t\t\t\t\tLinks {\n\t\t\t\t\t\t\t\tname\n\t\t\t\t\t\t\t\tlink\n\t\t\t\t\t\t\t}\n\t\t\t\t\t\t}\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t"];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
