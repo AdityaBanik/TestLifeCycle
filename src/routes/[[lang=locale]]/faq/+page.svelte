@@ -2,8 +2,7 @@
 <script>
 	import AccordianItem from '$lib/components/accordian/AccordianItem.svelte'; // Import the AccordionItem component
 	import Accordian from '$lib/components/accordian/Accordian.svelte'; // Import the Accordion component
-	import bgimage from '$lib/assets/gradient.webp';
-
+	
 	// Define static questions and answers
 	const accordionItems = [
 		{
@@ -60,14 +59,14 @@
 	}
 </script>
 
-<div class="p-20 border-2 border-black"
-	style="background-image: url({bgimage}); background-size: cover; background-repeat: no-repeat;">
+<div class="p-20 border-2 border-black">
+
 	<h1 class="text-white font-bold text-3xl text-center mb-10">FAQs - Frequently Asked Questions</h1>
 	<div class="flex justify-between ">
 		<div class=" border bg-white rounded p-4 flex-1 mr-4 ml-10 lg:w-[70%]">
 			<Accordian>
 				{#each accordionItems as { question, answer }, i}
-					<AccordianItem key={i} selected="font-bold" className="text-left font-bold p-3">
+					<AccordianItem  selected="font-bold" className="text-left font-bold p-3">
 						<!-- Apply custom style to left-align the title -->
 						<svelte:fragment slot="title">{question}</svelte:fragment>
 						<div class="ml-5">{answer}</div>

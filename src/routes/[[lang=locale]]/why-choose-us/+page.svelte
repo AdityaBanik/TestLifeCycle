@@ -3,7 +3,7 @@
 	import Cta from '$lib/components/shared/CTA.svelte';
 	import type { PageData } from './$types';
 	import bgimage from '$lib/assets/white-titan-logo.webp';
-	import bgimage1 from '$lib/assets/gradient.webp';
+	
 	import iconImage from '$lib/assets/1.webp';
 	import iconImage1 from '$lib/assets/2.webp';
 	import iconImage2 from '$lib/assets/3.webp';
@@ -11,7 +11,7 @@
 
 <main
 	class="min-h-screen flex flex-col justify-center items-center"
-	style="background-image: url({bgimage1});"
+	
 >
 	<section class="mb-4 lg:text-center">
 		<img src={bgimage} alt="Image1" class="w-64 h-64 mx-auto mb-2 rounded-full" />
