@@ -1,8 +1,9 @@
 <script lang="ts">
 	import AccordianItem from '$lib/components/accordian/AccordianItem.svelte';
 	import Accordian from '$lib/components/accordian/Accordian.svelte';
-	import { resolveRichText } from '$lib';
 	import { onMount } from 'svelte';
+	import question1 from '$lib/assets/undraw_questions_re_1fy7.svg';
+	import form1 from '$lib/assets/undraw_fill_form_re_cwyf.svg';
 
 	onMount(() => {
 		const script = document.createElement('script');
@@ -57,41 +58,50 @@
 	];
 </script>
 
-<div class=" gradient md:p-20">
-	<h1 class="text-white font-bold text-3xl text-center mb-10">FAQs - Frequently Asked Questions</h1>
-	<div class="flex justify-between">
-		<div class=" border bg-white rounded p-4 flex-1 mr-4 ml-10 lg:w-[70%]">
+<div class="text-blue-500 font-bold text-3xl text-center p-12">
+	<h1>FAQs - Frequently Asked Questions</h1>
+</div>
+<section class="container ">
+	<div class="flex justify-center items-center gap-20 flex-col lg:flex-row ">
+		
+		<div class=" border bg-white rounded-2xl shadow-sm flex-1  ml-10 lg:w-[70%] p-8 ">
 			<Accordian>
 				{#each accordionItems as { question, answer }, i}
-					<AccordianItem key={i} selected="font-bold" className="text-left font-bold p-3">
-						<!-- Apply custom style to left-align the title -->
-						<svelte:fragment slot="title">{question}</svelte:fragment>
-						<div class="ml-5">{answer}</div>
-					</AccordianItem>
+					<div class="accordion-item  p-3 lg:text-sm border-b">
+						<AccordianItem key={i} selected="font-bold" className="  text-left font-bold p-1">
+							<!-- Apply custom style to left-align the title -->
+							<svelte:fragment slot="title">{question}</svelte:fragment>
+							<div class="ml-5 ">{answer}</div>
+						</AccordianItem>
+					</div>
 				{/each}
 			</Accordian>
 		</div>
-		<div
-			class="nimble-form min-h-[630px] min-w-[50%]  rounded-2xl"
-			data-form-id="65d7bc143841fd0baf097895"
-			data-company-id="5b261c76cef070b143c79181"
-		></div>
+		<!-- Image Section -->
+		<div class="w-[250px] lg:w-[500px] mb-5 ">
+			<img src={question1} alt="Image1" />
+		</div>
 	</div>
-</div>
+</section>
+
+<section class="container lg:mt-40">
+	<div class="flex justify-center items-center gap-20 flex-col lg:flex-row ">
+		<!-- Form Section -->
+		<div class="lg:w-[700px] lg:ml-10  rounded-2xl border shadow-sm mb-5">
+			<div
+				class="nimble-form min-h-[630px] rounded-2xl"
+				data-form-id="65d7bc143841fd0baf097895"
+				data-company-id="5b261c76cef070b143c79181"
+			></div>
+		</div>
+
+		<!-- Image Section -->
+		<div class="w-[250px] lg:w-[500px] lg:mr-4 mb-5">
+			<img src={form1} alt="Image2" class="w-full h-auto rounded-md" />
+		</div>
+	</div>
+</section>
 
 <style>
-	.gradient {
-		background-color: #c799ff;
-		background-image: radial-gradient(at 91% 92%, hsla(0, 0%, 100%, 1) 0px, transparent 50%),
-			radial-gradient(at 19% 100%, hsla(0, 0%, 100%, 1) 0px, transparent 50%),
-			radial-gradient(at 60% 58%, hsla(271, 75%, 70%, 1) 0px, transparent 50%),
-			radial-gradient(at 98% 44%, hsla(172, 95%, 72%, 1) 0px, transparent 50%),
-			radial-gradient(at 32% 81%, hsla(206, 86%, 79%, 1) 0px, transparent 50%),
-			radial-gradient(at 80% 88%, hsla(160, 62%, 75%, 1) 0px, transparent 50%),
-			radial-gradient(at 22% 33%, hsla(297, 79%, 77%, 1) 0px, transparent 50%),
-			radial-gradient(at 34% 14%, hsla(247, 83%, 79%, 1) 0px, transparent 50%),
-			radial-gradient(at 91% 66%, hsla(236, 94%, 61%, 1) 0px, transparent 50%),
-			radial-gradient(at 10% 74%, hsla(19, 69%, 70%, 1) 0px, transparent 50%);
-	}
 	
 </style>

@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
+	import question1 from '$lib/assets/undraw_mobile_re_q4nk.svg';
 
 	onMount(() => {
 		const script = document.createElement('script');
@@ -8,11 +9,13 @@
 	});
 </script>
 
-<div class="backImg">
+<div class="">
 	<section
-		class="container  md:container max-auto  xl:flex-row lg:flex lg:justify-between lg:gap-9"
+		class="container md:container  max-auto xl:flex-row lg:flex lg:justify-between lg:gap-9 mb-10"
 	>
-		<article class="lg:w-[60%] xl:w-[60%]  prose prose-sm prose-h4:py-2 prose-h4:m-0 prose-p:mt-8 md:prose-p:text-lg md:prose-h4:py-3">
+		<article
+			class="lg:w-[60%] xl:w-[60%] prose prose-sm prose-h4:py-2 prose-h4:m-0 prose-p:mt-8 md:prose-p:text-lg md:prose-h4:py-3"
+		>
 			<h4>Contact our Support Team or make an appointment with our consultant</h4>
 
 			<p>
@@ -35,11 +38,24 @@
 				</div>
 			</section>
 		</article>
-		<div
-			class="nimble-form table-shadow rounded-md lg:w-[40%] xl:w-[40%]"
-			data-form-id="65d7bc143841fd0baf097895"
-			data-company-id="5b261c76cef070b143c79181"
-		></div>
+		
+	</section>
+	<section class="container lg:mt-20">
+		<div class="flex justify-center items-center gap-20 flex-col lg:flex-row">
+			<!-- Form Section -->
+			 <div class="lg:w-[700px] lg:ml-4 rounded-2xl border shadow-sm lg:mb-5">
+				<div
+					class="nimble-form min-h-[630px] rounded-2xl"
+					data-form-id="65d7bc143841fd0baf097895"
+					data-company-id="5b261c76cef070b143c79181"
+				></div>
+			</div> 
+
+			<!-- Image Section -->
+			<div class="w-[250px] lg:w-[500px] lg:mr-4 mb-5 ">
+				<img src={question1} alt="Image2" />
+			</div> 
+		</div>
 	</section>
 </div>
 
@@ -57,14 +73,9 @@
 		font-size: clamp(0.75rem, 2.5vw, 2rem) !important;
 	}
 
-	.backImg {
-		background-position: center;
-		background-size: contain;
-		background-repeat: no-repeat;
-		background-image: url($lib/assets/backgroundImage.webp);
-	}
-
-	.table-shadow{
-		box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+	.table-shadow {
+		box-shadow:
+			rgba(0, 0, 0, 0.02) 0px 1px 3px 0px,
+			rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
 	}
 </style>
