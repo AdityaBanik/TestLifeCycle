@@ -29,7 +29,7 @@ export const load = (async ({ parent }) => {
 	} catch (error) {
 		return {
 			status: 500,
-			error: 'Internal server error'
+			error: error
 		};
 	}
 }) satisfies PageLoad;
