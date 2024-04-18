@@ -8,6 +8,14 @@
 	import monitorImage from '$lib/assets/Home/pc.png';
 	import HomeFeatures from '$lib/components/sections/HomeFeatures.svelte';
 	import type { PageData } from './$types';
+	import logo1 from '$lib/assets/svgIconForClientsLogo/Asset1.svg';
+	import logo2 from '$lib/assets/svgIconForClientsLogo/Asset2.svg';
+	import logo3 from '$lib/assets/svgIconForClientsLogo/Asset3.svg';
+	import logo4 from '$lib/assets/svgIconForClientsLogo/Asset4.svg';
+	import logo5 from '$lib/assets/svgIconForClientsLogo/Asset5.svg';
+	import logo6 from '$lib/assets/svgIconForClientsLogo/Asset6.svg';
+	import logo7 from '$lib/assets/svgIconForClientsLogo/Asset7.svg';
+
 	export let data: PageData;
 	export let btnText: string = 'Learn more';
 	let animation = false;
@@ -17,7 +25,6 @@
 			animation = true;
 		}
 	});
-
 </script>
 
 {#key animation}
@@ -32,7 +39,7 @@
 				{data.page?.Hero?.title}
 			</h1>
 
-			<h2 class="fluid-subtitle font-semibold  " in:fly|global={{ y: 100, delay: 900 }}>
+			<h2 class="fluid-subtitle font-semibold" in:fly|global={{ y: 100, delay: 900 }}>
 				The adaptable platform that lets you validate products,<br />
 				<strong class="font-bold">YOUR WAY!</strong>
 			</h2>
@@ -50,9 +57,6 @@
 	</div>
 {/key}
 
-
-
-
 <Cta
 	title={data.page?.Cta?.title || ''}
 	btnText={data.page?.Cta?.Button?.name || ''}
@@ -66,28 +70,36 @@
 	{/each}
 </section>
 
-
-<section>
-	<h5 class="text-center">Our Clients</h5>
-	<div class="flex overflow-x-auto items-center justify-center gap-3">
-		
-        <img src="src\lib\assets\svgIconForClientsLogo\Asset 1.svg" alt="logo1" >
-        <img src="src/lib/assets/volkswaganLogo.webp" alt="logo2" >
-        <img src="src/lib/assets/hondaLogo.webp" alt="logo3" >
-        <img src="src/lib/assets/toyotoLogo.webp" alt="logo4" >
-        <img src="src/lib/assets/canooLogo.webp" alt="logo5" >
-        <img src="src/lib/assets/CalspanLogo.webp" alt="logo6">
-    </div>
-
-</section>
-
 <Cta
 	title={data.page?.Cta?.title || ''}
 	btnText={data.page?.Cta?.Button?.name || ''}
 	btnLink={data.page?.Cta?.Button?.link || ''}
-	className="bg-sky-50 text-blue-950   "
+	className="bg-sky-50 text-blue-950  "
 />
+<section class="pt-6">
+	<div class=" flex justify-center items-center gap-6 lg:gap-12 md:gap-16">
+		<hr class="w-14">
+		<h5 class="text-center text-xs text-gray-800 font-medium lg:text-4xl md:text-2xl">Our Clients</h5>
+		<hr class="w-14">
+	</div>
+	<div class="flex items-center justify-around gap-3 px-3 py-2">
+		<!-- <img src={logo1} alt="logo1" class="h-14 w-14 md:h-24 md:w-24"/>
+		<img src={logo2} alt="logo2" class="h-7 w-7 md:h-20 md:w-20"/>
+		<img src={logo3} alt="logo3" class="h-9 w-9 md:h-20 md:w-20"/>
+		<img src={logo4} alt="logo4" class="h-14 w-14 md:h-20 md:w-20" />
+		<img src={logo5} alt="logo5" class="h-10 w-10 md:h-20 md:w-20" />
+		<img src={logo6} alt="logo6" class="h-10 w-10 md:h-20 md:w-20" />
+		<img src={logo7} alt="logo7" class="h-10 w-10 md:h-20 md:w-20" /> -->
 
+		<img src={logo1} alt="logo1" class="logo"/>
+		<img src={logo2} alt="logo2" class="logo"/>
+		<img src={logo3} alt="logo3" class="logo"/>
+		<!-- <img src={logo4} alt="logo4" class="logo" /> -->
+		<img src={logo5} alt="logo5" class="logo" />
+		<img src={logo6} alt="logo6" class="logo" />
+		<img src={logo7} alt="logo7" class="logo" />
+	</div>
+</section>
 <section class=" py-10 md:py-28 container flex items-center">
 	<div class=" flex flex-col gap-10">
 		<div>
@@ -133,4 +145,12 @@
 		font-size: clamp(0.65rem, 1.8vw, 2rem) !important;
 	}
 
+	.logo{
+	height: clamp(2.8rem, 11vw, 10rem) !important;
+	width: clamp(2.8rem,11vw, 10rem) !important;
+	}
+
+	hr{
+		width: clamp(5rem, 20vw,20rem) !important;
+	}
 </style>
