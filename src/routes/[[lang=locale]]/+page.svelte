@@ -15,8 +15,7 @@
 	import logo6 from '$lib/assets/svgIconForClientsLogo/Asset6.svg';
 	import { onMount } from 'svelte';
 	export let data: PageData;
-	export let btnText: string = 'Learn more';
-	let animation = false;
+    let animation = false;
 
 	onMount(() => {
 		if (window.matchMedia('(min-width: 768px)').matches) {
