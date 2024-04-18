@@ -1,8 +1,15 @@
-<!-- Page.svelte -->
-<script>
-	import AccordianItem from '$lib/components/accordian/AccordianItem.svelte'; // Import the AccordionItem component
-	import Accordian from '$lib/components/accordian/Accordian.svelte'; // Import the Accordion component
-	import bgimage from '$lib/assets/gradient.webp';
+<script lang="ts">
+	import AccordianItem from '$lib/components/accordian/AccordianItem.svelte';
+	import Accordian from '$lib/components/accordian/Accordian.svelte';
+	import { resolveRichText } from '$lib';
+	import { onMount } from 'svelte';
+
+	onMount(() => {
+		const script = document.createElement('script');
+		script.src = 'https://app.nimble.com/web-form/bundle.js';
+
+		document.body.appendChild(script);
+	});
 
 	// Define static questions and answers
 	const accordionItems = [
@@ -48,22 +55,11 @@
 			answer: 'Please reach out to our sales team sales@12thwonder.com for more details.'
 		}
 	];
-	let formData = {
-		name: '',
-		email: '',
-		message: ''
-	};
-
-	function handleSubmit() {
-		console.log(formData);
-		// Here you can perform form submission or any other action with formData
-	}
 </script>
 
-<div class="p-20 border-2 border-black"
-	style="background-image: url({bgimage}); background-size: cover; background-repeat: no-repeat;">
+<div class=" gradient md:p-20">
 	<h1 class="text-white font-bold text-3xl text-center mb-10">FAQs - Frequently Asked Questions</h1>
-	<div class="flex justify-between ">
+	<div class="flex justify-between">
 		<div class=" border bg-white rounded p-4 flex-1 mr-4 ml-10 lg:w-[70%]">
 			<Accordian>
 				{#each accordionItems as { question, answer }, i}
@@ -75,49 +71,27 @@
 				{/each}
 			</Accordian>
 		</div>
-		<div class="border bg-white rounded p-4 flex-1 mr-10 lg:w-[30%]">
-			<h2 class="text-3xl font-bold mb-4">Have a specific question?</h2>
-			<p>Please fill out this form and we will respond as soon as we can.</p>
-			<form on:submit|preventDefault={handleSubmit}>
-				<div class="mb-4 mt-5">
-					<label class="block text-gray-700 text-sm font-bold mb-2" for="name">Name</label>
-					<input
-						class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-						id="name"
-						type="text"
-						placeholder="Your Name"
-						bind:value={formData.name}
-					/>
-				</div>
-				<div class="mb-4">
-					<label class="block text-gray-700 text-sm font-bold mb-2" for="email">Email</label>
-					<input
-						class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-						id="email"
-						type="email"
-						placeholder="Your Email"
-						bind:value={formData.email}
-					/>
-				</div>
-				<div class="mb-6">
-					<label class="block text-gray-700 text-sm font-bold mb-2" for="message">Message</label>
-					<textarea
-						class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-						id="message"
-						placeholder="Your Message"
-						rows="5"
-						bind:value={formData.message}
-					></textarea>
-				</div>
-				<div class="flex items-center justify-between">
-					<button
-						class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-						type="submit"
-					>
-						Submit
-					</button>
-				</div>
-			</form>
-		</div>
+		<div
+			class="nimble-form min-h-[630px] min-w-[50%]  rounded-2xl"
+			data-form-id="65d7bc143841fd0baf097895"
+			data-company-id="5b261c76cef070b143c79181"
+		></div>
 	</div>
 </div>
+
+<style>
+	.gradient {
+		background-color: #c799ff;
+		background-image: radial-gradient(at 91% 92%, hsla(0, 0%, 100%, 1) 0px, transparent 50%),
+			radial-gradient(at 19% 100%, hsla(0, 0%, 100%, 1) 0px, transparent 50%),
+			radial-gradient(at 60% 58%, hsla(271, 75%, 70%, 1) 0px, transparent 50%),
+			radial-gradient(at 98% 44%, hsla(172, 95%, 72%, 1) 0px, transparent 50%),
+			radial-gradient(at 32% 81%, hsla(206, 86%, 79%, 1) 0px, transparent 50%),
+			radial-gradient(at 80% 88%, hsla(160, 62%, 75%, 1) 0px, transparent 50%),
+			radial-gradient(at 22% 33%, hsla(297, 79%, 77%, 1) 0px, transparent 50%),
+			radial-gradient(at 34% 14%, hsla(247, 83%, 79%, 1) 0px, transparent 50%),
+			radial-gradient(at 91% 66%, hsla(236, 94%, 61%, 1) 0px, transparent 50%),
+			radial-gradient(at 10% 74%, hsla(19, 69%, 70%, 1) 0px, transparent 50%);
+	}
+	
+</style>
