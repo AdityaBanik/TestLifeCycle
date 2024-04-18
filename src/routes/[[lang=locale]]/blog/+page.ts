@@ -30,7 +30,7 @@ export const load = (async ({ parent }) => {
 	const variables = { lang };
 	try {
 		const responseData = await client.request(query, variables);
-		console.log(responseData);
+	
 		return {
 			blogs: responseData.titanBlogs?.data
 		};
