@@ -1,7 +1,6 @@
 <script lang="ts">
 	import { fade, fly } from 'svelte/transition';
 	import { backOut } from 'svelte/easing';
-	
 	import TitanHome from '$lib/components/animation/TitanHome.svelte';
 	import Button from '$lib/components/buttons/Button.svelte';
 	import Cta from '$lib/components/shared/CTA.svelte';
@@ -14,7 +13,8 @@
 	import logo4 from '$lib/assets/svgIconForClientsLogo/Asset4.svg';
 	import logo5 from '$lib/assets/svgIconForClientsLogo/Asset5.svg';
 	import logo6 from '$lib/assets/svgIconForClientsLogo/Asset6.svg';
-    export let data: PageData;
+	import { onMount } from 'svelte';
+	export let data: PageData;
 	export let btnText: string = 'Learn more';
 	let animation = false;
 
@@ -23,7 +23,7 @@
 			animation = true;
 		}
 	});
-	</script>
+</script>
 
 {#key data.url}
 	<section
@@ -52,7 +52,7 @@
 	<div in:fly|global={{ y: 200, delay: 1100, easing: backOut }}>
 		<TitanHome />
 	</div>
-	{/key}
+{/key}
 
 <Cta
 	title={data.page?.Cta?.title || ''}
@@ -66,7 +66,6 @@
 		<HomeFeatures title={item?.title || ''} items={item?.features || []} alignRight={i == 1} />
 	{/each}
 </section>
-
 
 <Cta
 	title={data.page?.Cta?.title || ''}
@@ -84,12 +83,22 @@
 	</div>
 
 	<div class="gallery flex items-center justify-around gap-2 mt-2">
-		<img src={logo1} class="logo  h-10 w-10 md:h-24 md:w-24 lg:h-32 lg:w-32" id="1" alt="lightyear"/>
-		<img src={logo2} class="logo  h-8 w-8 md:h-20 md:w-20 lg:h-32 lg:w-32" id="2" alt="toyota"/>
-		<img src={logo3} class="logo  h-10 w-10 md:h-20 md:w-20 lg:h-32 lg:w-32" id="3" alt="honda"/>
-		<img src={logo4} class="logo  h-10 w-10 md:h-20 md:w-20 lg:h-32 lg:w-32" id="4" alt="lucid"/>
-		<img src={logo5} class="logo  h-10 w-10 md:h-20 md:w-20 lg:h-32 lg:w-32" id="5" alt="canoo"/>
-		<img src={logo6} class="logo  h-10 w-10 md:h-20 md:w-20 lg:h-32 lg:w-32" id="6" alt="volkswagen"/>
+		<img
+			src={logo1}
+			class="logo h-10 w-10 md:h-24 md:w-24 lg:h-32 lg:w-32"
+			id="1"
+			alt="lightyear"
+		/>
+		<img src={logo2} class="logo h-8 w-8 md:h-20 md:w-20 lg:h-32 lg:w-32" id="2" alt="toyota" />
+		<img src={logo3} class="logo h-10 w-10 md:h-20 md:w-20 lg:h-32 lg:w-32" id="3" alt="honda" />
+		<img src={logo4} class="logo h-10 w-10 md:h-20 md:w-20 lg:h-32 lg:w-32" id="4" alt="lucid" />
+		<img src={logo5} class="logo h-10 w-10 md:h-20 md:w-20 lg:h-32 lg:w-32" id="5" alt="canoo" />
+		<img
+			src={logo6}
+			class="logo h-10 w-10 md:h-20 md:w-20 lg:h-32 lg:w-32"
+			id="6"
+			alt="volkswagen"
+		/>
 	</div>
 </section>
 <section class=" py-10 md:py-28 container flex items-center">
@@ -128,8 +137,6 @@
 	<img src={monitorImage} alt="Monitor" class="hidden lg:block w-[55%]" />
 </section>
 
-
-
 <style>
 	.fluid-title {
 		font-size: clamp(1.5rem, 4.8vw, 5rem) !important;
@@ -147,5 +154,4 @@
 	hr {
 		width: clamp(5rem, 20vw, 20rem) !important;
 	}
-
 </style>
