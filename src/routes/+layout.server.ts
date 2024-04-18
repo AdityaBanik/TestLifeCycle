@@ -1,8 +1,10 @@
 import type { LayoutServerLoad } from './$types';
-import { graphql } from '$lib/gql';
-import { client } from '$lib';
-import { gql } from 'graphql-request';
+
+
+import { GraphQLClient, gql } from 'graphql-request';
 export const load = (async ({ locals }) => {
+	const client = new GraphQLClient('https://strapi.12thwonder.com/graphql');
+
 	const lang = locals.lang;
 
 	const query = gql`
@@ -26,12 +28,12 @@ export const load = (async ({ locals }) => {
 	const variables = { lang: lang };
 
 	try {
-		const responseData:any = await client.request(query, variables);
+		const responseData = await client.request(query, variables) as any;
 
 		return {
 			navMenu: responseData.navMenu?.data?.attributes?.NavComponent
 		};
 	} catch (error) {
-		return { error: error };
+		return { error: 'problem' };
 	}
 }) satisfies LayoutServerLoad;
