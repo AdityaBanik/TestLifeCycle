@@ -8,7 +8,7 @@
 	import img6 from '$lib/assets/TitanAnimation/img6.webp';
 	import pinimg from '$lib/assets/TitanAnimation/pinimg.webp';
 	import animationimg from '$lib/assets/TitanAnimation/animationimg.webp';
-	
+
 </script>
 
 
@@ -33,42 +33,42 @@
 		</div>
 
 		<img
-			src="src/lib/assets/TitanAnimation/img1.webp"
+			src={img1}
 			id="img-1"
 			alt="animation"
 		/>
 		<img
-			src="src/lib/assets/TitanAnimation/img2.webp"
+			src={img2}
 			id="img-2"
 			alt="animation"
 		/>
 		<img
-			src="src/lib/assets/TitanAnimation/img3.webp"
+			src={img3}
 			id="img-3"
 			alt="animation"
 		/>
 		<img
-			src="src/lib/assets/TitanAnimation/img4.webp"
+			src={img4}
 			id="img-4"
 			alt="animation"
 		/>
 		<img
-			src="src/lib/assets/TitanAnimation/img5.webp"
+			src={img5}
 			id="img-5"
 			alt="animation"
 		/>
 		<img
-			src="src/lib/assets/TitanAnimation/img6.webp"
+			src={img6}
 			id="img-6"
 			alt="animation"
 		/>
 		<img
-			src="src/lib/assets/TitanAnimation/pinimg.webp"
+			src={pinimg}
 			style="opacity: 1; z-index: 30;"
 			alt="animation"
 		/>
 		<img
-			src="src/lib/assets/TitanAnimation/animationimg.webp"
+			src={animationimg}
 			id="frame"
 			alt="animation"
 		/>

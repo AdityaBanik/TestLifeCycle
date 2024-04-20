@@ -27,7 +27,7 @@ export const load = (async ({ locals }) => {
 
 	try {
 		const responseData = await client.request(query, variables);
-        console.log(responseData);
+       
 		return {
 			navMenu: responseData.navMenu?.data?.attributes?.NavComponent,
 		};
