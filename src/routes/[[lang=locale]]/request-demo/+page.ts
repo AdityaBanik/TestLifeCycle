@@ -13,6 +13,31 @@ export const load = (async ({ parent }) => {
 						title
 						subtitle
 						content
+						seo {
+							metaTitle
+							metaDescription
+							metaImage {
+								data {
+									attributes {
+										url
+									}
+								}
+							}
+							metaSocial {
+								socialNetwork
+								title
+								description
+								image {
+									data {
+										attributes {
+											url
+										}
+									}
+								}
+							}
+							keywords
+							structuredData
+						}
 					}
 				}
 			}
@@ -24,7 +49,8 @@ export const load = (async ({ parent }) => {
 		const responseData = await client.request(query, variables);
 
 		return {
-			page: responseData.titanRequestDemo?.data?.attributes
+			page: responseData.titanRequestDemo?.data?.attributes,
+			seo:responseData.titanRequestDemo?.data?.attributes?.seo
 		};
 	} catch (error) {
 		return {

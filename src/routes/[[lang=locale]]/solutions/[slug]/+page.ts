@@ -3,9 +3,10 @@ import { graphql } from '$lib/gql';
 import { client } from '$lib';
 
 export const load = (async ({ params, parent }) => {
-	let slug = params.slug;
+	const slug = params.slug;
 	const data = await parent();
 	//fragments are not understood by the compiler [not unused code]
+	// eslint-disable-next-line @typescript-eslint/no-unused-vars
 	const Hero = graphql(`
 		fragment Hero on ComponentTestLifeCycleHeroSection {
 			__typename
@@ -22,6 +23,7 @@ export const load = (async ({ params, parent }) => {
 		}
 	`);
 	//fragments are not understood by the compiler [not unused code]
+	// eslint-disable-next-line @typescript-eslint/no-unused-vars
 	const Highlights = graphql(`
 		fragment Highlights on ComponentTestLifeCycleHighlights {
 			__typename
@@ -42,6 +44,7 @@ export const load = (async ({ params, parent }) => {
 		}
 	`);
 
+	// eslint-disable-next-line @typescript-eslint/no-unused-vars
 	const Features = graphql(`
 		fragment Features on ComponentTestLifeCycleFeatures {
 			__typename
@@ -71,13 +74,38 @@ export const load = (async ({ params, parent }) => {
 							...Highlights
 							...Features
 						}
+						seo {
+							metaTitle
+							metaDescription
+							metaImage {
+								data {
+									attributes {
+										url
+									}
+								}
+							}
+							metaSocial {
+								socialNetwork
+								title
+								description
+								image {
+									data {
+										attributes {
+											url
+										}
+									}
+								}
+							}
+							keywords
+							structuredData
+						}
 					}
 				}
 			}
 		}
 	`);
 
-	const variables = { slug , lang: data.lang};
+	const variables = { slug, lang: data.lang };
 
 	try {
 		const responseData = await client.request(query, variables);
@@ -95,7 +123,8 @@ export const load = (async ({ params, parent }) => {
 		return {
 			hero: heroSection,
 			highlights: highlights,
-			features: features
+			features: features,
+			seo:responseData.titanSolutions?.data[0]?.attributes?.seo
 		};
 	} catch (error) {
 		return {

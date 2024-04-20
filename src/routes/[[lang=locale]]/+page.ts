@@ -56,6 +56,32 @@ export const load = (async ({ parent }) => {
 								}
 							}
 						}
+
+						seo {
+							metaTitle
+							metaDescription
+							metaImage {
+								data {
+									attributes {
+										url
+									}
+								}
+							}
+							metaSocial {
+								socialNetwork
+								title
+								description
+								image {
+									data {
+										attributes {
+											url
+										}
+									}
+								}
+							}
+							keywords
+							structuredData
+						}
 					}
 				}
 			}
@@ -67,7 +93,8 @@ export const load = (async ({ parent }) => {
 		const responseData = await client.request(query, variables);
 
 		return {
-			page: responseData.titanHomepage?.data?.attributes
+			page: responseData.titanHomepage?.data?.attributes,
+			seo:responseData.titanHomepage?.data?.attributes?.seo
 		};
 	} catch (error) {
 		return Error(`Failed to home page ${error}`);

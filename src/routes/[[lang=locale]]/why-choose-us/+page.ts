@@ -1,17 +1,29 @@
 import type { PageLoad } from './$types';
 import { graphql } from '$lib/gql';
 import { client } from '$lib';
-
 export const load = (async ({ parent }) => {
 	const data = await parent();
 	const lang = data.lang;
 	const query = graphql(`
-		query getAboutUs($lang: I18NLocaleCode) {
-			titanAboutUs(locale: $lang) {
+		query whyChooseUs($lang: I18NLocaleCode) {
+			titanWhyChooseUs(locale: $lang) {
 				data {
-					attributes{
-						title
-						content
+					attributes {
+						highlights {
+							title
+							cards {
+								title
+								description
+								media {
+									data {
+										attributes {
+											url
+											alternativeText
+										}
+									}
+								}
+							}
+						}
 						seo {
 							metaTitle
 							metaDescription
@@ -48,8 +60,8 @@ export const load = (async ({ parent }) => {
 		const responseData = await client.request(query, variables);
 
 		return {
-			page: responseData.titanAboutUs?.data?.attributes,
-			seo: responseData.titanAboutUs?.data?.attributes?.seo
+			page: responseData.titanWhyChooseUs?.data?.attributes,
+			seo:responseData.titanWhyChooseUs?.data?.attributes?.seo
 		};
 	} catch (error) {
 		return {
