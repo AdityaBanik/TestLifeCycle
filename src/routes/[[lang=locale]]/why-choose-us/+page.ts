@@ -1,8 +1,6 @@
 import type { PageLoad } from './$types';
-
 import { graphql } from '$lib/gql';
 import { client } from '$lib';
-
 export const load = (async ({ parent }) => {
 	const data = await parent();
 	const lang = data.lang;
@@ -26,6 +24,31 @@ export const load = (async ({ parent }) => {
 								}
 							}
 						}
+						seo {
+							metaTitle
+							metaDescription
+							metaImage {
+								data {
+									attributes {
+										url
+									}
+								}
+							}
+							metaSocial {
+								socialNetwork
+								title
+								description
+								image {
+									data {
+										attributes {
+											url
+										}
+									}
+								}
+							}
+							keywords
+							structuredData
+						}
 					}
 				}
 			}
@@ -37,7 +60,8 @@ export const load = (async ({ parent }) => {
 		const responseData = await client.request(query, variables);
 
 		return {
-			page: responseData.titanWhyChooseUs?.data?.attributes
+			page: responseData.titanWhyChooseUs?.data?.attributes,
+			seo:responseData.titanWhyChooseUs?.data?.attributes?.seo
 		};
 	} catch (error) {
 		return {

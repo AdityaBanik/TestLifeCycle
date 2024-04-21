@@ -30,7 +30,8 @@
 		<div
 		class="mt-10 md:mt-28 grid grid-cols-2  gap-4 md:gap-6 xl:gap-y-14"
 	>
-		{#each data.page?.highlights?.cards|| [] as card}
+	
+		{#each data.page?.highlights?.cards || [] as card}
 			<IconCard
 				title={card?.title || ''}
 				description={card?.description || ''}

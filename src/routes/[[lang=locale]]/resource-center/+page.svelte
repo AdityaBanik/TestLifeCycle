@@ -24,7 +24,7 @@
   <!-- box 1 -->
   <div class="flex-item flex-1 md:max-h-500px md:w-1/2">
     <div class="flex justify-center items-center h-full">
-      <img src={about} alt="Image Description">
+      <img src={about} alt="Description">
     </div>
   </div>
   <!-- box 2 -->

@@ -14,6 +14,32 @@ export const load = (async ({ params, parent }) => {
 						title
 						date
 						slug
+						seo {
+							metaTitle
+							metaDescription
+							metaImage {
+								data {
+									attributes {
+										url
+									}
+								}
+							}
+							metaSocial {
+								socialNetwork
+								title
+								description
+								image {
+									data {
+										attributes {
+											url
+										}
+									}
+								}
+							}
+							keywords
+							structuredData
+						}
+
 						coverImage {
 							data {
 								attributes {
@@ -34,7 +60,8 @@ export const load = (async ({ params, parent }) => {
 		const responseData = await client.request(query, variables);
 
 		return {
-			blog: responseData.titanBlogs?.data[0].attributes
+			blog: responseData.titanBlogs?.data[0].attributes,
+			seo:responseData.titanBlogs?.data[0].attributes?.seo
 		};
 	} catch (error) {
 		return {

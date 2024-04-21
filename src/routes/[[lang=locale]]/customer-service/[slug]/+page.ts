@@ -21,6 +21,32 @@ export const load = (async ({ params, parent }) => {
 							}
 						}
 						content
+						seo {
+							metaTitle
+							metaDescription
+							metaImage {
+								data {
+									attributes {
+										url
+									}
+								}
+							}
+							metaSocial {
+								socialNetwork
+								title
+								description
+								image {
+									data {
+										attributes {
+											url
+										}
+									}
+								}
+							}
+							keywords
+							structuredData
+						}
+
 						section {
 							title
 							subtitle
@@ -54,7 +80,9 @@ export const load = (async ({ params, parent }) => {
 				cards: responseData.titanCustomerServices?.data[0].attributes?.section?.cards,
 				content: responseData.titanCustomerServices?.data[0].attributes?.content,
 				image: responseData.titanCustomerServices?.data[0].attributes?.image?.data?.attributes
-			}
+			},
+
+			seo: responseData.titanCustomerServices?.data[0].attributes?.seo
 		};
 	} catch (error) {
 		return {
