@@ -48,7 +48,7 @@
 
 <style>
 	.fluid-title {
-		font-size: clamp(0.65rem, 2.5vw, 3.5rem) !important;
+		font-size: clamp(0.9rem, 2.5vw, 2.5rem) !important;
 	}
 
 	.fluid-subtitle {
