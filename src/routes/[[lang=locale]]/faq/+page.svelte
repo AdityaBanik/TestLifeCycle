@@ -2,8 +2,8 @@
 	import AccordianItem from '$lib/components/accordian/AccordianItem.svelte';
 	import Accordian from '$lib/components/accordian/Accordian.svelte';
 	import { onMount } from 'svelte';
-	import question1 from '$lib/assets/undraw_questions_re_1fy7.svg';
-	import form1 from '$lib/assets/undraw_fill_form_re_cwyf.svg';
+	import question1 from '$lib/assets/faqquestion.svg';
+	import form1 from '$lib/assets/faqform.svg';
 
 	onMount(() => {
 		const script = document.createElement('script');

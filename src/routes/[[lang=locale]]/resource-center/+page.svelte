@@ -28,7 +28,7 @@
     </div>
   </div>
   <!-- box 2 -->
-  <div class="flex-item p-4 flex-1 bg-white md:mt-10 md:mb-10 md:-ml-40 md:relative shadow-lg md:w-1/2">
+  <div class="flex-item p-4 flex-1 bg-white md:mt-10 md:mb-10 md:-ml-40 md:relative shadow-lg md:w-1/2 border">
     <h2 class="text-lg mb-2 ml-5 text-blue-600 mt-5 btitle ">Case Study</h2>
     <h3 class="text-md ml-5 text-black font-bold mb-2 ">Transforming Test Lifecycle Management: Real-World Success Stories with Titan</h3>
     <p class="text-black  ml-5 mb-4 bparagraph">Facing the automotive industry's need for speed and safety, the Titan Test Lifecycle Management Solution automates and streamlines test processes, enabling teams to innovate efficiently. By integrating planning, execution, analysis, and reporting, Titan significantly boosts efficiency and accuracy. This case study showcases Titan's impact in a crash test scenario, highlighting its role in enhancing quality and accelerating the introduction of new automotive technologies.</p>
