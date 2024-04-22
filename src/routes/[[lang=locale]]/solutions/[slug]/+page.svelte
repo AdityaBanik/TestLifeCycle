@@ -81,6 +81,7 @@
 {#if data.features && data.features?.__typename === 'ComponentTestLifeCycleFeatures'}
 	<section class=" relative z-20 bg-white hidden  lg:block pb-20">
 		<div class="container pt-10">
+			<h4 class="font-bold text-orange-500">Features</h4>
 			<h2 class="font-bold line-height md:text-2xl lg:text-4xl pb-16">
 				{@html data.features?.title}
 			</h2>
