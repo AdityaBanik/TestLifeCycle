@@ -43,6 +43,7 @@
 			allowHTML: true,
 			theme: 'light',
 			offset: [0, 28],
+			hideOnClick: 'toggle',
 			appendTo: () => document.body,
 
 			onShown(instance) {
@@ -81,7 +82,7 @@
 			</div>
 			{#each data.navMenu || [] as navItem}
 				<div>
-					<button use:dropdown={navItem?.title || ''} class="capitalize fluid-font">
+					<button  use:dropdown={navItem?.title || ''} class="capitalize fluid-font">
 						{navItem?.title}
 					</button>
 					<div id={navItem?.title || ''} class="hidden">
@@ -111,7 +112,7 @@
 			</select>
 		</form>
 
-		<Button text={data.lang === 'ja' ? 'デモを依頼する' : 'Request Demo'} className="text-sm lg:px-6" link="/request-demo" />
+		<Button text={data.lang === 'ja' ? 'デモを依頼する' : 'Request Demo'} className="text-sm lg:px-6" link={data.lang === 'ja' ? '/ja/request-demo' : '/request-demo'} />
 
 		<button
 			class="lg:hidden px-2 p-1 border rounded-md hover:bg-slate-200 active:bg-slate-50"
