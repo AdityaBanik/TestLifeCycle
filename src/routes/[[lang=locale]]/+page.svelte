@@ -79,7 +79,7 @@
 	<div class=" flex justify-center items-center gap-6 lg:gap-12 md:gap-16">
 		<hr />
 		<h5 class="text-center  text-gray-500 font-medium lg:text-4xl md:text-2xl  py-6">
-			Our Clients
+			{data.lang === 'ja' ? 'TITANご愛用中のお客様' : 'Our Clients'}
 		</h5>
 		<hr />
 	</div>
