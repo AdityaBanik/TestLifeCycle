@@ -6,7 +6,6 @@ import type { SolutionsQuery } from '$lib/gql/graphql';
 export const load = (async ({ params, locals, setHeaders, platform, url }) => {
 	const slug = params.slug;
 
-	//fragments are not understo ̑od by the compiler [not unused code]
 	// eslint-disable-next-line @typescript-eslint/no-unused-vars
 	const Hero = graphql(`
 		fragment Hero on ComponentTestLifeCycleHeroSection {
@@ -75,6 +74,14 @@ export const load = (async ({ params, locals, setHeaders, platform, url }) => {
 							...Highlights
 							...Features
 						}
+						cta {
+							title
+							description
+							Button {
+								link
+								name
+							}
+						}
 						seo {
 							metaTitle
 							metaDescription
@@ -138,7 +145,8 @@ export const load = (async ({ params, locals, setHeaders, platform, url }) => {
 			hero: heroSection,
 			highlights: highlights,
 			features: features,
-			seo: responseData.titanSolutions?.data[0]?.attributes?.seo
+			seo: responseData.titanSolutions?.data[0]?.attributes?.seo,
+			cta: responseData.titanSolutions?.data[0].attributes?.cta
 		};
 	} catch (error) {
 		return {

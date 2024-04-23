@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { resolveRichText } from '$lib';
-	import IconCard from '$lib/components/cards/IconCard.svelte';
+    import IconCard from '$lib/components/cards/IconCard.svelte';
 	import Cta from '$lib/components/shared/CTA.svelte';
 	import type { PageData } from './$types';
 
@@ -50,13 +50,12 @@
 	</div>
 </section>
 
-
-
 <Cta
-	title="Know more about TITAN"
-	description="Experience live with one of our experts"
-	btnText="Request Personalized Demo !"
-	className="bg-sky-50 text-blue-950  "
+	title={data.cta?.title || ""}
+	description={data.cta?.description || ""}
+	btnText={data.cta?.Button?.name || ""}
+	btnLink={data.cta?.Button?.link || ""}
+	className="bg-sky-50 text-blue-950"
 />
 
 <style type="postcss">
@@ -76,19 +75,4 @@
 		box-shadow: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px, rgba(9, 30, 66, 0.08) 0px 0px 0px 1px;
 	}
 
-
-
-	/* .gradient {
-		background-color: rgba(129, 13, 231, 0.592);
-		background-image: radial-gradient(at 97% 100%, hsla(305, 0%, 100%, 1) 0px, transparent 50%),
-			radial-gradient(at 72% 100%, hsla(251, 0%, 100%, 1) 0px, transparent 50%),
-			radial-gradient(at 43% 100%, hsla(251, 0%, 100%, 1) 0px, transparent 50%),
-			radial-gradient(at 86% 58%, hsla(224, 100%, 70%, 0.99) 0px, transparent 50%),
-			radial-gradient(at 7% 94%, hsla(251, 0%, 100%, 1) 0px, transparent 50%),
-			radial-gradient(at 9% 53%, hsla(270, 85%, 62%, 1) 0px, transparent 50%),
-			radial-gradient(at 68% 81%, hsla(99, 0%, 100%, 1) 0px, transparent 50%),
-			radial-gradient(at 51% 60%, hsla(180, 100%, 50%, 0.49) 0px, transparent 50%),
-			radial-gradient(at 9% 18%, hsla(238, 100%, 76%, 1) 0px, transparent 50%),
-			radial-gradient(at 82% 21%, hsla(169, 93%, 52%, 0.45) 0px, transparent 50%);
-	} */
 </style>

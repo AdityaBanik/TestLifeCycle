@@ -147,7 +147,7 @@
 <Sidebar {isOpen} on:closed={closeSidebar}>
 	<nav class="container">
 		<Accordian>
-			<a href="/" on:click={closeSidebar} class="ml-8 capitalize text-md py-2">Home</a>
+			<a href="/" on:click={closeSidebar} class="ml-8 capitalize text-md py-2 block pb-3">{data.lang === 'ja' ? 'ホーム' : 'Home'}</a>
 
 			{#each data.navMenu || [] as navItem}
 				<AccordianItem className="text-start capitalize py-2 flex gap-4" selected="font-semibold">
@@ -210,7 +210,7 @@
 			</div>
 			<div class="flex items-center gap-4">
 				<i class="ri-map-2-line text-3xl text-amber-600"></i>
-				<p>5890 Stoneridge Dr, suite 216 |<br /> Pleasanton | CA 94588 United</p>
+				<p>{data.lang === 'ja' ? '5890 ストーンリッジ ドクター、スイート 216|プレザントン | CA 94588 米国' : '5890 Stoneridge Dr, suite 216 | Pleasanton | CA 94588 United'} </p>
 			</div>
 			<div>
 				<a href="mailto:info@12thwonder.com" class="flex items-center gap-4">
@@ -227,10 +227,10 @@
 				class="flex items-center text-base"
 			>
 				<!-- <i class="ri-linkedin-box-fill rounded-sm text-blue-500 text-5xl"></i> -->
-				<img src={linkedin1} alt="LinkedIn Logo" class="w-8 h-8" />
+				<img src={linkedin1} alt="LinkedIn Logo" class="w-10" />
 			</a>
 			<a href="https://twitter.com/TITANTLM" class="flex items-center text-base">
-				<img src={twitter1} alt="twitter Logo" class=" w-8 h-8" />
+				<img src={twitter1} alt="twitter Logo" class="w-10" />
 				<!-- <span>LinkedIn</span> -->
 			</a>
 
@@ -238,11 +238,11 @@
 		</div>
 
 		<div class="flex flex-col gap-5 items-center md:flex-row justify-between mt-10 md:mt-20">
-			<p class="text-white font-light">&copy; 2021 12th Wonder. All rights reserved | <a href="/privacy-policy" class="text-white font-light ">Privacy Policy</a></p>
+			<p class="text-white font-light"><i class="ri-copyright-line"></i> {data.lang === 'ja' ? '2021 12th Wonder、全著作権所有' : '2021 12th Wonder. All rights reserved.'}</p>
 			
 			<a href="https://www.12thwonder.com" class="flex items-center">
 				<img src={logo12thwonder} alt="12th Wonder Logo" class="w-24 pb-0.5" />
-				A 12th Wonder Product
+				{data.lang === 'ja' ? '12 Th wandā no shōhin' : 'A product by 12th Wonder'}
 			</a>
 		</div>
 	</div>

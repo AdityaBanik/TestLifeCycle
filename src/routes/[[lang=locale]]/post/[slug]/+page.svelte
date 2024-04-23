@@ -25,6 +25,6 @@
 
 <style>
 	.blog-width {
-		max-width: 90ch !important;
+		@apply container !important;
 	}
 </style>

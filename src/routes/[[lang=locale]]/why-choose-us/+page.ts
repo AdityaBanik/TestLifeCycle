@@ -25,6 +25,14 @@ export const load = (async ({ parent }) => {
 								}
 							}
 						}
+						cta {
+							title
+							description
+							Button {
+								link
+								name
+							}
+						}
 						seo {
 							metaTitle
 							metaDescription
@@ -62,7 +70,8 @@ export const load = (async ({ parent }) => {
 
 		return {
 			page: responseData.titanWhyChooseUs?.data?.attributes,
-			seo:responseData.titanWhyChooseUs?.data?.attributes?.seo
+			seo: responseData.titanWhyChooseUs?.data?.attributes?.seo,
+			cta: responseData.titanWhyChooseUs?.data?.attributes?.cta
 		};
 	} catch (error) {
 		return {
