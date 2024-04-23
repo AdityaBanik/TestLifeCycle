@@ -66,9 +66,9 @@
 		
 		<div class=" border bg-white rounded-2xl shadow-sm flex-1  ml-10 lg:w-[70%] p-8 ">
 			<Accordian>
-				{#each accordionItems as { question, answer }, i}
+				{#each accordionItems as { question, answer }}
 					<div class="accordion-item  p-3 lg:text-sm border-b">
-						<AccordianItem key={i} selected="font-bold" className="  text-left font-bold p-1">
+						<AccordianItem  selected="font-bold" className="  text-left font-bold p-1">
 							<!-- Apply custom style to left-align the title -->
 							<svelte:fragment slot="title">{question}</svelte:fragment>
 							<div class="ml-5 ">{answer}</div>
