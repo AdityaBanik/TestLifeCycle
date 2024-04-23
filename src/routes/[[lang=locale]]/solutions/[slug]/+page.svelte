@@ -32,18 +32,18 @@
 </script>
 
 {#if data.hero && data.hero.__typename === 'ComponentTestLifeCycleHeroSection'}
-	<section class="bg-gradient-to-t from-sky-100 to-white sticky z-10 top-0 relative">
+	<section class="bg-gradient-to-t from-sky-100 to-white sticky z-10 top-0 ">
 		<!-- Circle shape -->
 		<div
-			class=" absolute top-[48%] lg:top-[20%] left-[30%]transform -translate-y-[10%] lg:-translate-y-[20%] translate-x-[30%] bg-blue-200 bg-opacity-50 circle1 rounded-full"
+			class=" absolute top-[48%] lg:top-[22%] left-[2%] lg:left-[3%] transform -translate-y-[10%] lg:-translate-y-[25%] translate-x-[30%] bg-blue-200 bg-opacity-50 circle1 rounded-full"
 		></div>
 		<div
-			class="absolute top-[60%] lg:top-[34%] left-[3%] transform -translate-x-[12%] lg:-translate-x-[18%] bg-blue-200 bg-opacity-70 circle2 rounded-full"
+			class="absolute top-[60%] lg:top-[32%] left-[3%] transform -translate-x-[12%] lg:-translate-x-[18%] bg-blue-200 bg-opacity-70 circle2 rounded-full"
 		></div>
 		<!-- rightc corcle shape  -->
 
 		<div
-			class="bgcolor absolute top-[70%] lg:top-[50%] right-[2%] lg:right-[4%] transform -translate-y-[30%] bg-blue-200 bg-opacity-50 circle1 rounded-full"
+			class="bgcolor absolute top-[70%] lg:top-[50%] right-[2%] lg:right-[7%] transform -translate-y-[30%] bg-blue-200 bg-opacity-50 circle1 rounded-full"
 		></div>
 
 		<div
@@ -58,7 +58,7 @@
 				</p>
 			</div>
 			<img
-				class="w-[75%] aspect-video bg-white cover-img-shadow border border-gray-100 rounded-t-xl relative z-1"
+				class="w-[75%] aspect-video bg-white cover-img-shadow border border-gray-100 rounded-t-xl "
 				src={data.hero?.coverImage?.data?.attributes?.url}
 				alt={data.hero?.coverImage?.data?.attributes?.alternativeText}
 			/>
@@ -115,8 +115,8 @@
 					</ul>
 					<section
 						bind:this={scrollable}
-						class=" scroll-y overflow-hidden h-[520px] 2xl:h-[700px] mx-auto"
-						style="overflow-y: scroll; overflow-x: hidden;"
+						class=" scroll-y overflow-scroll h-[520px] 2xl:h-[700px] mx-auto snap-y snap-mandatory "
+						style=" overflow-x: hidden;"
 					>
 						{#each data.features?.features || [] as feature, index}
 							<article
