@@ -31,7 +31,7 @@ export const load = (async ({ locals, platform, url }) => {
 
 	try {
 		let responseData: NavMenuQuery;
-		/* let cacheData: string | undefined | null;
+		let cacheData: string | undefined | null;
 		let cacheKey: string | undefined | null;
 		if (locals.lang === 'en') {
 			cacheKey = 'nav-menu';
@@ -46,14 +46,13 @@ export const load = (async ({ locals, platform, url }) => {
 		} else {
 			responseData = await client.request(query, variables);
 			platform?.env.KV.put(cacheKey, JSON.stringify(responseData));
-		} */
+		}
 
-		responseData = await client.request(query, variables);
 		return {
 			navMenu: responseData.navMenu?.data?.attributes?.NavComponent,
 			lang: lang
 		};
 	} catch (error) {
-		return {};
+		return Error(`Failed to load nav menu ${error}`);
 	}
 }) satisfies LayoutServerLoad;

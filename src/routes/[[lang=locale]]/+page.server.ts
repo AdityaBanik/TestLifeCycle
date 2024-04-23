@@ -95,15 +95,15 @@ export const load = (async ({ locals,setHeaders,fetch,platform,url }) => {
 	try {
 
 		let responseData: GetHomePageQuery;
-		/* const cacheData: string = await platform?.env.KV.get(url.pathname);
+		const cacheData: string = await platform?.env.KV.get(url.pathname);
 
 		if (cacheData) {
 			responseData = JSON.parse(cacheData) as GetHomePageQuery;
 		} else {
 			responseData = await client.request(query, variables);
 			platform?.env.KV.put(url.pathname, JSON.stringify(responseData));
-		} */
-		responseData = await client.request(query, variables);
+		}
+
 		setHeaders({
 			'cache-control': 'public,max-age=3600'
 		});
@@ -113,6 +113,6 @@ export const load = (async ({ locals,setHeaders,fetch,platform,url }) => {
 			
 		};
 	} catch (error) {
-		return {};
+		return Error(`Failed to home page ${error}`);
 	}
 }) satisfies PageServerLoad;
