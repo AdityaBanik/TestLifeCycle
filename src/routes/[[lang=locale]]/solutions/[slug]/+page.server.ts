@@ -1,8 +1,9 @@
 import type { PageServerLoad } from './$types';
 import { graphql } from '$lib/gql';
 import { client } from '$lib';
+import type { SolutionsQuery } from '$lib/gql/graphql';
 
-export const load = (async ({ params, locals, setHeaders }) => {
+export const load = (async ({ params, locals, setHeaders, platform, url }) => {
 	const slug = params.slug;
 
 	//fragments are not understo ̑od by the compiler [not unused code]
@@ -108,7 +109,15 @@ export const load = (async ({ params, locals, setHeaders }) => {
 	const variables = { slug, lang: locals.lang };
 
 	try {
-		const responseData = await client.request(query, variables);
+		let responseData: SolutionsQuery;
+		const cacheData: string = await platform?.env.KV.get(url.pathname);
+
+		if (cacheData) {
+			responseData = JSON.parse(cacheData) as SolutionsQuery;
+		} else {
+			responseData = await client.request(query, variables);
+			platform?.env.KV.put(url.pathname, JSON.stringify(responseData));
+		}
 
 		const heroSection = responseData.titanSolutions?.data[0]?.attributes?.sections?.find(
 			(section) => section?.__typename === 'ComponentTestLifeCycleHeroSection'

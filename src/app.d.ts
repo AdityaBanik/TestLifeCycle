@@ -10,7 +10,7 @@ declare global {
 		// interface PageState {}
 		interface Platform {
 			env: {
-				cache: KVNamespace;
+				KV: KVNamespace;
 			};
 			context: {
 				waitUntil(promise: Promise<any>): void;
