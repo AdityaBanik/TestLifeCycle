@@ -1,11 +1,12 @@
-import type { PageLoad } from './$types';
+import type { PageServerLoad } from './$types';
 import { graphql } from '$lib/gql';
 import { client } from '$lib';
+import type { SolutionsQuery } from '$lib/gql/graphql';
 
-export const load = (async ({ params, parent }) => {
+export const load = (async ({ params, locals, setHeaders, platform, url }) => {
 	const slug = params.slug;
-	const data = await parent();
-	//fragments are not understood by the compiler [not unused code]
+
+	//fragments are not understo ̑od by the compiler [not unused code]
 	// eslint-disable-next-line @typescript-eslint/no-unused-vars
 	const Hero = graphql(`
 		fragment Hero on ComponentTestLifeCycleHeroSection {
@@ -105,10 +106,18 @@ export const load = (async ({ params, parent }) => {
 		}
 	`);
 
-	const variables = { slug, lang: data.lang };
+	const variables = { slug, lang: locals.lang };
 
 	try {
-		const responseData = await client.request(query, variables);
+		let responseData: SolutionsQuery;
+		const cacheData: string = await platform?.env.KV.get(url.pathname);
+
+		if (cacheData) {
+			responseData = JSON.parse(cacheData) as SolutionsQuery;
+		} else {
+			responseData = await client.request(query, variables);
+			platform?.env.KV.put(url.pathname, JSON.stringify(responseData));
+		}
 
 		const heroSection = responseData.titanSolutions?.data[0]?.attributes?.sections?.find(
 			(section) => section?.__typename === 'ComponentTestLifeCycleHeroSection'
@@ -120,11 +129,16 @@ export const load = (async ({ params, parent }) => {
 		const features = responseData.titanSolutions?.data[0]?.attributes?.sections?.find(
 			(section) => section?.__typename === 'ComponentTestLifeCycleFeatures'
 		);
+
+		setHeaders({
+			'cache-control': 'public,max-age=3600'
+		});
+
 		return {
 			hero: heroSection,
 			highlights: highlights,
 			features: features,
-			seo:responseData.titanSolutions?.data[0]?.attributes?.seo
+			seo: responseData.titanSolutions?.data[0]?.attributes?.seo
 		};
 	} catch (error) {
 		return {
@@ -132,4 +146,4 @@ export const load = (async ({ params, parent }) => {
 			error: 'Internal server error'
 		};
 	}
-}) satisfies PageLoad;
+}) satisfies PageServerLoad;

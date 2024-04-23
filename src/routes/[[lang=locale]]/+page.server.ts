@@ -1,10 +1,12 @@
 import { graphql } from '$lib/gql';
 import { client } from '$lib';
-import type { PageLoad } from './$types';
+import type { PageServerLoad } from './$types';
+import type { GetHomePageQuery } from '$lib/gql/graphql';
 
-export const load = (async ({ parent }) => {
-	const data = await parent();
-	const lang = data.lang;
+export const load = (async ({ locals,setHeaders,fetch,platform,url }) => {
+	
+	
+	
 	const query = graphql(`
 		query getHomePage($lang: I18NLocaleCode) {
 			titanHomepage(locale: $lang) {
@@ -88,15 +90,29 @@ export const load = (async ({ parent }) => {
 		}
 	`);
 
-	const variables = { lang };
+	const variables = { lang: locals.lang };
+	
 	try {
-		const responseData = await client.request(query, variables);
 
+		let responseData: GetHomePageQuery;
+		/* const cacheData: string = await platform?.env.KV.get(url.pathname);
+
+		if (cacheData) {
+			responseData = JSON.parse(cacheData) as GetHomePageQuery;
+		} else {
+			responseData = await client.request(query, variables);
+			platform?.env.KV.put(url.pathname, JSON.stringify(responseData));
+		} */
+		responseData = await client.request(query, variables);
+		setHeaders({
+			'cache-control': 'public,max-age=3600'
+		});
 		return {
 			page: responseData.titanHomepage?.data?.attributes,
-			seo:responseData.titanHomepage?.data?.attributes?.seo
+			seo:responseData.titanHomepage?.data?.attributes?.seo,
+			
 		};
 	} catch (error) {
-		return Error(`Failed to home page ${error}`);
+		return {};
 	}
-}) satisfies PageLoad;
+}) satisfies PageServerLoad;

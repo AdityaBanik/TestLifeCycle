@@ -1,11 +1,10 @@
-import type { PageLoad } from './$types';
+import type { PageServerLoad } from './$types';
 import { graphql } from '$lib/gql';
 import { client } from '$lib';
+import type { CustomerQuery } from '$lib/gql/graphql';
 
-export const load = (async ({ params, parent }) => {
+export const load = (async ({ params, locals, setHeaders, platform ,url}) => {
 	const slug = params.slug;
-	const data = await parent();
-	const lang = data.lang;
 
 	const query = graphql(`
 		query customer($slug: String!, $lang: I18NLocaleCode) {
@@ -69,10 +68,22 @@ export const load = (async ({ params, parent }) => {
 		}
 	`);
 
-	const variables = { slug, lang };
+	const variables = { slug, lang: locals.lang };
 	try {
-		const responseData = await client.request(query, variables);
+		let responseData: CustomerQuery;
+		const cacheData: string = await platform?.env.KV.get(url.pathname);
 
+		if (cacheData) {
+			responseData = JSON.parse(cacheData) as CustomerQuery;
+		} else {
+			responseData = await client.request(query, variables);
+			platform?.env.KV.put(url.pathname, JSON.stringify(responseData));
+		}
+
+		setHeaders({
+			'cache-control': 'public,max-age=3600'
+		});
+		
 		return {
 			page: {
 				title: responseData.titanCustomerServices?.data[0].attributes?.section?.title,
@@ -90,4 +101,4 @@ export const load = (async ({ params, parent }) => {
 			error: 'Internal server error'
 		};
 	}
-}) satisfies PageLoad;
+}) satisfies PageServerLoad;

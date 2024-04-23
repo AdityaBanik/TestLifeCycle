@@ -7,7 +7,7 @@
 
 <script lang="ts">
 	import type { LayoutData } from './$types';
-
+	import { page } from '$app/stores';
 	import logo from '$lib/assets/titanLogo.svg';
 	import logo12thwonder from '$lib/assets/Home/12thwonderlogo.png';
 	import Button from '$lib/components/buttons/Button.svelte';
@@ -45,6 +45,7 @@
 			allowHTML: true,
 			theme: 'light',
 			offset: [0, 28],
+			hideOnClick: 'toggle',
 			appendTo: () => document.body,
 
 			onShown(instance) {
@@ -75,6 +76,7 @@
 		<nav class="gap-6 hidden lg:flex items-center">
 			<div>
 				<a
+					class:highlight={$page.url.pathname === '/'}
 					href={data.lang === 'ja' ? '/ja' : '/'}
 					class="fluid-font capitalize hover:bg-blue-50 px-2 py-1 rounded-lg cursor-pointer"
 				>
@@ -89,7 +91,10 @@
 					<div id={navItem?.title || ''} class="hidden">
 						<section class="grid grid-cols-2 gap-x-28 gap-y-6 p-6">
 							{#each navItem?.Links || [] as links}
-								<a href={links?.link} class="link">
+								<a
+									href={links?.link}
+									class="link"
+								>
 									{links?.name}
 								</a>
 							{/each}
@@ -116,7 +121,8 @@
 		<Button
 			text={data.lang === 'ja' ? 'デモを依頼する' : 'Request Demo'}
 			className="text-sm lg:px-6"
-			link="/request-demo"
+
+			link={data.lang === 'ja' ? '/ja/request-demo' : '/request-demo'}
 		/>
 
 		<button
@@ -129,7 +135,11 @@
 </header>
 
 {#key data.url}
-	<main in:fly={{ x: -300, duration: 300, delay: 300 }} out:fly={{ x: 300, duration: 300 }}>
+	<main
+		in:fly={{ x: -300, duration: 300, delay: 300 }}
+		out:fly={{ x: 300, duration: 300 }}
+		class:japanese-font={data.lang === 'ja'}
+	>
 		<slot />
 	</main>
 {/key}
@@ -183,7 +193,7 @@
 					<ul class="flex flex-col gap-3">
 						{#each navItem?.Links || [] as links}
 							<li>
-								<a href={links?.link}>
+								<a class:highlight={$page.url.pathname === links?.link} href={links?.link}>
 									{links?.name}
 								</a>
 							</li>
@@ -239,6 +249,10 @@
 </footer>
 
 <style type="postcss">
+	.japanese-font {
+		font-family: 'Noto Sans JP', sans-serif;
+	}
+
 	nav div button {
 		@apply capitalize hover:bg-blue-50 px-2 py-1 rounded-lg cursor-pointer;
 	}
