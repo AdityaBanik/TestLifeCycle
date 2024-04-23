@@ -130,9 +130,10 @@
 {/if}
 
 <Cta
-	title="REMOVE MUNDANE TESTING ASPECTS TO FOCUS ON WHAT MATTERS THE MOST WITH TITAN"
-	description="Experience live with one of our experts"
-	btnText="Request Demo"
+	title={data.cta?.title || ""}
+	description={data.cta?.description || ""}
+	btnText={data.cta?.Button?.name || ""}
+	btnLink={data.cta?.Button?.link || ""}
 	className="z-20 relative bg-sky-50 text-blue-950 "
 />
 

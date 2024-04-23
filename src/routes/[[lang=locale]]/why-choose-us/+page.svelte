@@ -12,7 +12,7 @@
 	<h1 class="text-6xl font-bold text-white ">In Progress !</h1>
 </section>
 
-<!-- <section
+<section
 	class=" gradient min-h-screen flex flex-col justify-center items-center"
 	
 >
@@ -43,12 +43,13 @@
 	</div>
 	</section>
 </section>
- -->
+
 <Cta
-	title="Know more about TITAN"
-	description="Experience live with one of our experts"
-	btnText="Request Personalized Demo !"
-	className="bg-sky-50 text-blue-950  "
+	title={data.cta?.title || ""}
+	description={data.cta?.description || ""}
+	btnText={data.cta?.Button?.name || ""}
+	btnLink={data.cta?.Button?.link || ""}
+	className="bg-sky-50 text-blue-950"
 />
 
 <style type="postcss">

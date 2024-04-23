@@ -19,6 +19,7 @@ export const load = (async ({ params, locals, setHeaders, platform ,url}) => {
 								}
 							}
 						}
+
 						content
 						seo {
 							metaTitle
@@ -45,7 +46,14 @@ export const load = (async ({ params, locals, setHeaders, platform ,url}) => {
 							keywords
 							structuredData
 						}
-
+						cta {
+							title
+							description
+							Button {
+								link
+								name
+							}
+						}
 						section {
 							title
 							subtitle
@@ -93,7 +101,8 @@ export const load = (async ({ params, locals, setHeaders, platform ,url}) => {
 				image: responseData.titanCustomerServices?.data[0].attributes?.image?.data?.attributes
 			},
 
-			seo: responseData.titanCustomerServices?.data[0].attributes?.seo
+			seo: responseData.titanCustomerServices?.data[0].attributes?.seo,
+			cta: responseData.titanCustomerServices?.data[0].attributes?.cta
 		};
 	} catch (error) {
 		return {

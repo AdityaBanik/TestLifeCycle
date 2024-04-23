@@ -61,47 +61,44 @@
 <div class="text-blue-500 font-bold text-3xl text-center p-12">
 	<h1>FAQs - Frequently Asked Questions</h1>
 </div>
-<section class="container ">
-	<div class="flex justify-center items-center gap-20 flex-col lg:flex-row ">
-		
-		<div class=" border bg-white rounded-2xl shadow-sm flex-1  ml-10 lg:w-[70%] p-8 ">
+<section class="container">
+	<div class="flex justify-center items-center gap-20 flex-col lg:flex-row h-[743px]">
+	
+		<div class=" border shadow-sm md:w-[100%] bg-white rounded-lg  flex-1 lg:w-[50%] p-8">
 			<Accordian>
 				{#each accordionItems as { question, answer }}
-					<div class="accordion-item  p-3 lg:text-sm border-b">
-						<AccordianItem  selected="font-bold" className="  text-left font-bold p-1">
+					<div class="accordion-item p-3 lg:text-sm border-b">
+						<AccordianItem selected="font-bold" className="  text-left font-bold p-1">
 							<!-- Apply custom style to left-align the title -->
 							<svelte:fragment slot="title">{question}</svelte:fragment>
-							<div class="ml-5 ">{answer}</div>
+							<div class="ml-5">{answer}</div>
 						</AccordianItem>
 					</div>
 				{/each}
 			</Accordian>
 		</div>
-		<!-- Image Section -->
-		<div class="w-[250px] lg:w-[500px] mb-5 ">
-			<img src={question1} alt="Image1" />
+		<div class="lg:w-[50%] mb-5">
+			<img src={question1} alt="Image1"/>
 		</div>
 	</div>
 </section>
 
-<section class="container lg:mt-40">
-	<div class="flex justify-center items-center gap-20 flex-col lg:flex-row ">
+<section class="container lg:mt-40 mt-20">
+	<div class="flex justify-center items-center gap-20 flex-col-reverse lg:flex-row">
+		
+		<div class="lg:w-[50%] lg:mr-4 mb-5">
+			<img src={form1} alt="Image2" class="w-full h-auto rounded-md" />
+		</div>
 		<!-- Form Section -->
-		<div class="lg:w-[700px] lg:ml-10  rounded-2xl border shadow-sm mb-5">
+
+		<div class="lg:w-[50%] lg:ml-10 rounded-lg border shadow-sm  mb-5 w-[100%]">
 			<div
 				class="nimble-form min-h-[630px] rounded-2xl"
 				data-form-id="65d7bc143841fd0baf097895"
 				data-company-id="5b261c76cef070b143c79181"
 			></div>
 		</div>
-
-		<!-- Image Section -->
-		<div class="w-[250px] lg:w-[500px] lg:mr-4 mb-5">
-			<img src={form1} alt="Image2" class="w-full h-auto rounded-md" />
-		</div>
+		
 	</div>
 </section>
 
-<style>
-	
-</style>
