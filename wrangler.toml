@@ -6,3 +6,4 @@ name = "testlifecycle"
 binding = "KV"
 id = "c55be652716849128a06b82d39d2fb9e"
 
+pages_build_output_dir = "/.svelte-kit/cloudflare"
