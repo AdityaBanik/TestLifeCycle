@@ -104,6 +104,15 @@ export type ComponentSharedCta = {
   title?: Maybe<Scalars['String']['output']>;
 };
 
+export type ComponentSharedCtaFiltersInput = {
+  Button?: InputMaybe<ComponentSharedButtonFiltersInput>;
+  and?: InputMaybe<Array<InputMaybe<ComponentSharedCtaFiltersInput>>>;
+  description?: InputMaybe<StringFilterInput>;
+  not?: InputMaybe<ComponentSharedCtaFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<ComponentSharedCtaFiltersInput>>>;
+  title?: InputMaybe<StringFilterInput>;
+};
+
 export type ComponentSharedCtaInput = {
   Button?: InputMaybe<ComponentSharedButtonInput>;
   description?: InputMaybe<Scalars['String']['input']>;
@@ -1506,6 +1515,7 @@ export type TitanAboutUs = {
   __typename?: 'TitanAboutUs';
   content?: Maybe<Scalars['JSON']['output']>;
   createdAt?: Maybe<Scalars['DateTime']['output']>;
+  cta?: Maybe<ComponentSharedCta>;
   locale?: Maybe<Scalars['String']['output']>;
   localizations?: Maybe<TitanAboutUsRelationResponseCollection>;
   publishedAt?: Maybe<Scalars['DateTime']['output']>;
@@ -1532,6 +1542,7 @@ export type TitanAboutUsEntityResponse = {
 
 export type TitanAboutUsInput = {
   content?: InputMaybe<Scalars['JSON']['input']>;
+  cta?: InputMaybe<ComponentSharedCtaInput>;
   publishedAt?: InputMaybe<Scalars['DateTime']['input']>;
   seo?: InputMaybe<ComponentSharedSeoInput>;
   title?: InputMaybe<Scalars['String']['input']>;
@@ -1668,6 +1679,7 @@ export type TitanCustomerService = {
   __typename?: 'TitanCustomerService';
   content?: Maybe<Scalars['JSON']['output']>;
   createdAt?: Maybe<Scalars['DateTime']['output']>;
+  cta?: Maybe<ComponentSharedCta>;
   image?: Maybe<UploadFileEntityResponse>;
   locale?: Maybe<Scalars['String']['output']>;
   localizations?: Maybe<TitanCustomerServiceRelationResponseCollection>;
@@ -1708,6 +1720,7 @@ export type TitanCustomerServiceFiltersInput = {
   and?: InputMaybe<Array<InputMaybe<TitanCustomerServiceFiltersInput>>>;
   content?: InputMaybe<JsonFilterInput>;
   createdAt?: InputMaybe<DateTimeFilterInput>;
+  cta?: InputMaybe<ComponentSharedCtaFiltersInput>;
   id?: InputMaybe<IdFilterInput>;
   locale?: InputMaybe<StringFilterInput>;
   localizations?: InputMaybe<TitanCustomerServiceFiltersInput>;
@@ -1723,6 +1736,7 @@ export type TitanCustomerServiceFiltersInput = {
 
 export type TitanCustomerServiceInput = {
   content?: InputMaybe<Scalars['JSON']['input']>;
+  cta?: InputMaybe<ComponentSharedCtaInput>;
   image?: InputMaybe<Scalars['ID']['input']>;
   name?: InputMaybe<Scalars['String']['input']>;
   publishedAt?: InputMaybe<Scalars['DateTime']['input']>;
@@ -1740,6 +1754,7 @@ export type TitanFunctional = {
   __typename?: 'TitanFunctional';
   content?: Maybe<Scalars['JSON']['output']>;
   createdAt?: Maybe<Scalars['DateTime']['output']>;
+  cta?: Maybe<ComponentSharedCta>;
   heroSection?: Maybe<ComponentTestLifeCycleHeroSection>;
   locale?: Maybe<Scalars['String']['output']>;
   localizations?: Maybe<TitanFunctionalRelationResponseCollection>;
@@ -1779,6 +1794,7 @@ export type TitanFunctionalFiltersInput = {
   and?: InputMaybe<Array<InputMaybe<TitanFunctionalFiltersInput>>>;
   content?: InputMaybe<JsonFilterInput>;
   createdAt?: InputMaybe<DateTimeFilterInput>;
+  cta?: InputMaybe<ComponentSharedCtaFiltersInput>;
   heroSection?: InputMaybe<ComponentTestLifeCycleHeroSectionFiltersInput>;
   id?: InputMaybe<IdFilterInput>;
   locale?: InputMaybe<StringFilterInput>;
@@ -1794,6 +1810,7 @@ export type TitanFunctionalFiltersInput = {
 
 export type TitanFunctionalInput = {
   content?: InputMaybe<Scalars['JSON']['input']>;
+  cta?: InputMaybe<ComponentSharedCtaInput>;
   heroSection?: InputMaybe<ComponentTestLifeCycleHeroSectionInput>;
   name?: InputMaybe<Scalars['String']['input']>;
   publishedAt?: InputMaybe<Scalars['DateTime']['input']>;
@@ -2019,6 +2036,7 @@ export type TitanRequestDemoRelationResponseCollection = {
 export type TitanSolution = {
   __typename?: 'TitanSolution';
   createdAt?: Maybe<Scalars['DateTime']['output']>;
+  cta?: Maybe<ComponentSharedCta>;
   locale?: Maybe<Scalars['String']['output']>;
   localizations?: Maybe<TitanSolutionRelationResponseCollection>;
   name: Scalars['String']['output'];
@@ -2057,6 +2075,7 @@ export type TitanSolutionEntityResponseCollection = {
 export type TitanSolutionFiltersInput = {
   and?: InputMaybe<Array<InputMaybe<TitanSolutionFiltersInput>>>;
   createdAt?: InputMaybe<DateTimeFilterInput>;
+  cta?: InputMaybe<ComponentSharedCtaFiltersInput>;
   id?: InputMaybe<IdFilterInput>;
   locale?: InputMaybe<StringFilterInput>;
   localizations?: InputMaybe<TitanSolutionFiltersInput>;
@@ -2070,6 +2089,7 @@ export type TitanSolutionFiltersInput = {
 };
 
 export type TitanSolutionInput = {
+  cta?: InputMaybe<ComponentSharedCtaInput>;
   name?: InputMaybe<Scalars['String']['input']>;
   publishedAt?: InputMaybe<Scalars['DateTime']['input']>;
   sections?: InputMaybe<Array<Scalars['TitanSolutionSectionsDynamicZoneInput']['input']>>;
@@ -2155,6 +2175,7 @@ export type TitanTestimonialRelationResponseCollection = {
 export type TitanWhyChooseUs = {
   __typename?: 'TitanWhyChooseUs';
   createdAt?: Maybe<Scalars['DateTime']['output']>;
+  cta?: Maybe<ComponentSharedCta>;
   highlights?: Maybe<ComponentTestLifeCycleHighlights>;
   locale?: Maybe<Scalars['String']['output']>;
   localizations?: Maybe<TitanWhyChooseUsRelationResponseCollection>;
@@ -2180,6 +2201,7 @@ export type TitanWhyChooseUsEntityResponse = {
 };
 
 export type TitanWhyChooseUsInput = {
+  cta?: InputMaybe<ComponentSharedCtaInput>;
   highlights?: InputMaybe<ComponentTestLifeCycleHighlightsInput>;
   publishedAt?: InputMaybe<Scalars['DateTime']['input']>;
   seo?: InputMaybe<ComponentSharedSeoInput>;
