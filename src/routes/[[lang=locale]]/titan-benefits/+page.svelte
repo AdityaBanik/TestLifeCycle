@@ -32,7 +32,7 @@
 				<h2 class="font-bold fluid-subtitle mb-5">
 					{@html feature?.title}
 				</h2>
-				<div class="prose prose-sm text-justify">
+				<div class="prose prose-a:text-orange-500 prose-a:font-medium prose-sm text-justify">
 					{@html resolveRichText(feature?.content)}
 				</div>
 			</div>

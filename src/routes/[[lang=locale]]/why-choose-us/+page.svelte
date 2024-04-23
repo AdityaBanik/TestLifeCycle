@@ -12,7 +12,7 @@
 	<h1 class="text-6xl font-bold text-white ">In Progress !</h1>
 </section>
 
-<!-- <section
+<section
 	class=" gradient min-h-screen flex flex-col justify-center items-center"
 	
 >
@@ -43,7 +43,7 @@
 	</div>
 	</section>
 </section>
- -->
+
 <Cta
 	title="Know more about TITAN"
 	description="Experience live with one of our experts"

@@ -112,7 +112,7 @@
 			</select>
 		</form>
 
-		<Button text={data.lang === 'ja' ? 'デモを依頼する' : 'Request Demo'} className="text-sm lg:px-6" link={data.lang === 'ja' ? '/ja/request-demo' : '/request-demo'} />
+		<Button text={data.lang === 'ja' ? 'デモを依頼する' : 'Request Demo'} className="text-sm lg:px-6 lg:py-2" link={data.lang === 'ja' ? '/ja/request-demo' : '/request-demo'} />
 
 		<button
 			class="lg:hidden px-2 p-1 border rounded-md hover:bg-slate-200 active:bg-slate-50"
@@ -193,7 +193,7 @@
 			</div>
 			<div class="flex items-center gap-4">
 				<i class="ri-map-2-line text-3xl text-amber-600"></i>
-				<p>5890 Stoneridge Dr, suite 216 | Pleasanton | CA 94588 United</p>
+				<p>{data.lang === 'ja' ? '5890 ストーンリッジ ドクター、スイート 216|プレザントン | CA 94588 米国' : '5890 Stoneridge Dr, suite 216 | Pleasanton | CA 94588 United'} </p>
 			</div>
 			<div>
 				<a href="mailto:info@12thwonder.com" class="flex items-center gap-4">
@@ -217,10 +217,11 @@
 		</div>
 
 		<div class="flex flex-col gap-5 items-center md:flex-row justify-between mt-10 md:mt-20">
-			<p class="text-white font-light">&copy; 2021 12th Wonder. All rights reserved.</p>
+			<p class="text-white font-light"><i class="ri-copyright-line"></i> {data.lang === 'ja' ? '2021 12th Wonder、全著作権所有' : '2021 12th Wonder. All rights reserved.'}</p>
+			
 			<a href="https://www.12thwonder.com" class="flex items-center">
 				<img src={logo12thwonder} alt="12th Wonder Logo" class="w-24 pb-0.5" />
-				A 12th Wonder Product
+				{data.lang === 'ja' ? '12 Th wandā no shōhin' : 'A product by 12th Wonder'}
 			</a>
 		</div>
 	</div>

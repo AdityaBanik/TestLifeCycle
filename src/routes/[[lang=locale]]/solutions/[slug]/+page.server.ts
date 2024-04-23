@@ -74,6 +74,14 @@ export const load = (async ({ params, locals, setHeaders }) => {
 							...Highlights
 							...Features
 						}
+						cta {
+							title
+							description
+							Button {
+								link
+								name
+							}
+						}
 						seo {
 							metaTitle
 							metaDescription
@@ -129,7 +137,8 @@ export const load = (async ({ params, locals, setHeaders }) => {
 			hero: heroSection,
 			highlights: highlights,
 			features: features,
-			seo: responseData.titanSolutions?.data[0]?.attributes?.seo
+			seo: responseData.titanSolutions?.data[0]?.attributes?.seo,
+			cta:responseData.titanSolutions?.data[0].attributes?.cta
 		};
 	} catch (error) {
 		return {

@@ -8,31 +8,39 @@ export const load = (async ({ params,parent }) => {
 	const data = await parent();
 	const lang = data.lang;
 	const query = graphql(`
-		query getFunctionalTestArea($slug: String!, $lang: I18NLocaleCode) {
-			titanFunctionals(filters: { slug: { eq: $slug } } locale: $lang) {
-				data {
+	query getFunctionalTestArea($slug: String!, $lang: I18NLocaleCode) {
+		titanFunctionals(filters: { slug: { eq: $slug } }, locale: $lang) {
+		  data {
+			attributes {
+			  seo {
+				metaTitle
+				metaDescription
+			  }
+			  heroSection {
+				title
+				subtitle
+				coverImage {
+				  data {
 					attributes {
-						seo {
-							metaTitle
-							metaDescription
-						}
-						heroSection {
-							title
-							subtitle
-							coverImage {
-								data {
-									attributes {
-										url
-										alternativeText
-									}
-								}
-							}
-						}
-						content
+					  url
+					  alternativeText
 					}
+				  }
 				}
+			  }
+			  content
+			  cta {
+				title
+				description
+				Button {
+				  link
+				  name
+				}
+			  }
 			}
+		  }
 		}
+	  }
 	`);
 
 	const variables = { slug, lang };
@@ -40,6 +48,7 @@ export const load = (async ({ params,parent }) => {
 		const responseData = await client.request(query, variables);
 	
 		return {
+			cta:responseData.titanFunctionals?.data[0].attributes?.cta,
 			seo: responseData.titanFunctionals?.data[0].attributes?.seo,
 			page: {
 				hero: responseData.titanFunctionals?.data[0].attributes?.heroSection,
