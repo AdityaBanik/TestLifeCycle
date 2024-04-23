@@ -5,20 +5,20 @@
 	export let data: PageData;
 </script>
 
-<section>
-	<div
-		class="text-black bg-cover  container bg-no-repeat bg-center py-8 md:py-20 lg:py-36"
-		style="background-image: url({bgimage})"
-	>
-		<h1 class="font-bold text-cyan-900">{data.page?.title}</h1>
-		<p class="text-lg">{data.page?.date}</p>
+<section class="bg-contain flex items-center mb-10 h-80" style="background-image: url({bgimage})">
+	<div class="container">
+		<div class="text-black">
+			<h1 class="text-4xl font-bold mb-4">{data.page?.title}</h1>
+			<p class="text-lg">{data.page?.date}</p>
+		</div>
 	</div>
-	<article
-		class="py-2  prose px-4 md:container text-justify lg:prose-li:text-lg lg:prose-h2:text-xl lg:prose-p:text-lg  prose-h2:text-sm prose-h2:font-normal prose-p:text-xs prose-ul:text-xs"
-	>
-		{@html resolveRichText(data.page?.content)}
-	</article>
 </section>
+
+<article
+	class="articalDiv py-2 prose  container text-justify lg:prose-li:text-lg lg:prose-h2:text-xl lg:prose-p:text-lg prose-h2:text-sm prose-h2:font-normal prose-p:text-xs prose-ul:text-xs"
+>
+	{@html resolveRichText(data.page?.content)}
+</article>
 
 <style>
 	h1 {
@@ -26,5 +26,8 @@
 	}
 	p {
 		font-size: clamp(0.5rem, 3vw, 1rem) !important;
+	}
+	.articalDiv{
+		@apply container !important;
 	}
 </style>

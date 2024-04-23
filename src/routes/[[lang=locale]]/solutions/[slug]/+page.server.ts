@@ -5,7 +5,6 @@ import { client } from '$lib';
 export const load = (async ({ params, locals, setHeaders }) => {
 	const slug = params.slug;
 
-	//fragments are not understo ̑od by the compiler [not unused code]
 	// eslint-disable-next-line @typescript-eslint/no-unused-vars
 	const Hero = graphql(`
 		fragment Hero on ComponentTestLifeCycleHeroSection {
@@ -138,7 +137,7 @@ export const load = (async ({ params, locals, setHeaders }) => {
 			highlights: highlights,
 			features: features,
 			seo: responseData.titanSolutions?.data[0]?.attributes?.seo,
-			cta:responseData.titanSolutions?.data[0].attributes?.cta
+			cta: responseData.titanSolutions?.data[0].attributes?.cta
 		};
 	} catch (error) {
 		return {

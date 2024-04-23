@@ -8,75 +8,73 @@ export const load = (async ({ params, parent }) => {
 	const lang = data.lang;
 
 	const query = graphql(`
-	query customer($slug: String!, $lang: I18NLocaleCode) {
-		titanCustomerServices(filters: { slug: { eq: $slug } }, locale: $lang) {
-		  data {
-			attributes {
-			  image {
+		query customer($slug: String!, $lang: I18NLocaleCode) {
+			titanCustomerServices(filters: { slug: { eq: $slug } }, locale: $lang) {
 				data {
-				  attributes {
-					url
-					alternativeText
-				  }
-				}
-			  }
-		 
-			  content
-			  seo {
-				metaTitle
-				metaDescription
-				metaImage {
-				  data {
 					attributes {
-					  url
+						image {
+							data {
+								attributes {
+									url
+									alternativeText
+								}
+							}
+						}
+
+						content
+						seo {
+							metaTitle
+							metaDescription
+							metaImage {
+								data {
+									attributes {
+										url
+									}
+								}
+							}
+							metaSocial {
+								socialNetwork
+								title
+								description
+								image {
+									data {
+										attributes {
+											url
+										}
+									}
+								}
+							}
+							keywords
+							structuredData
+						}
+						cta {
+							title
+							description
+							Button {
+								link
+								name
+							}
+						}
+						section {
+							title
+							subtitle
+							cards {
+								title
+								description
+								media {
+									data {
+										attributes {
+											url
+											alternativeText
+										}
+									}
+								}
+							}
+						}
 					}
-				  }
 				}
-				metaSocial {
-				  socialNetwork
-				  title
-				  description
-				  image {
-					data {
-					  attributes {
-						url
-					  }
-					}
-				  }
-				}
-				keywords
-				structuredData
-			  }
-	  
-			  section {
-				title
-				subtitle
-				cards {
-				  title
-				  description
-				  media {
-					data {
-					  attributes {
-						url
-						alternativeText
-					  }
-					}
-				  }
-				}
-			  }
-		   cta {
-				title
-				description
-				Button {
-				  link
-				  name
-				}
-			  }
 			}
-		  }
 		}
-	  }
-	  
 	`);
 
 	const variables = { slug, lang };
@@ -93,7 +91,7 @@ export const load = (async ({ params, parent }) => {
 			},
 
 			seo: responseData.titanCustomerServices?.data[0].attributes?.seo,
-			card:responseData.titanCustomerServices?.data[0].attributes?.cta
+			cta: responseData.titanCustomerServices?.data[0].attributes?.cta
 		};
 	} catch (error) {
 		return {
