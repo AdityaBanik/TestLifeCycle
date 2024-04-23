@@ -11,6 +11,7 @@ export const load = (async ({ parent }) => {
 					attributes {
 						highlights {
 							title
+							subtitle
 							cards {
 								title
 								description

@@ -177,7 +177,7 @@
 					class:order-2={index === 1}
 					class:order-4={index === 3}
 				>
-					<h4 class="text-amber-600 font-bold text-base 2xl:text-lg tracking-wider mb-3">
+					<h4 class="text-amber-600 title1 font-bold text-base 2xl:text-lg tracking-wider mb-3">
 						{navItem?.title}
 					</h4>
 					<ul class="flex flex-col gap-3">
@@ -228,7 +228,8 @@
 		</div>
 
 		<div class="flex flex-col gap-5 items-center md:flex-row justify-between mt-10 md:mt-20">
-			<p class="text-white font-light">&copy; 2021 12th Wonder. All rights reserved.</p>
+			<p class="text-white font-light">&copy; 2021 12th Wonder. All rights reserved | <a href="/privacy-policy" class="text-white font-light ">Privacy Policy</a></p>
+			
 			<a href="https://www.12thwonder.com" class="flex items-center">
 				<img src={logo12thwonder} alt="12th Wonder Logo" class="w-24 pb-0.5" />
 				A 12th Wonder Product
@@ -257,6 +258,9 @@
 		@apply text-white/90 hover:text-orange-300  transition-colors  cursor-pointer;
 	}
 
+	.title1{
+		font-size: clamp(0.9rem, 2.5vw, 1.3rem);
+	}
 	@media only screen and (max-width: 600px) {
 		.form {
 			display: none;

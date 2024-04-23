@@ -32,9 +32,22 @@
 </script>
 
 {#if data.hero && data.hero.__typename === 'ComponentTestLifeCycleHeroSection'}
-	<section class="bg-gradient-to-t from-sky-100 to-white sticky z-10 top-0">
+	<section class="bg-gradient-to-t from-sky-100 to-white sticky z-10 top-0 relative">
+		<!-- Circle shape -->
 		<div
-			class="container text-center xl:min-h-screen 3xl:min-h-[1080px] flex flex-col gap-10 items-center justify-end pt-10"
+			class=" absolute top-[48%] lg:top-[20%] left-[30%]transform -translate-y-[10%] lg:-translate-y-[20%] translate-x-[30%] bg-blue-200 bg-opacity-50 circle1 rounded-full"
+		></div>
+		<div
+			class="absolute top-[60%] lg:top-[34%] left-[3%] transform -translate-x-[12%] lg:-translate-x-[18%] bg-blue-200 bg-opacity-70 circle2 rounded-full"
+		></div>
+		<!-- rightc corcle shape  -->
+
+		<div
+			class="bgcolor absolute top-[70%] lg:top-[50%] right-[2%] lg:right-[4%] transform -translate-y-[30%] bg-blue-200 bg-opacity-50 circle1 rounded-full"
+		></div>
+
+		<div
+			class="container text-center xl:min-h-screen 3xl:min-h-[1080px] flex flex-col gap-10 items-center justify-end pt-10 relative"
 		>
 			<div>
 				<h1 class="font-bold md:text-2xl lg:text-5xl mb-2">
@@ -45,7 +58,7 @@
 				</p>
 			</div>
 			<img
-				class="w-[75%] aspect-video bg-white cover-img-shadow border border-gray-100 rounded-t-xl"
+				class="w-[75%] aspect-video bg-white cover-img-shadow border border-gray-100 rounded-t-xl relative z-1"
 				src={data.hero?.coverImage?.data?.attributes?.url}
 				alt={data.hero?.coverImage?.data?.attributes?.alternativeText}
 			/>
@@ -79,15 +92,15 @@
 {/if}
 
 {#if data.features && data.features?.__typename === 'ComponentTestLifeCycleFeatures'}
-	<section class=" relative z-20 bg-white hidden  lg:block pb-20">
+	<section class="relative z-20 bg-white hidden lg:block pb-20">
 		<div class="container pt-10">
 			<h4 class="font-bold text-orange-500">Features</h4>
 			<h2 class="font-bold line-height md:text-2xl lg:text-4xl pb-16">
 				{@html data.features?.title}
 			</h2>
-			<section class=" scroll-section pt-14 px-10 rounded-2xl">
+			<section class="scroll-section pt-14 px-10 rounded-2xl">
 				<p class="font-bold text-gray-500/90 text-lg">JUMP TO FEATURE</p>
-				<div class="flex gap-10 justify-between py-10 ">
+				<div class="flex gap-10 justify-between py-10">
 					<ul class="flex flex-col justify-between">
 						{#each data.features?.features || [] as feature, i}
 							<li>
@@ -102,7 +115,8 @@
 					</ul>
 					<section
 						bind:this={scrollable}
-						class="overflow-scroll h-[520px] 2xl:h-[700px] mx-auto snap-y snap-mandatory"
+						class=" scroll-y overflow-hidden h-[520px] 2xl:h-[700px] mx-auto"
+						style="overflow-y: scroll; overflow-x: hidden;"
 					>
 						{#each data.features?.features || [] as feature, index}
 							<article
@@ -141,7 +155,7 @@
 		box-shadow: 0 -10px 20px -10px rgba(0, 0, 0, 0.3);
 	}
 
-	.scroll-section{
+	.scroll-section {
 		box-shadow: 0px 0px 8px 0px #00000020;
 	}
 
@@ -173,5 +187,18 @@
 		height: 100%;
 		background-color: orangered; /* Sets the height to 100% when button is selected */
 		transition: height 1s ease;
+	}
+
+	.circle1 {
+		width: clamp(4rem, 15vw, 15rem);
+		height: clamp(4rem, 15vw, 15rem);
+	}
+	.circle2 {
+		width: clamp(2rem, 12vw, 10rem);
+		height: clamp(2rem, 12vw, 10rem);
+	}
+
+	.scroll-y::-webkit-scrollbar {
+		overflow-y: hidden;
 	}
 </style>
