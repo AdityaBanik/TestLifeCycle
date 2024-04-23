@@ -2,11 +2,12 @@
 	import type { PageData } from './$types';
 	import Button from '$lib/components/buttons/Button.svelte';
 	import { resolveRichText } from '$lib';
+	import bgimage from '$lib/assets/benefits.png';
 
 	export let data: PageData;
 </script>
 
-<section class="container flex flex-col items-start py-10 lg:gap-8 lg:py-20">
+ <section class="container flex flex-col items-start py-10 lg:gap-8 lg:py-20">
 	<h1 class="fluid-title font-bold max-w-5xl">
 		{@html data.page?.Hero?.title}
 	</h1>
@@ -19,7 +20,9 @@
 	<div class="prose py-5 lg:py-9">
 		{@html data.page?.Hero?.description}
 	</div>
-</section>
+</section> 
+
+
 
 <section class="container pb-20">
 	{#each data.page?.features || [] as feature, index}
@@ -38,7 +41,7 @@
 			</div>
 
 			<img
-				class="w-full lg:w-1/2 max-h-[400px] object-contain "
+				class="w-full lg:w-1/2 max-h-[400px] object-contain p-4 "
 				src={feature?.image?.data?.attributes?.url}
 				alt={feature?.image?.data?.attributes?.alternativeText || ''}
 			/>
@@ -48,10 +51,10 @@
 
 <style>
 	.fluid-title {
-		font-size: clamp(0.9rem, 2.5vw, 2.5rem) !important;
+		font-size: clamp(1.2rem, 2.5vw, 2.5rem) !important;
 	}
 
 	.fluid-subtitle {
-		font-size: clamp(0.63rem, 2.5vw, 2rem);
+		font-size: clamp(1rem, 2.5vw, 2rem);
 	}
 </style>

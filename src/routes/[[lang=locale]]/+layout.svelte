@@ -187,7 +187,7 @@
 					class:order-2={index === 1}
 					class:order-4={index === 3}
 				>
-					<h4 class="text-amber-600 font-bold text-base 2xl:text-lg tracking-wider mb-3">
+					<h4 class="text-amber-600 title1 font-bold text-base 2xl:text-lg tracking-wider mb-3">
 						{navItem?.title}
 					</h4>
 					<ul class="flex flex-col gap-3">
@@ -272,6 +272,9 @@
 		@apply text-white/90 hover:text-orange-300  transition-colors  cursor-pointer;
 	}
 
+	.title1{
+		font-size: clamp(0.9rem, 2.5vw, 1.3rem);
+	}
 	@media only screen and (max-width: 600px) {
 		.form {
 			display: none;
