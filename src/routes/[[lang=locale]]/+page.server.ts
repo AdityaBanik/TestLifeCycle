@@ -113,6 +113,6 @@ export const load = (async ({ locals,setHeaders,fetch,platform,url }) => {
 			
 		};
 	} catch (error) {
-		return Error(`Failed to home page ${error}`);
+		return {};
 	}
 }) satisfies PageServerLoad;

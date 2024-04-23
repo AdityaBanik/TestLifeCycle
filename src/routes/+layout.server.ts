@@ -53,6 +53,6 @@ export const load = (async ({ locals, platform, url }) => {
 			lang: lang
 		};
 	} catch (error) {
-		return Error(`Failed to load nav menu ${error}`);
+		return {};
 	}
 }) satisfies LayoutServerLoad;
