@@ -16,6 +16,8 @@
 	import Accordian from '$lib/components/accordian/Accordian.svelte';
 	import AccordianItem from '$lib/components/accordian/AccordianItem.svelte';
 	import { fly } from 'svelte/transition';
+	import linkedin1 from '$lib/assets/linkedin-sqaure 1.webp';
+	import twitter1 from '$lib/assets/twitter-square 1.webp';
 	export let data: LayoutData;
 
 	let isOpen: boolean;
@@ -119,6 +121,7 @@
 		<Button
 			text={data.lang === 'ja' ? 'デモを依頼する' : 'Request Demo'}
 			className="text-sm lg:px-6"
+
 			link={data.lang === 'ja' ? '/ja/request-demo' : '/request-demo'}
 		/>
 
@@ -207,7 +210,7 @@
 			</div>
 			<div class="flex items-center gap-4">
 				<i class="ri-map-2-line text-3xl text-amber-600"></i>
-				<p>5890 Stoneridge Dr, suite 216 | Pleasanton | CA 94588 United</p>
+				<p>5890 Stoneridge Dr, suite 216 |<br /> Pleasanton | CA 94588 United</p>
 			</div>
 			<div>
 				<a href="mailto:info@12thwonder.com" class="flex items-center gap-4">
@@ -217,14 +220,18 @@
 			</div>
 		</div>
 
-		<div class="flex justify-center items-center gap-10 mt-16">
+		<div class="flex justify-center items-center gap-4 mt-16">
 			<span class="w-[400px] h-[1px] bg-white/70"></span>
 			<a
 				href="https://www.linkedin.com/products/12thwonder-titan"
-				class="flex items-center gap-2 text-base"
+				class="flex items-center text-base"
 			>
-				<i class="ri-linkedin-box-fill rounded-sm text-amber-500 text-5xl"></i>
-				<span>LinkedIn</span>
+				<!-- <i class="ri-linkedin-box-fill rounded-sm text-blue-500 text-5xl"></i> -->
+				<img src={linkedin1} alt="LinkedIn Logo" class="w-8 h-8" />
+			</a>
+			<a href="https://twitter.com/TITANTLM" class="flex items-center text-base">
+				<img src={twitter1} alt="twitter Logo" class=" w-8 h-8" />
+				<!-- <span>LinkedIn</span> -->
 			</a>
 
 			<span class="w-[400px] h-[1px] bg-white/70"></span>
