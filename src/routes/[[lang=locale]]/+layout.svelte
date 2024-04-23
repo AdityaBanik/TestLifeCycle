@@ -7,7 +7,7 @@
 
 <script lang="ts">
 	import type { LayoutData } from './$types';
-
+	import { page } from '$app/stores';
 	import logo from '$lib/assets/titanLogo.svg';
 	import logo12thwonder from '$lib/assets/Home/12thwonderlogo.png';
 	import Button from '$lib/components/buttons/Button.svelte';
@@ -16,6 +16,8 @@
 	import Accordian from '$lib/components/accordian/Accordian.svelte';
 	import AccordianItem from '$lib/components/accordian/AccordianItem.svelte';
 	import { fly } from 'svelte/transition';
+	import linkedin1 from '$lib/assets/linkedin-sqaure 1.webp';
+	import twitter1 from '$lib/assets/twitter-square 1.webp';
 	export let data: LayoutData;
 
 	let isOpen: boolean;
@@ -74,6 +76,7 @@
 		<nav class="gap-6 hidden lg:flex items-center">
 			<div>
 				<a
+					class:highlight={$page.url.pathname === '/'}
 					href={data.lang === 'ja' ? '/ja' : '/'}
 					class="fluid-font capitalize hover:bg-blue-50 px-2 py-1 rounded-lg cursor-pointer"
 				>
@@ -82,13 +85,16 @@
 			</div>
 			{#each data.navMenu || [] as navItem}
 				<div>
-					<button  use:dropdown={navItem?.title || ''} class="capitalize fluid-font">
+					<button use:dropdown={navItem?.title || ''} class="capitalize fluid-font">
 						{navItem?.title}
 					</button>
 					<div id={navItem?.title || ''} class="hidden">
 						<section class="grid grid-cols-2 gap-x-28 gap-y-6 p-6">
 							{#each navItem?.Links || [] as links}
-								<a href={links?.link} class="link">
+								<a
+									href={links?.link}
+									class="link"
+								>
 									{links?.name}
 								</a>
 							{/each}
@@ -105,14 +111,19 @@
 				name="locale"
 				bind:value={selectedLocale}
 				on:change={changeLocale}
-				class=" fluid-font py-0 md:py-1 rounded-full  focus:outline-2 focus:ring-1 focus:ring-blue-500 shadow-sm hover:shadow-md  "
+				class=" fluid-font py-0 md:py-1 rounded-full focus:outline-2 focus:ring-1 focus:ring-blue-500 shadow-sm hover:shadow-md"
 			>
 				<option value="en">EN</option>
 				<option value="ja">JA</option>
 			</select>
 		</form>
 
-		<Button text={data.lang === 'ja' ? 'デモを依頼する' : 'Request Demo'} className="text-sm lg:px-6 lg:py-2" link={data.lang === 'ja' ? '/ja/request-demo' : '/request-demo'} />
+		<Button
+			text={data.lang === 'ja' ? 'デモを依頼する' : 'Request Demo'}
+			className="text-sm lg:px-6"
+
+			link={data.lang === 'ja' ? '/ja/request-demo' : '/request-demo'}
+		/>
 
 		<button
 			class="lg:hidden px-2 p-1 border rounded-md hover:bg-slate-200 active:bg-slate-50"
@@ -124,19 +135,21 @@
 </header>
 
 {#key data.url}
-	<main in:fly={{ x: -300, duration: 300, delay: 300 }} out:fly={{ x: 300, duration: 300 }}>
+	<main
+		in:fly={{ x: -300, duration: 300, delay: 300 }}
+		out:fly={{ x: 300, duration: 300 }}
+		class:japanese-font={data.lang === 'ja'}
+	>
 		<slot />
 	</main>
 {/key}
 
 <Sidebar {isOpen} on:closed={closeSidebar}>
-
-
 	<nav class="container">
 		<Accordian>
-			<a href="/" on:click={closeSidebar} class="ml-8 capitalize text-md py-2">Home</a>
-				
-		{#each data.navMenu || [] as navItem}
+			<a href="/" on:click={closeSidebar} class="ml-8 capitalize text-md py-2 block pb-3">{data.lang === 'ja' ? 'ホーム' : 'Home'}</a>
+
+			{#each data.navMenu || [] as navItem}
 				<AccordianItem className="text-start capitalize py-2 flex gap-4" selected="font-semibold">
 					<svelte:fragment slot="title">{navItem?.title}</svelte:fragment>
 					<article class="flex flex-col text-xs pl-12 pb-3 pt-1 gap-3">
@@ -151,32 +164,36 @@
 		</Accordian>
 	</nav>
 	<div class="flex justify-end px-5 py-5">
-	<form bind:this={form} method="POST" action="/locale" class="flex">
-		<select
-			name="locale"
-			bind:value={selectedLocale}
-			on:change={changeLocale}
-			class=" fluid-font py-0 md:py-1 rounded-full"
-		>
-			<option value="en">EN</option>
-			<option value="ja">JA</option>
-		</select>
-	</form>
-</div>
+		<form bind:this={form} method="POST" action="/locale" class="flex">
+			<select
+				name="locale"
+				bind:value={selectedLocale}
+				on:change={changeLocale}
+				class=" fluid-font py-0 md:py-1 rounded-full"
+			>
+				<option value="en">EN</option>
+				<option value="ja">JA</option>
+			</select>
+		</form>
+	</div>
 </Sidebar>
 
 <footer class="min-h-96 bg-[#253858] py-10 md:py-20 text-xs md:text-sm 2xl:text-base">
 	<div class="container">
 		<section class="grid grid-cols-2 gap-y-8 gap-x-5 md:grid-cols-3 lg:grid-cols-4 capitalize">
 			{#each data.navMenu || [] as navItem, index}
-				<article class:order-3={index === 0 } class:order-2={index === 1 } class:order-4={index ===3}>
+				<article
+					class:order-3={index === 0}
+					class:order-2={index === 1}
+					class:order-4={index === 3}
+				>
 					<h4 class="text-amber-600 font-bold text-base 2xl:text-lg tracking-wider mb-3">
 						{navItem?.title}
 					</h4>
 					<ul class="flex flex-col gap-3">
 						{#each navItem?.Links || [] as links}
 							<li>
-								<a href={links?.link}>
+								<a class:highlight={$page.url.pathname === links?.link} href={links?.link}>
 									{links?.name}
 								</a>
 							</li>
@@ -203,14 +220,18 @@
 			</div>
 		</div>
 
-		<div class="flex justify-center items-center gap-10 mt-16">
+		<div class="flex justify-center items-center gap-4 mt-16">
 			<span class="w-[400px] h-[1px] bg-white/70"></span>
 			<a
 				href="https://www.linkedin.com/products/12thwonder-titan"
-				class="flex items-center gap-2 text-base"
+				class="flex items-center text-base"
 			>
-				<i class="ri-linkedin-box-fill rounded-sm text-amber-500 text-5xl"></i>
-				<span>LinkedIn</span>
+				<!-- <i class="ri-linkedin-box-fill rounded-sm text-blue-500 text-5xl"></i> -->
+				<img src={linkedin1} alt="LinkedIn Logo" class="w-10" />
+			</a>
+			<a href="https://twitter.com/TITANTLM" class="flex items-center text-base">
+				<img src={twitter1} alt="twitter Logo" class="w-10" />
+				<!-- <span>LinkedIn</span> -->
 			</a>
 
 			<span class="w-[400px] h-[1px] bg-white/70"></span>
@@ -228,6 +249,10 @@
 </footer>
 
 <style type="postcss">
+	.japanese-font {
+		font-family: 'Noto Sans JP', sans-serif;
+	}
+
 	nav div button {
 		@apply capitalize hover:bg-blue-50 px-2 py-1 rounded-lg cursor-pointer;
 	}

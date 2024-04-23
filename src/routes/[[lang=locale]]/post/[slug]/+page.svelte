@@ -14,6 +14,7 @@
 	/>
 	<div>
 		{@html resolveRichText(data.blog?.content)}
+
 		<p class="text-black font-bold text-sm">Request a demo and see it Titan in action</p>
 		<div class="flex justify-center items-center">
 		<a href="/request-demo" class=" inline-block bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded no-underline">Request demo</a>
@@ -24,6 +25,6 @@
 
 <style>
 	.blog-width {
-		max-width: 90ch !important;
+		@apply container !important;
 	}
 </style>

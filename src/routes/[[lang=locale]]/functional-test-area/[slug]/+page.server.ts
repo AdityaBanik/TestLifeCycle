@@ -1,12 +1,11 @@
-import type { PageLoad } from './$types';
+import type { PageServerLoad } from './$types';
 import { graphql } from '$lib/gql';
 import { client } from '$lib';
-
-export const load = (async ({ params,parent }) => {
+import type { GetFunctionalTestAreaQuery } from '$lib/gql/graphql';
+export const load = (async ({ params,locals,platform,setHeaders,url }) => {
 	
 	const slug = params.slug;
-	const data = await parent();
-	const lang = data.lang;
+
 	const query = graphql(`
 	query getFunctionalTestArea($slug: String!, $lang: I18NLocaleCode) {
 		titanFunctionals(filters: { slug: { eq: $slug } }, locale: $lang) {
@@ -43,10 +42,22 @@ export const load = (async ({ params,parent }) => {
 	  }
 	`);
 
-	const variables = { slug, lang };
+	const variables = { slug, lang:locals.lang };
 	try {
-		const responseData = await client.request(query, variables);
-	
+		
+		let responseData: GetFunctionalTestAreaQuery;
+		const cacheData: string = await platform?.env.KV.get(url.pathname);
+
+		if (cacheData) {
+			responseData = JSON.parse(cacheData) as GetFunctionalTestAreaQuery;
+		} else {
+			responseData = await client.request(query, variables);
+			platform?.env.KV.put(url.pathname, JSON.stringify(responseData));
+		}
+
+		setHeaders({
+			'cache-control': 'public,max-age=3600'
+		});
 		return {
 			cta:responseData.titanFunctionals?.data[0].attributes?.cta,
 			seo: responseData.titanFunctionals?.data[0].attributes?.seo,
@@ -62,4 +73,4 @@ export const load = (async ({ params,parent }) => {
 		};
 	}
 
-}) satisfies PageLoad;
+}) satisfies PageServerLoad;

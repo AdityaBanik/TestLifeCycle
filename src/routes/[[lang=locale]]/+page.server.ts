@@ -1,9 +1,12 @@
 import { graphql } from '$lib/gql';
 import { client } from '$lib';
 import type { PageServerLoad } from './$types';
+import type { GetHomePageQuery } from '$lib/gql/graphql';
 
-export const load = (async ({ locals, setHeaders, fetch }) => {
-	const lang = locals.lang;
+export const load = (async ({ locals,setHeaders,fetch,platform,url }) => {
+	
+	
+	
 	const query = graphql(`
 		query getHomePage($lang: I18NLocaleCode) {
 			titanHomepage(locale: $lang) {
@@ -87,17 +90,26 @@ export const load = (async ({ locals, setHeaders, fetch }) => {
 		}
 	`);
 
-	const variables = { lang };
-	setHeaders({
-		'cache-control': 'max-age=3600'
-	});
-
+	const variables = { lang: locals.lang };
+	
 	try {
-		const responseData = await client.request(query, variables);
 
+		let responseData: GetHomePageQuery;
+		const cacheData: string = await platform?.env.KV.get(url.pathname);
+
+		if (cacheData) {
+			responseData = JSON.parse(cacheData) as GetHomePageQuery;
+		} else {
+			responseData = await client.request(query, variables);
+			platform?.env.KV.put(url.pathname, JSON.stringify(responseData));
+		}
+
+		setHeaders({
+			'cache-control': 'public,max-age=3600'
+		});
 		return {
 			page: responseData.titanHomepage?.data?.attributes,
-			seo: responseData.titanHomepage?.data?.attributes?.seo
+			seo:responseData.titanHomepage?.data?.attributes?.seo,
 			
 		};
 	} catch (error) {

@@ -52,19 +52,7 @@
 				<i class="ri-phone-line ri-xl text-blue-500"></i>
 				<span>+1 (415) 851-1284</span>
 			</div>
-			<!-- Form Section -->
-			<!-- <div class="lg:w-[700px] lg:ml-4 rounded-2xl border shadow-sm lg:mb-5">
-				<div
-					class="nimble-form min-h-[630px] rounded-2xl"
-					data-form-id="65d7bc143841fd0baf097895"
-					data-company-id="5b261c76cef070b143c79181"
-				></div>
-			</div>  -->
-
-			<!-- Image Section -->
-			<!-- <div class="w-[250px] lg:w-[500px] lg:mr-4 mb-5 ">
-				<img src={question1} alt="Image2" />
-			</div>  -->
+	
 		</div>
 	</section>
 </div>

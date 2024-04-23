@@ -75,27 +75,34 @@
 	{/each}
 </section>
 
-<section class="py-3 ">
+<section class="py-3">
 	<div class=" flex justify-center items-center gap-6 lg:gap-12 md:gap-16">
 		<hr />
-		<h5 class="text-center text-xs text-gray-500 font-medium lg:text-4xl md:text-2xl py-1 lg:py-6">
+		<h5 class="text-center  text-gray-500 font-medium lg:text-4xl md:text-2xl  py-6">
 			Our Clients
 		</h5>
 		<hr />
 	</div>
 
-	<div class=" flex items-center justify-around gap-2 mt-2 ">
-		<img
-			src={logo1}
-			class="logo h-10 w-10 md:h-24 md:w-24 lg:h-32 lg:w-32"
-			id="1"
-			alt="lightyear"
-		/>
-		<img src={logo2} class="aspect-video w-10 md:w-20 lg:w-32" alt="toyota" />
-		<img src={logo3} class="aspect-video w-10 md:w-20 lg:w-32" alt="honda" />
-		<img src={logo4} class="aspect-video w-10 md:w-20 lg:w-32" alt="lucid" />
-		<img src={logo5} class="aspect-video w-10 md:w-20 lg:w-32" alt="canoo" />
-		<img src={logo6} class="aspect-video w-10 md:w-20 lg:w-32" alt="volkswagen" />
+	<div class=" mt-2 marquee-container relative">
+		<div class="marquee-content whitespace-nowrap">
+			<div class="inline-flex box-border min-w-max items-center  gap-10 mr-10  md:gap-32 md:mr-32">
+				<img src={logo1} class="aspect-video w-20 lg:h-32" alt="lightyear" />
+				<img src={logo2} class="aspect-video w-20 lg:w-32" alt="toyota" />
+				<img src={logo3} class="aspect-video w-20 lg:w-32" alt="honda" />
+				<img src={logo4} class="aspect-video w-20 lg:w-32" alt="lucid" />
+				<img src={logo5} class="aspect-video w-20 lg:w-32" alt="canoo" />
+				<img src={logo6} class="aspect-video w-20 lg:w-32" alt="volkswagen" />
+			</div>
+			<div class="inline-flex box-border min-w-max items-center gap-10 mr-10  md:gap-32 md:mr-32">
+				<img src={logo1} class="aspect-video w-20 lg:h-32" alt="lightyear" />
+				<img src={logo2} class="aspect-video w-20 lg:w-32" alt="toyota" />
+				<img src={logo3} class="aspect-video w-20 lg:w-32" alt="honda" />
+				<img src={logo4} class="aspect-video w-20 lg:w-32" alt="lucid" />
+				<img src={logo5} class="aspect-video w-20 lg:w-32" alt="canoo" />
+				<img src={logo6} class="aspect-video w-20 lg:w-32" alt="volkswagen" />
+			</div>
+		</div>
 	</div>
 </section>
 
@@ -156,5 +163,40 @@
 	}
 	hr {
 		width: clamp(5rem, 20vw, 20rem) !important;
+	}
+
+	.marquee-container {
+		width: 100%;
+		overflow: hidden;
+	}
+
+	.marquee-container::before {
+		content: '';
+		position: absolute;
+		height: 100%;
+		
+
+		@apply bg-gradient-to-r md:w-52 w-20 from-white to-transparent z-30;
+	}
+
+	.marquee-container::after {
+		content: '';
+		position: absolute;
+		height: 100%;
+		
+		top: 0;
+		right: 0;
+		@apply bg-gradient-to-l md:w-52 w-20 from-white to-transparent z-30;
+	}
+	.marquee-content {
+		animation: marquee 30s linear infinite;
+	}
+	@keyframes marquee {
+		0% {
+			transform: translateX(0);
+		}
+		100% {
+			transform: translateX(-100%);
+		}
 	}
 </style>
