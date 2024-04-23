@@ -14,11 +14,19 @@
 	/>
 	<div>
 		{@html resolveRichText(data.blog?.content)}
-		<p class="text-black font-bold text-sm">Request a demo and see it Titan in action</p>
-		<div class="flex justify-center items-center">
-		<a href="/request-demo" class=" inline-block bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded no-underline">Request demo</a>
-	   
-	</div>
+
+		<div class="flex justify-center items-center flex-col">
+			<div>
+				<p class="text-black font-bold text-sm">Request a demo and see it Titan in action</p>
+			</div>
+			<div>
+				<a
+					href="/request-demo"
+					class=" inline-block bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded no-underline"
+					>Request demo</a
+				>
+			</div>
+		</div>
 	</div>
 </article>
 
