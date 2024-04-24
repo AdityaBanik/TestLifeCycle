@@ -20,7 +20,7 @@
 		<p class="text-black font-bold text-md text-center">Request a demo and see it Titan in action</p>
 		<div class="flex justify-center items-center">
 			<a
-				href="/request-demo"
+				href={data.lang === "ja"?"/ja/request-demo":"/request-demo" }
 				class=" inline-block bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded no-underline"
 				>{data.lang === "ja"?"デモを依頼する":"Request Demo" }</a
 			>
