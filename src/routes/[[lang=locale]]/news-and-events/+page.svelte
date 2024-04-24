@@ -1,6 +1,4 @@
 <script lang="ts">
-	import { serverUrl } from '$lib';
-
 	import BlogCard from '$lib/components/cards/BlogCard.svelte';
 	import type { PageData } from './$types';
 
