@@ -62,7 +62,7 @@
 </script>
 
 <section
-	class="mr-12 h-[400px] flex flex-col justify-center md:mr-24 mb-10 md:mb-24 text-white relative max-w-xl 2xl:max-w-2xl p-6 md:p-12 bg-gradient-to-br rounded-2xl from-sky-500 to-indigo-500"
+	class="md:min-w-[500px] mr-12 h-[400px] flex flex-col justify-center md:mr-24 mb-10 md:mb-24 text-white relative max-w-xl 2xl:max-w-2xl p-6 md:p-12 bg-gradient-to-br rounded-2xl from-sky-500 to-indigo-500"
 >
 	{#key activeIndex}
 		<p
