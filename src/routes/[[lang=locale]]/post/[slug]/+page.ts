@@ -2,10 +2,9 @@ import type { PageLoad } from './$types';
 import { graphql } from '$lib/gql';
 import { client } from '$lib';
 
-export const load = (async ({ params, parent }) => {
+export const load = (async ({ params }) => {
 	const slug = params.slug;
-	const data = await parent();
-	const lang = data.lang;
+	
 	const query = graphql(`
 		query getBlogPost($slug: String!, $lang: I18NLocaleCode) {
 			titanBlogs(filters: { slug: { eq: $slug } }, locale: $lang) {
@@ -55,7 +54,7 @@ export const load = (async ({ params, parent }) => {
 		}
 	`);
 
-	const variables = { slug, lang };
+	const variables = { slug, lang:"en"};
 	try {
 		const responseData = await client.request(query, variables);
 
