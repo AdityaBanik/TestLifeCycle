@@ -47,7 +47,6 @@
 
 		data = await client.request(query, variables);
 		intervalId = setInterval(() => {
-			console.log(activeIndex);
 			const dataLength = data?.titanTestimonials?.data.length || 1;
 			if (dataLength - 1 === activeIndex) {
 				activeIndex = 0;
