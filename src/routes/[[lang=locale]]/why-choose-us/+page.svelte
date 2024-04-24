@@ -30,37 +30,7 @@
 </div>
 
 
-<!-- <section
-	class=" gradient min-h-screen flex flex-col justify-center items-center"
-	
->
-	<section class="mb-4 lg:text-center">
-		<img src={bgimage} alt="Image1" class="w-64 h-64 mx-auto mb-2 rounded-full" />
-		<div class="lg:w-[50%] sm:p-5  mx-auto">
-			<h2 class="text-lg text-white mb-10 pr-10 fluid-subtitle ">
-				{data.page?.highlights?.title}
-			</h2>
-		</div>
-	</section>
 
-	<section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-16 p-10">
-	
-		<div
-		class="mt-10 md:mt-28 grid grid-cols-2  gap-4 md:gap-6 xl:gap-y-14"
-	>
-	
-		{#each data.page?.highlights?.cards || [] as card}
-			<IconCard
-				title={card?.title || ''}
-				description={card?.description || ''}
-				imgSrc={card?.media?.data?.attributes?.url}
-				imgAlt={card?.media?.data?.attributes?.alternativeText || ''}
-				className="items-center text-center gap-5 md:py-10  shadow border  bg-white"
-			/>
-		{/each}
-	</div>
-	</section>
-</section> -->
 
 <Cta
 	title={data.cta?.title || ""}
