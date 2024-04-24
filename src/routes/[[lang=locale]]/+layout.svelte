@@ -68,7 +68,7 @@
 	}
 </script>
 
-<header class="flex justify-between items-center py-4 px-4 xl:container">
+<header class="flex justify-between items-center py-4 px-4 xl:container" class:japanese-font={data.lang === 'ja'}>
 	<section class="flex items-center gap-16">
 		<a href="/">
 			<img src={logo} alt="Titan Logo" class="logo" />
@@ -178,7 +178,7 @@
 	</div>
 </Sidebar>
 
-<footer class="min-h-96 bg-[#253858] py-10 md:py-20 text-xs md:text-sm 2xl:text-base">
+<footer class="min-h-96 bg-[#253858] py-10 md:py-20 text-xs md:text-sm 2xl:text-base" class:japanese-font={data.lang === 'ja'}>
 	<div class="container">
 		<section class="grid grid-cols-2 gap-y-8 gap-x-5 md:grid-cols-3 lg:grid-cols-4 capitalize">
 			{#each data.navMenu || [] as navItem, index}
@@ -187,7 +187,7 @@
 					class:order-2={index === 1}
 					class:order-4={index === 3}
 				>
-					<h4 class="text-amber-600 font-bold text-base 2xl:text-lg tracking-wider mb-3">
+					<h4 class="text-amber-600 title1 font-bold text-base 2xl:text-lg tracking-wider mb-3">
 						{navItem?.title}
 					</h4>
 					<ul class="flex flex-col gap-3">
@@ -272,6 +272,9 @@
 		@apply text-white/90 hover:text-orange-300  transition-colors  cursor-pointer;
 	}
 
+	.title1{
+		font-size: clamp(0.9rem, 2.5vw, 1.3rem);
+	}
 	@media only screen and (max-width: 600px) {
 		.form {
 			display: none;
