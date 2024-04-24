@@ -17,7 +17,9 @@
 	import logo5 from '$lib/assets/svgIconForClientsLogo/Asset5.svg';
 	import logo6 from '$lib/assets/svgIconForClientsLogo/Asset6.svg';
 	import { onMount } from 'svelte';
-  
+	import Animate from '$lib/components/animation/animate.svelte';
+	import LeftToRightAnimate from '$lib/components/animation/leftToRightAnimate.svelte';
+
 	let animation = false;
 
 	onMount(() => {
@@ -29,7 +31,7 @@
 	export let data: PageData;
 </script>
 
-{#key data.url}
+{#key animation}
 	<section
 		class="text-center pt-10 container flex flex-col items-center justify-center gap-4 md:gap-8"
 	>
@@ -54,17 +56,18 @@
 		</div>
 	</section>
 	<div in:fly|global={{ y: 200, delay: 1100, easing: backOut }}>
-		<TitanHome lang={data.lang}/>
+		<TitanHome lang={data.lang || ''} />
 	</div>
 {/key}
 
-<Cta
-	title={data.page?.Cta?.title || ''}
-	btnText={data.page?.Cta?.Button?.name || ''}
-	btnLink={data.page?.Cta?.Button?.link || ''}
-	className="bg-black text-white mt-10 md:mt-16 "
-/>
-
+<Animate>
+	<Cta
+		title={data.page?.Cta?.title || ''}
+		btnText={data.page?.Cta?.Button?.name || ''}
+		btnLink={data.page?.Cta?.Button?.link || ''}
+		className="bg-black text-white mt-10 md:mt-16 "
+	/>
+</Animate>
 <section class="container pt-10">
 	{#each data.page?.Features || [] as item, i}
 		<HomeFeatures title={item?.title || ''} items={item?.features || []} alignRight={i == 1} />
@@ -74,7 +77,7 @@
 <section class="py-3">
 	<div class=" flex justify-center items-center gap-6 lg:gap-12 md:gap-16">
 		<hr />
-		<h5 class="text-center  text-gray-500 font-medium lg:text-4xl md:text-2xl  py-6">
+		<h5 class="text-center text-gray-500 font-medium lg:text-4xl md:text-2xl py-6">
 			{data.lang === 'ja' ? 'TITANご愛用中のお客様' : 'Our Clients'}
 		</h5>
 		<hr />
@@ -82,7 +85,7 @@
 
 	<div class=" mt-2 marquee-container relative">
 		<div class="marquee-content whitespace-nowrap">
-			<div class="inline-flex box-border min-w-max items-center  gap-10 mr-10  md:gap-32 md:mr-32">
+			<div class="inline-flex box-border min-w-max items-center gap-10 mr-10 md:gap-32 md:mr-32">
 				<img src={logo1} class="aspect-video w-20 lg:h-32" alt="lightyear" />
 				<img src={logo2} class="aspect-video w-20 lg:w-32" alt="toyota" />
 				<img src={logo3} class="aspect-video w-20 lg:w-32" alt="honda" />
@@ -90,7 +93,7 @@
 				<img src={logo5} class="aspect-video w-20 lg:w-32" alt="canoo" />
 				<img src={logo6} class="aspect-video w-20 lg:w-32" alt="volkswagen" />
 			</div>
-			<div class="inline-flex box-border min-w-max items-center gap-10 mr-10  md:gap-32 md:mr-32">
+			<div class="inline-flex box-border min-w-max items-center gap-10 mr-10 md:gap-32 md:mr-32">
 				<img src={logo1} class="aspect-video w-20 lg:h-32" alt="lightyear" />
 				<img src={logo2} class="aspect-video w-20 lg:w-32" alt="toyota" />
 				<img src={logo3} class="aspect-video w-20 lg:w-32" alt="honda" />
@@ -103,16 +106,23 @@
 </section>
 
 <section class="container flex flex-col lg:flex-row justify-between lg:items-center py-20">
-	<h2 class="text-xl lg:text-3xl font-bold mb-6 md:mb-16">See how our customers drive impact</h2>
+	<h2
+		class="text-xl lg:text-3xl font-bold mb-6 md:mb-16"
+		in:fly|global={{ y: 200, delay: 500, easing: backOut }}
+	>
+		See how our customers drive impact
+	</h2>
 	<Testimonial lang={data.lang || ''} />
 </section>
 
-<Cta
-	title={data.page?.Cta?.title || ''}
-	btnText={data.page?.Cta?.Button?.name || ''}
-	btnLink={data.page?.Cta?.Button?.link || ''}
-	className="bg-sky-50 text-blue-950   "
-/>
+<Animate>
+	<Cta
+		title={data.page?.Cta?.title || ''}
+		btnText={data.page?.Cta?.Button?.name || ''}
+		btnLink={data.page?.Cta?.Button?.link || ''}
+		className="bg-sky-50 text-blue-950   "
+	/>
+</Animate>
 
 <section class=" py-10 md:py-28 container flex items-center">
 	<div class=" flex flex-col gap-10">
@@ -147,7 +157,13 @@
 			{/each}
 		</div>
 	</div>
-	<img src={monitorImage} alt="Monitor" class="hidden lg:block w-[55%]" />
+	<div class="lg:block w-[55%] hidden">
+	<LeftToRightAnimate>
+
+			<img src={monitorImage} alt="Monitor" class="w-full" />
+	
+	</LeftToRightAnimate>
+</div>
 </section>
 
 <style>
@@ -170,7 +186,6 @@
 		content: '';
 		position: absolute;
 		height: 100%;
-		
 
 		@apply bg-gradient-to-r md:w-52 w-20 from-white to-transparent z-30;
 	}
@@ -179,7 +194,7 @@
 		content: '';
 		position: absolute;
 		height: 100%;
-		
+
 		top: 0;
 		right: 0;
 		@apply bg-gradient-to-l md:w-52 w-20 from-white to-transparent z-30;

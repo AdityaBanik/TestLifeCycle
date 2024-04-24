@@ -6,6 +6,7 @@
 	import type { PageData } from './$types';
 	import { inview } from 'svelte-inview';
 	import type { ObserverEventDetails, Options } from 'svelte-inview';
+	import Animate from '$lib/components/animation/animate.svelte';
 
 	export let data: PageData;
 	let scrollable: HTMLElement;
@@ -79,12 +80,14 @@
 				class="grid grid-cols-2 lg:grid-cols-3 gap-4 md:gap-16 md:py-20 py-10 place-items-center"
 			>
 				{#each data.highlights?.cards || [] as card}
-					<IconCard
+					<Animate>
+						<IconCard
 						imgSrc={card?.media?.data?.attributes?.url}
 						imgAlt={card?.media?.data?.attributes?.alternativeText || ''}
 						title={card?.title || ''}
 						description={card?.description || ''}
 					/>
+					</Animate>
 				{/each}
 			</div>
 		</div>
