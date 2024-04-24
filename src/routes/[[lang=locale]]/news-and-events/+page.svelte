@@ -19,7 +19,7 @@
 			description={blog.attributes?.description || ''}
 			image={blog.attributes?.coverImage?.data?.attributes?.url || ''}
 			imageAlt={blog.attributes?.coverImage?.data?.attributes?.alternativeText || ''}
-			slug={'/post/'+ blog.attributes?.slug || ''}
+			slug={'/news-and-events/'+ blog.attributes?.slug || ''}
 		/>
 	{/each}
 </section>

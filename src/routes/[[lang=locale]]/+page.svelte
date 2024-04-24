@@ -106,11 +106,10 @@
 </section>
 
 <section class="container flex flex-col lg:flex-row justify-between lg:items-center py-20">
-	<h2
-		class="text-xl lg:text-3xl font-bold mb-6 md:mb-16"
-		in:fly|global={{ y: 200, delay: 500, easing: backOut }}
-	>
-		See how our customers drive impact
+	<h2 class="text-xl lg:text-3xl font-bold mb-6 md:mb-16">
+		{data.lang === 'ja'
+			? '当社の顧客がどのように影響を及ぼしているかをご覧ください'
+			: 'See how our customers drive impact'}
 	</h2>
 	<Testimonial lang={data.lang || ''} />
 </section>
