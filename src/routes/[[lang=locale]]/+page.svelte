@@ -17,13 +17,9 @@
 	import logo5 from '$lib/assets/svgIconForClientsLogo/Asset5.svg';
 	import logo6 from '$lib/assets/svgIconForClientsLogo/Asset6.svg';
 	import { onMount } from 'svelte';
-    import type { UserType } from '$lib/components/cards/Testimonial.svelte';
-
+  
 	let animation = false;
 
-	const image="https://static.wixstatic.com/media/454d4b_bc4218c1350643b78a7dd3752b2c28ec~mv2.png/v1/fill/w_263,h_239,fp_0.12_0.10,lg_1,q_85,enc_auto/454d4b_bc4218c1350643b78a7dd3752b2c28ec~mv2.png";
-	let user:UserType[]=[{text:"Create a beautiful blog that fits your style. Choose from a selection of easy-to-use templates – all with flexible layouts and hundreds of background images – or design something new.",name:"Max-varstappen",designation:'Senior developer',image:image},{text:"Supporting elections is a critical part of Google’s responsibility to our users and the democratic process. With millions of eligible voters in India heading to the poll…",name:"Lewis-hamilton",designation:'Manager',image:image}];
-	
 	onMount(() => {
 		if (window.matchMedia('(min-width: 768px)').matches) {
 			animation = true;
@@ -58,7 +54,7 @@
 		</div>
 	</section>
 	<div in:fly|global={{ y: 200, delay: 1100, easing: backOut }}>
-		<TitanHome />
+		<TitanHome lang={data.lang}/>
 	</div>
 {/key}
 
@@ -108,7 +104,7 @@
 
 <section class="container flex flex-col lg:flex-row justify-between lg:items-center py-20">
 	<h2 class="text-xl lg:text-3xl font-bold mb-6 md:mb-16">See how our customers drive impact</h2>
-	<Testimonial UserArray={user}/>
+	<Testimonial lang={data.lang || ''} />
 </section>
 
 <Cta

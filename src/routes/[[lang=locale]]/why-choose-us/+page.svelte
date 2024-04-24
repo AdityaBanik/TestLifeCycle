@@ -30,7 +30,7 @@
 </div>
 
 
-<section
+<!-- <section
 	class=" gradient min-h-screen flex flex-col justify-center items-center"
 	
 >
@@ -60,7 +60,7 @@
 		{/each}
 	</div>
 	</section>
-</section>
+</section> -->
 
 <Cta
 	title={data.cta?.title || ""}

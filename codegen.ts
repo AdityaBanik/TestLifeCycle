@@ -3,7 +3,7 @@ import type { CodegenConfig } from '@graphql-codegen/cli';
 const config: CodegenConfig = {
 	overwrite: true,
 	schema: 'https://strapi.12thwonder.com/graphql',
-	documents: 'src/**/*.ts',
+	documents: ['src/**/*.ts', 'src/**/*.svelte'],
 	generates: {
 		'src/lib/gql/': {
 			preset: 'client',
