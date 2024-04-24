@@ -6,7 +6,7 @@
 </script>
 
 <article
-	class="prose-sm prose prose-h2:font-normal  prose-h3:font-normal md:prose-base lg:prose-h1:mb-20 2xl:prose-lg container py-10 lg:py-20"
+	class=" prose-sm prose prose-h2:font-normal  prose-h3:font-normal md:prose-base lg:prose-h1:mb-20 2xl:prose-lg container py-10 lg:py-20"
 >
 	<h1>{data.blog?.title}</h1>
 	<img
@@ -27,5 +27,11 @@
 		</div>
 	</div>
 </article>
+
+<style>
+	.prose{
+		max-width: 80ch;
+	}
+</style>
 
 

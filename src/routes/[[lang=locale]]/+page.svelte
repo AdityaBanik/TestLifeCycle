@@ -18,7 +18,8 @@
 	import logo6 from '$lib/assets/svgIconForClientsLogo/Asset6.svg';
 	import { onMount } from 'svelte';
 	import Animate from '$lib/components/animation/animate.svelte';
-	import LeftToRightAnimate from '$lib/components/animation/leftToRightAnimate.svelte';
+	import AnimateX from '$lib/components/animation/AnimateX.svelte';
+	import Fade from '$lib/components/animation/fade.svelte';
 
 	let animation = false;
 
@@ -60,17 +61,18 @@
 	</div>
 {/key}
 
-<Animate>
-	<Cta
-		title={data.page?.Cta?.title || ''}
-		btnText={data.page?.Cta?.Button?.name || ''}
-		btnLink={data.page?.Cta?.Button?.link || ''}
-		className="bg-black text-white mt-10 md:mt-16 "
-	/>
-</Animate>
+<Cta
+	title={data.page?.Cta?.title || ''}
+	btnText={data.page?.Cta?.Button?.name || ''}
+	btnLink={data.page?.Cta?.Button?.link || ''}
+	className="bg-black text-white mt-10 md:mt-16 "
+/>
+
 <section class="container pt-10">
 	{#each data.page?.Features || [] as item, i}
-		<HomeFeatures title={item?.title || ''} items={item?.features || []} alignRight={i == 1} />
+		<AnimateX direction={i === 1 ? 'right' : 'left'}>
+			<HomeFeatures title={item?.title || ''} items={item?.features || []} alignRight={i == 1} />
+		</AnimateX>
 	{/each}
 </section>
 
@@ -106,11 +108,13 @@
 </section>
 
 <section class="container flex flex-col lg:flex-row justify-between lg:items-center py-20">
-	<h2 class="text-xl lg:text-3xl font-bold mb-6 md:mb-16">
-		{data.lang === 'ja'
-			? '当社の顧客がどのように影響を及ぼしているかをご覧ください'
-			: 'See how our customers drive impact'}
-	</h2>
+	<Fade>
+		<h2 class="text-xl lg:text-3xl font-bold mb-6 md:mb-16">
+			{data.lang === 'ja'
+				? '当社の顧客がどのように影響を及ぼしているかをご覧ください'
+				: 'See how our customers drive impact'}
+		</h2>
+	</Fade>
 	<Testimonial lang={data.lang || ''} />
 </section>
 
@@ -126,43 +130,47 @@
 <section class=" py-10 md:py-28 container flex items-center">
 	<div class=" flex flex-col gap-10">
 		<div>
-			<h2
-				class=" border-orange-400 text-xl md:text-3xl text-gray-600 border-l-4 pl-5 font-semibold mb-2"
-			>
-				{@html data.page?.acceleratingSection?.title || ''}
-			</h2>
-			<p class="text-gray-600 text-sm md:text-base lg:text-lg max-w-xl font-semibold pt-3 pl-6">
-				{data.page?.acceleratingSection?.subtitle || ''}
-			</p>
+			<Animate>
+				<h2
+					class=" border-orange-400 text-xl md:text-3xl text-gray-600 border-l-4 pl-5 font-semibold mb-2"
+				>
+					{@html data.page?.acceleratingSection?.title || ''}
+				</h2>
+			</Animate>
+			<Animate>
+				<p class="text-gray-600 text-sm md:text-base lg:text-lg max-w-xl font-semibold pt-3 pl-6">
+					{data.page?.acceleratingSection?.subtitle || ''}
+				</p>
+			</Animate>
 		</div>
 
 		<img src={monitorImage} alt="img1" class="w-full lg:hidden" />
 
-		<div class="grid grid-cols-3 md:grid-cols-2 gap-2 md:gap-4 pt-5">
-			{#each data.page?.acceleratingSection?.cards || [] as iconCard}
-				<article class="flex fluid-font items-center">
-					<img
-						class="w-10 md:w-24"
-						src={iconCard?.media?.data?.attributes?.url}
-						alt={iconCard?.media?.data?.attributes?.alternativeText}
-					/>
-					<p>
-						<span class=" text-orange-400 font-bold block text-xs md:text-2xl">
-							{iconCard?.title}%
-						</span>
-						{iconCard?.description}
-					</p>
-				</article>
-			{/each}
-		</div>
+		<Animate>
+			<div class="grid grid-cols-3 md:grid-cols-2 gap-2 md:gap-4 pt-5">
+				{#each data.page?.acceleratingSection?.cards || [] as iconCard}
+					<article class="flex fluid-font items-center">
+						<img
+							class="w-10 md:w-24"
+							src={iconCard?.media?.data?.attributes?.url}
+							alt={iconCard?.media?.data?.attributes?.alternativeText}
+						/>
+						<p>
+							<span class=" text-orange-400 font-bold block text-xs md:text-2xl">
+								{iconCard?.title}%
+							</span>
+							{iconCard?.description}
+						</p>
+					</article>
+				{/each}
+			</div>
+		</Animate>
 	</div>
 	<div class="lg:block w-[55%] hidden">
-	<LeftToRightAnimate>
-
+		<AnimateX>
 			<img src={monitorImage} alt="Monitor" class="w-full" />
-	
-	</LeftToRightAnimate>
-</div>
+		</AnimateX>
+	</div>
 </section>
 
 <style>

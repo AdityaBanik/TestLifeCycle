@@ -18,6 +18,7 @@
 	import { fly } from 'svelte/transition';
 	import linkedin1 from '$lib/assets/linkedin-sqaure 1.webp';
 	import twitter1 from '$lib/assets/twitter-square 1.webp';
+	import Animate from '$lib/components/animation/animate.svelte';
 	export let data: LayoutData;
 
 	let isOpen: boolean;
@@ -186,82 +187,84 @@
 	class="min-h-96 bg-[#253858] py-10 md:py-20 text-xs md:text-sm 2xl:text-base"
 	class:japanese-font={data.lang === 'ja'}
 >
-	<div class="container">
-		<section class="grid grid-cols-2 gap-y-8 gap-x-5 md:grid-cols-3 lg:grid-cols-4 capitalize">
-			{#each data.navMenu || [] as navItem, index}
-				<article
-					class:order-3={index === 0}
-					class:order-2={index === 1}
-					class:order-4={index === 3}
-				>
-					<h4 class="text-amber-600 title1 font-bold text-base 2xl:text-lg tracking-wider mb-3">
-						{navItem?.title}
-					</h4>
-					<ul class="flex flex-col gap-3">
-						{#each navItem?.Links || [] as links}
-							<li>
-								<a class:highlight={$page.url.pathname === links?.link} href={links?.link}>
-									{links?.name}
-								</a>
-							</li>
-						{/each}
-					</ul>
-				</article>
-			{/each}
-		</section>
+	<Animate>
+		<div class="container">
+			<section class="grid grid-cols-2 gap-y-8 gap-x-5 md:grid-cols-3 lg:grid-cols-4 capitalize">
+				{#each data.navMenu || [] as navItem, index}
+					<article
+						class:order-3={index === 0}
+						class:order-2={index === 1}
+						class:order-4={index === 3}
+					>
+						<h4 class="text-amber-600 title1 font-bold text-base 2xl:text-lg tracking-wider mb-3">
+							{navItem?.title}
+						</h4>
+						<ul class="flex flex-col gap-3">
+							{#each navItem?.Links || [] as links}
+								<li>
+									<a class:highlight={$page.url.pathname === links?.link} href={links?.link}>
+										{links?.name}
+									</a>
+								</li>
+							{/each}
+						</ul>
+					</article>
+				{/each}
+			</section>
 
-		<div class=" text-white font-light mt-20 flex flex-col gap-5">
-			<div class="flex items-center gap-4">
-				<i class="ri-phone-fill text-3xl text-amber-600"></i>
-				<a href="tel:+1-415-851-1284">+1 (415) 851-1284</a>
+			<div class=" text-white font-light mt-20 flex flex-col gap-5">
+				<div class="flex items-center gap-4">
+					<i class="ri-phone-fill text-3xl text-amber-600"></i>
+					<a href="tel:+1-415-851-1284">+1 (415) 851-1284</a>
+				</div>
+				<div class="flex items-center gap-4">
+					<i class="ri-map-2-line text-3xl text-amber-600"></i>
+					<p>
+						{data.lang === 'ja'
+							? '5890 ストーンリッジ ドクター、スイート 216|プレザントン | CA 94588 米国'
+							: '5890 Stoneridge Dr, suite 216 | Pleasanton | CA 94588 United'}
+					</p>
+				</div>
+				<div>
+					<a href="mailto:info@12thwonder.com" class="flex items-center gap-4">
+						<i class="ri-mail-line text-3xl text-amber-600"></i>
+						info@12thwonder.com
+					</a>
+				</div>
 			</div>
-			<div class="flex items-center gap-4">
-				<i class="ri-map-2-line text-3xl text-amber-600"></i>
-				<p>
+
+			<div class="flex justify-center items-center gap-4 mt-16">
+				<span class="w-[400px] h-[1px] bg-white/70"></span>
+				<a
+					href="https://www.linkedin.com/products/12thwonder-titan"
+					class="flex items-center text-base"
+				>
+					<!-- <i class="ri-linkedin-box-fill rounded-sm text-blue-500 text-5xl"></i> -->
+					<img src={linkedin1} alt="LinkedIn Logo" class="w-11" />
+				</a>
+				<a href="https://twitter.com/TITANTLM" class="flex items-center text-base">
+					<img src={twitter1} alt="twitter Logo" class="w-11" />
+					<!-- <span>LinkedIn</span> -->
+				</a>
+
+				<span class="w-[400px] h-[1px] bg-white/70"></span>
+			</div>
+
+			<div class="flex flex-col gap-5 items-center md:flex-row justify-between mt-10 md:mt-20">
+				<p class="text-white font-light">
+					<i class="ri-copyright-line"></i>
 					{data.lang === 'ja'
-						? '5890 ストーンリッジ ドクター、スイート 216|プレザントン | CA 94588 米国'
-						: '5890 Stoneridge Dr, suite 216 | Pleasanton | CA 94588 United'}
+						? '2021 12th Wonder、全著作権所有'
+						: '2021 12th Wonder. All rights reserved.'}
 				</p>
-			</div>
-			<div>
-				<a href="mailto:info@12thwonder.com" class="flex items-center gap-4">
-					<i class="ri-mail-line text-3xl text-amber-600"></i>
-					info@12thwonder.com
+
+				<a href="https://www.12thwonder.com" class="flex items-center">
+					<img src={logo12thwonder} alt="12th Wonder Logo" class="w-24 pb-0.5" />
+					{data.lang === 'ja' ? '12 Th wandā no shōhin' : 'A product by 12th Wonder'}
 				</a>
 			</div>
 		</div>
-
-		<div class="flex justify-center items-center gap-4 mt-16">
-			<span class="w-[400px] h-[1px] bg-white/70"></span>
-			<a
-				href="https://www.linkedin.com/products/12thwonder-titan"
-				class="flex items-center text-base"
-			>
-				<!-- <i class="ri-linkedin-box-fill rounded-sm text-blue-500 text-5xl"></i> -->
-				<img src={linkedin1} alt="LinkedIn Logo" class="w-11" />
-			</a>
-			<a href="https://twitter.com/TITANTLM" class="flex items-center text-base">
-				<img src={twitter1} alt="twitter Logo" class="w-11" />
-				<!-- <span>LinkedIn</span> -->
-			</a>
-
-			<span class="w-[400px] h-[1px] bg-white/70"></span>
-		</div>
-
-		<div class="flex flex-col gap-5 items-center md:flex-row justify-between mt-10 md:mt-20">
-			<p class="text-white font-light">
-				<i class="ri-copyright-line"></i>
-				{data.lang === 'ja'
-					? '2021 12th Wonder、全著作権所有'
-					: '2021 12th Wonder. All rights reserved.'}
-			</p>
-
-			<a href="https://www.12thwonder.com" class="flex items-center">
-				<img src={logo12thwonder} alt="12th Wonder Logo" class="w-24 pb-0.5" />
-				{data.lang === 'ja' ? '12 Th wandā no shōhin' : 'A product by 12th Wonder'}
-			</a>
-		</div>
-	</div>
+	</Animate>
 </footer>
 
 <style type="postcss">

@@ -6,8 +6,8 @@
 	let isInView: boolean;
 	let scrollDirection: Direction;
 	const options: Options = {
-		rootMargin: '0px',
-        unobserveOnEnter: true,
+		rootMargin: '-50px',
+		unobserveOnEnter: true
 	};
 
 	const handleChange = ({ detail }: CustomEvent<ObserverEventDetails>) => {
@@ -17,25 +17,22 @@
 </script>
 
 <div use:inview={options} on:inview_change={handleChange}>
-	<div class:animate={isInView}>
+	<div class="hidden" class:animate={isInView}>
 		<slot></slot>
 	</div>
 </div>
 
 <style>
 	.animate {
-		animation: 1s bounce;
+		animation: 3s bounce ease-out;
+		display: block;
 	}
 	@keyframes bounce {
 		from {
 			opacity: 0;
-
-			transform: translateX(-100px);
 		}
 		to {
 			opacity: 1;
-
-			transform: translateX(0);
 		}
 	}
 </style>

@@ -2,9 +2,6 @@
 	import Accordian from '../accordian/Accordian.svelte';
 	import AccordianItem from '../accordian/AccordianItem.svelte';
 	import { fade } from 'svelte/transition';
-	import LeftToRightAnimate from '../animation/leftToRightAnimate.svelte';
-	import RightToLeftAnimate from '../animation/rightToLeftAnimate.svelte';
-	import Animate from '../animation/animate.svelte';
 
 	export let items: any[] = [];
 
@@ -15,19 +12,18 @@
 	let currentImage = items?.[0]?.media?.data?.attributes?.url;
 </script>
 
-<section class="py-5 md:py-12 3xl:py-24">
-	<div class="flex items-center gap-10 2xl:gap-20" class:flex-row-reverse={alignRight}>
-		<div
-			class="w-full lg:h-[520px] lg:w-1/2 flex flex-col gap-5 md:gap-16 {alignRight ? 'end' : ''}"
-		>
-			<LeftToRightAnimate>
+
+	<section class="py-5 md:py-12 3xl:py-24">
+		<div class="flex items-center gap-10 2xl:gap-20" class:flex-row-reverse={alignRight}>
+			<div
+				class="w-full lg:h-[520px] lg:w-1/2 flex flex-col gap-5 md:gap-16 {alignRight ? 'end' : ''}"
+			>
 				<h2 class="text-xl font-bold max-w-lg lg:text-3xl">
 					{@html title}
 				</h2>
-			</LeftToRightAnimate>
-			<Accordian>
-				{#each items || [] as item}
-					<LeftToRightAnimate>
+
+				<Accordian>
+					{#each items || [] as item, i}
 						<AccordianItem
 							keepOpen={true}
 							className="text-base tracking-wide  p-4   rounded-t-xl transition-colors {alignRight
@@ -54,24 +50,24 @@
 								/>
 							</article>
 						</AccordianItem>
-					</LeftToRightAnimate>
-				{/each}
-			</Accordian>
-		</div>
-
-		{#key currentAlt}
-			<div
-				class="w-1/2 hidden image-container lg:block shadow-lg relative rounded-xl"
-				class:align-right={alignRight}
-				in:fade
-			>
-				<img src={currentImage} alt={currentAlt} class="w-full" />
-				<span class=""></span>
-				<span></span>
+					{/each}
+				</Accordian>
 			</div>
-		{/key}
-	</div>
-</section>
+
+			{#key currentAlt}
+				<div
+					class="w-1/2 hidden image-container lg:block shadow-lg relative rounded-xl"
+					class:align-right={alignRight}
+					in:fade
+				>
+					<img src={currentImage} alt={currentAlt} class="w-full" />
+					<span class=""></span>
+					<span></span>
+				</div>
+			{/key}
+		</div>
+	</section>
+
 
 <style lang="postcss">
 	.end {
