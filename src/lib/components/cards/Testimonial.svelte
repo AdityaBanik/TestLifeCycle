@@ -1,19 +1,109 @@
-<section class="mr-12 md:mr-24 mb-10 md:mb-24 text-white relative max-w-xl 2xl:max-w-2xl p-6 md:p-12   bg-gradient-to-br rounded-2xl from-sky-500 to-indigo-500">
-	<p class="mb-5 fluid-font md:text-sm 2xl:text-base font-light" >
-		“As a project manager, efficiently planning and managing our testing activities has always been
-		a challenge. TITAN Test Life Cycle Management came to our rescue and revolutionized our
-		approach. With TITAN, we have a unified solution for test planning that streamlines all our test
-		requests and simplifies resource allocation. The KPI dashboards provide real-time insights into
-		project progress, and the burndown charts help us stay on track and make informed decisions.
-		TITAN has been a game-changer for us, enabling us to drive efficiency and ensure the success of
-		our testing initiatives.”
-	</p>
+<script lang="ts">
+	import { client } from '$lib';
+	import { graphql } from '$lib/gql';
+	import { onDestroy, onMount } from 'svelte';
+	import type { GetTestimonialsQuery } from '$lib/gql/graphql';
+	import { fade } from 'svelte/transition';
+	import { cubicInOut } from 'svelte/easing';
+	let data: GetTestimonialsQuery;
 
-    <div class="flex items-center mr-8 md:mr-16">
-        <p class="not-italic font-medium  whitespace-nowrap text-xs md:text-lg border-r-2 pr-3 md:pr-10 py-2 mr-3 ">Crag Hopkins</p> 
-        <p class="italic fluid-font md:text-sm">Senior Manager, <br> Vehicle Testing & Fleet Management</p>
-    </div>
+	export let lang: string;
+	let intervalId: string | number | NodeJS.Timeout | undefined;
+	let activeIndex: number = 0;
+	onMount(async () => {
+		const query = graphql(`
+			# Write your query or mutation here
 
-    <img src="https://static.wixstatic.com/media/454d4b_bc4218c1350643b78a7dd3752b2c28ec~mv2.png/v1/fill/w_263,h_239,fp_0.12_0.10,lg_1,q_85,enc_auto/454d4b_bc4218c1350643b78a7dd3752b2c28ec~mv2.png" class="w-28 md:w-48 absolute bottom-0 translate-y-1/2 translate-x-1/2 right-0 rounded-2xl shadow-lg" alt="">
-	
+			query getTestimonials($lang: I18NLocaleCode) {
+				titanTestimonials(locale: $lang) {
+					data {
+						attributes {
+							name
+							content
+							designation
+							avatar {
+								data {
+									attributes {
+										url
+										alternativeText
+									}
+								}
+							}
+							companyLogo {
+								data {
+									attributes {
+										url
+										alternativeText
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		`);
+
+		const variables = { lang: lang };
+
+		data = await client.request(query, variables);
+		intervalId = setInterval(() => {
+			const dataLength = data?.titanTestimonials?.data.length || 1;
+			if (dataLength - 1 === activeIndex) {
+				activeIndex = 0;
+			} else {
+				activeIndex += 1;
+			}
+		}, 4000);
+	});
+
+	onDestroy(() => {
+		clearInterval(intervalId);
+	});
+</script>
+
+<section
+	class="mr-12 h-[400px] flex flex-col justify-center md:mr-24 mb-10 md:mb-24 text-white relative max-w-xl 2xl:max-w-2xl p-6 md:p-12 bg-gradient-to-br rounded-2xl from-sky-500 to-indigo-500"
+>
+	{#key activeIndex}
+		<p
+			class="mb-5 fluid-font md:text-sm 2xl:text-base font-light"
+			in:fade={{ duration: 1000, easing: cubicInOut }}
+		>
+			{data?.titanTestimonials?.data[activeIndex].attributes?.content || ''}
+		</p>
+
+		<div
+			class="flex items-center mr-8 md:mr-16 mb-5"
+			in:fade={{ duration: 1000, easing: cubicInOut }}
+		>
+			<p
+				class="not-italic font-medium whitespace-nowrap text-xs md:text-lg border-r-2 pr-3 md:pr-10 py-2 mr-3"
+			>
+				{data?.titanTestimonials?.data[activeIndex].attributes?.name || ''}
+			</p>
+			<p class="italic fluid-font md:text-sm">
+				{data?.titanTestimonials?.data[activeIndex].attributes?.designation || ''}
+			</p>
+		</div>
+		<img
+			in:fade={{ duration: 1000, easing: cubicInOut }}
+			class="w-20 text-white"
+			src={data?.titanTestimonials?.data[activeIndex].attributes?.companyLogo?.data?.attributes
+				?.url}
+			alt={data?.titanTestimonials?.data[activeIndex].attributes?.companyLogo?.data?.attributes
+				?.alternativeText}
+		/>
+
+		<div
+			class="w-28 md:w-48 bg-slate-300 aspect-square absolute bottom-0 translate-y-1/2 translate-x-1/2 right-0 rounded-2xl shadow-lg"
+		>
+			<img
+				in:fade={{ duration: 1000, easing: cubicInOut }}
+				src={data?.titanTestimonials?.data[activeIndex].attributes?.avatar?.data?.attributes?.url ||
+					''}
+				class=" h-full w-full rounded-2xl object-cover"
+				alt=""
+			/>
+		</div>
+	{/key}
 </section>

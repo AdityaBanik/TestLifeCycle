@@ -1,14 +1,24 @@
 
-<script>
+<script lang="ts">
 	import img1 from '$lib/assets/TitanAnimation/img1.webp';
 	import img2 from '$lib/assets/TitanAnimation/img2.webp';
 	import img3 from '$lib/assets/TitanAnimation/img3.webp';
 	import img4 from '$lib/assets/TitanAnimation/img4.webp';
 	import img5 from '$lib/assets/TitanAnimation/img5.webp';
 	import img6 from '$lib/assets/TitanAnimation/img6.webp';
+
+	import img1ja from '$lib/assets/TitanAnimation/img1ja.webp';
+	import img2ja from '$lib/assets/TitanAnimation/img2ja.webp';
+	import img3ja from '$lib/assets/TitanAnimation/img3ja.webp';
+	import img4ja from '$lib/assets/TitanAnimation/img4ja.webp';
+	import img5ja from '$lib/assets/TitanAnimation/img5ja.webp';
+	import img6ja from '$lib/assets/TitanAnimation/img6ja.webp';
+
 	import pinimg from '$lib/assets/TitanAnimation/pinimg.webp';
 	import animationimg from '$lib/assets/TitanAnimation/animationimg.webp';
+	import animationimgja from '$lib/assets/TitanAnimation/animationimgja.webp';
 
+	export let lang: string;
 </script>
 
 
@@ -33,32 +43,32 @@
 		</div>
 
 		<img
-			src={img1}
+			src={lang === 'en' ? img1 : img1ja}
 			id="img-1"
 			alt="animation"
 		/>
 		<img
-			src={img2}
+			src={lang === 'en' ? img2 : img2ja}
 			id="img-2"
 			alt="animation"
 		/>
 		<img
-			src={img3}
+			src={lang === 'en' ? img3 : img3ja}
 			id="img-3"
 			alt="animation"
 		/>
 		<img
-			src={img4}
+			src={lang === 'en' ? img4 : img4ja}
 			id="img-4"
 			alt="animation"
 		/>
 		<img
-			src={img5}
+			src={lang === 'en' ? img5 : img5ja}
 			id="img-5"
 			alt="animation"
 		/>
 		<img
-			src={img6}
+			src={lang === 'en' ? img6 : img6ja}
 			id="img-6"
 			alt="animation"
 		/>
@@ -68,7 +78,7 @@
 			alt="animation"
 		/>
 		<img
-			src={animationimg}
+			src={lang === 'en' ? animationimg : animationimgja}
 			id="frame"
 			alt="animation"
 		/>
