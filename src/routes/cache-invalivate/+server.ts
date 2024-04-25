@@ -5,7 +5,6 @@ export const POST: RequestHandler = async ({request,platform}) => {
 
     const req = await request.json();
 
-
     let key
 
     if (req.model === 'nav-menu') {
