@@ -67,7 +67,15 @@
 			}
 		};
 	}
+
 </script>
+
+<svelte:head>
+	<title>{$page.data?.seo?.metaTitle}</title>
+	<meta name="description" content={$page.data?.seo?.metaDescription} />
+	<meta name="keywords" content={$page.data?.seo?.keywords} />
+	<meta property="og:image" content={$page.data?.seo?.metaImage?.data?.attributes?.url} />
+</svelte:head>
 
 <header
 	class="flex justify-between items-center py-4 px-4 xl:container"
