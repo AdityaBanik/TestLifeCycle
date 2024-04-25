@@ -53,7 +53,7 @@
 			} else {
 				activeIndex += 1;
 			}
-		}, 4000);
+		}, 6000);
 	});
 
 	onDestroy(() => {

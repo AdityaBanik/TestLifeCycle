@@ -39,7 +39,9 @@
 		<div>
 			<h1
 				in:fly|global={{ y: 200, delay: 500, easing: backOut }}
-				class="fluid-title leading-normal text-lg font-bold"
+				class="leading-normal text-lg font-bold {data.lang==="ja"?"titleForJa ":"fluid-title"}"
+	
+				
 			>
 				{data.page?.Hero?.title}
 			</h1>
@@ -107,7 +109,7 @@
 	</div>
 </section>
 
-<section class="container flex flex-col lg:flex-row justify-between lg:items-center py-20">
+<section class="container flex flex-col lg:flex-row justify-between lg:items-center py-20 lg:gap-20">
 	<Fade>
 		<h2 class="text-xl lg:text-3xl font-bold mb-6 md:mb-16">
 			{data.lang === 'ja'
@@ -176,6 +178,10 @@
 <style>
 	.fluid-title {
 		font-size: clamp(1.5rem, 4.8vw, 5rem) !important;
+	}
+
+	.titleForJa{
+		font-size: clamp(1.5rem, 4.8vw, 4rem) !important;
 	}
 	.fluid-subtitle {
 		font-size: clamp(0.65rem, 1.8vw, 2rem) !important;
