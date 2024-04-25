@@ -9,7 +9,7 @@
 </script>
 
 <div class="gradient min-h-screen flex flex-col justify-center items-center text-center">
-   
+	<h1 class="hidden">{data.page?.highlights?.title}</h1>
        
             <img src={bgimage} alt="Image1" class="w-64 h-64 mx-auto mb-2 rounded-full" />
             <p class={data.lang === "ja"?"text-white fluid-subtitle text-left w-2/5":"text-white fluid-subtitle w-2/5 "}>
@@ -27,17 +27,15 @@
             />
         {/each}
     </section>
+
 </div>
 
-
-
-
 <Cta
-	title={data.cta?.title || ""}
-	description={data.cta?.description || ""}
-	btnText={data.cta?.Button?.name || ""}
-	btnLink={data.cta?.Button?.link || ""}
-	className="bg-sky-50 text-blue-950"
+title={data.cta?.title || ""}
+description={data.cta?.description || ""}
+btnText={data.cta?.Button?.name || ""}
+btnLink={data.cta?.Button?.link || ""}
+className="bg-sky-50 text-blue-950"
 />
 
 <style type="postcss">

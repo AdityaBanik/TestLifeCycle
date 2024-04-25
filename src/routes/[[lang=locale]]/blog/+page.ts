@@ -5,26 +5,26 @@ import { client } from '$lib';
 export const load = (async () => {
 
 	const query = graphql(`
-		query getBlogs($lang: I18NLocaleCode) {
-			titanBlogs (locale: $lang){
-				data {
-					attributes {
-						title
-						description
-						date
-						slug
-						coverImage {
-							data {
-								attributes {
-									url
-									alternativeText
-								}
+	query getBlogs($lang: I18NLocaleCode) {
+		titanBlogs ( locale: $lang,sort:"date:desc"){
+			data {
+				attributes {
+					title
+					description
+					date
+					slug
+					coverImage {
+						data {
+							attributes {
+								url
+								alternativeText
 							}
 						}
 					}
 				}
 			}
 		}
+	}
 	`);
 	const variables = { lang:"en" };
 	try {
