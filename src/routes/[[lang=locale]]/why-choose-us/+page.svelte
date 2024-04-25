@@ -8,36 +8,34 @@
 </script>
 
 <div class="gradient min-h-screen flex flex-col justify-center items-center text-center">
-    <section>
-        <div>
-            <img src={bgimage} alt="Image1" class="w-64 h-64 mx-auto mb-2 rounded-full" />
+	<section>
+		<h1 class="hidden">{data.page?.highlights?.title}</h1>
+		<div>
+			<img src={bgimage} alt="Image1" class="w-64 h-64 mx-auto mb-2 rounded-full" />
             <p class="text-white fluid-subtitle w-2/5 mx-auto">
 				{data.page?.highlights?.subtitle}
-            </p>
-        </div>
-    </section>
-    <section class="grid sm:grid-cols-2 lg:grid-cols-3 gap-16 p-14">
-        {#each data.page?.highlights?.cards || [] as card}
-            <IconCard
-                title={card?.title || ''}
-                description={card?.description || ''}
-                imgSrc={card?.media?.data?.attributes?.url}
-                imgAlt={card?.media?.data?.attributes?.alternativeText || ''}
-                className="items-center text-center gap-5 md:py-10 shadow border bg-white"
-            />
-        {/each}
-    </section>
+			</p>
+		</div>
+	</section>
+	<section class="grid sm:grid-cols-2 lg:grid-cols-3 gap-16 p-14">
+		{#each data.page?.highlights?.cards || [] as card}
+			<IconCard
+				title={card?.title || ''}
+				description={card?.description || ''}
+				imgSrc={card?.media?.data?.attributes?.url}
+				imgAlt={card?.media?.data?.attributes?.alternativeText || ''}
+				className="items-center text-center gap-5 md:py-10 shadow border bg-white"
+			/>
+		{/each}
+	</section>
 </div>
 
-
-
-
 <Cta
-	title={data.cta?.title || ""}
-	description={data.cta?.description || ""}
-	btnText={data.cta?.Button?.name || ""}
-	btnLink={data.cta?.Button?.link || ""}
-	className="bg-sky-50 text-blue-950"
+title={data.cta?.title || ""}
+description={data.cta?.description || ""}
+btnText={data.cta?.Button?.name || ""}
+btnLink={data.cta?.Button?.link || ""}
+className="bg-sky-50 text-blue-950"
 />
 
 <style type="postcss">

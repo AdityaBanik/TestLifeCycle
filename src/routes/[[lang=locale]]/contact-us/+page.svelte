@@ -14,9 +14,9 @@
 		class="container md:container max-auto xl:flex-row lg:flex lg:justify-between lg:gap-9 mb-10"
 	>
 		<article
-			class="lg:w-[60%] xl:w-[60%] prose prose-sm prose-h4:py-2 prose-h4:mt-10 md:prose-h4:py-3"
+			class="lg:w-[60%] xl:w-[60%] prose prose-sm prose-h1:py-2 prose-h1:mt-10 md:prose-h1:py-3 prose-h1:font-semibold"
 		>
-			<h4>Contact our Support Team or make an appointment with our consultant</h4>
+			<h1>Contact our Support Team or make an appointment with our consultant</h1>
 
 			<section class="flex justify-center items-center gap-20 flex-col lg:flex-row mb-10">
 				<!-- Form Section -->

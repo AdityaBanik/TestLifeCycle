@@ -30,6 +30,7 @@
 		const section = sections[index];
 		scrollable.scrollTop = section.offsetTop - scrollable.offsetTop;
 	}
+
 </script>
 
 {#if data.hero && data.hero.__typename === 'ComponentTestLifeCycleHeroSection'}
@@ -71,11 +72,20 @@
 	<section class=" relative z-20 bg-white" class:shadow={data.hero}>
 		<div class="container pt-10 md:pt-20">
 			<Animate>
-				<h2
-					class="font-bold line-height md:text-2xl lg:text-4xl mb-2 md:mb-4 max-w-sm md:max-w-5xl"
-				>
-					{@html data.highlights?.title}
-				</h2>
+
+				{#if data.hero && data.hero.__typename === 'ComponentTestLifeCycleHeroSection'}
+					<h2
+						class="font-bold line-height md:text-2xl lg:text-4xl mb-2 md:mb-4 max-w-sm md:max-w-5xl"
+					>
+						{@html data.highlights?.title}
+					</h2>
+				{:else}
+					<h1
+						class="font-bold line-height md:text-2xl lg:text-4xl mb-2 md:mb-4 max-w-sm md:max-w-5xl"
+					>
+						{@html data.highlights?.title}
+					</h1>
+				{/if}
 			</Animate>
 			<Animate>
 				<p class="max-w-sm md:max-w-2xl text-xs md:text-base">

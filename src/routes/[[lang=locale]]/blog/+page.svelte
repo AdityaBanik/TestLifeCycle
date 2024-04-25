@@ -1,18 +1,16 @@
 <script lang="ts">
-	import { serverUrl } from '$lib';
-
 	import BlogCard from '$lib/components/cards/BlogCard.svelte';
-	import { onMount } from 'svelte';
 	import type { PageData } from './$types';
 
 	export let data: PageData;
+	
 </script>
 
 <div class="py-4 px-4 xl:container">
 	<h1
 		class="  text-base md:text-3xl mt-10 md:mt-15 p-4 font-bold border-l-blue-500 border-l-[6px] mb-6 drop-shadow-md"
 	>
-		All Blogs
+		{data.lang === 'ja' ? 'すべてのブログ' : 'All Blogs'}
 	</h1>
 </div>
 <section
@@ -25,7 +23,9 @@
 			description={blog.attributes?.description || ''}
 			image={blog.attributes?.coverImage?.data?.attributes?.url || ''}
 			imageAlt={blog.attributes?.coverImage?.data?.attributes?.alternativeText || ''}
-			slug={'/ja/post/' + blog.attributes?.slug || ''}
+			slug={data.lang === 'ja'
+				? '/ja/post/' + blog.attributes?.slug
+				: 'post/' + blog.attributes?.slug}
 		/>
 	{/each}
 </section>
