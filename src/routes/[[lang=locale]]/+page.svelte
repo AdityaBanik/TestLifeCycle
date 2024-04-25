@@ -21,18 +21,11 @@
 	import AnimateX from '$lib/components/animation/AnimateX.svelte';
 	import Fade from '$lib/components/animation/fade.svelte';
 
-	let animation = false;
-
-	onMount(() => {
-		if (window.matchMedia('(min-width: 768px)').matches) {
-			animation = true;
-		}
-	});
 
 	export let data: PageData;
 </script>
 
-{#key animation}
+{#key data.url}
 	<section
 		class="text-center pt-10 container flex flex-col items-center justify-center gap-4 md:gap-8"
 	>
@@ -52,9 +45,9 @@
 		</div>
 		<div in:fade|global={{ delay: 1100, easing: backOut }}>
 			<Button
-				text={data.page?.Hero?.Button?.name || ''}
+				text={data.page?.Hero?.Button?.name + ' about titan' || ''}
 				link={data.page?.Hero?.Button?.link || ''}
-				className="lg:py-3"
+				className="lg:py-3 capitalize" 
 			/>
 		</div>
 	</section>
@@ -175,7 +168,7 @@
 	</div>
 </section>
 
-<style>
+<style lang="postcss">
 	.fluid-title {
 		font-size: clamp(1.5rem, 4.8vw, 5rem) !important;
 	}
