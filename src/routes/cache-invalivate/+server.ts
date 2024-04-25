@@ -22,7 +22,7 @@ export const POST: RequestHandler = async ({request,platform}) => {
     else if (req.model === 'titan-homepage') {
         key = `/`;
     }
-    else if (req.model === 'titan-solutions'){
+    else if (req.model === 'titan-solution'){
         key = `/solutions/${req.entry.slug}`;
     }
     else if (req.model === 'titan-customer-service'){
