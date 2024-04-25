@@ -14,13 +14,13 @@
 		class="container md:container max-auto xl:flex-row lg:flex lg:justify-between lg:gap-9 mb-10"
 	>
 		<article
-			class="lg:w-[60%] xl:w-[60%] prose prose-sm prose-h4:py-2 prose-h4:mt-10 md:prose-h4:py-3"
+			class="lg:w-[60%] xl:w-[60%] prose prose-sm prose-h1: font-semibold prose-h1:py-2 prose-h1:mt-10 md:prose-h1:py-3"
 		>
-			<h4>Contact our Support Team or make an appointment with our consultant</h4>
+			<h1>Contact our Support Team or make an appointment with our consultant</h1>
 
 			<section class="flex justify-center items-center gap-20 flex-col lg:flex-row mb-10">
 				<!-- Form Section -->
-				<div class="lg:w-[500px]  border  lg:mb-2">
+				<div class="lg:w-[500px] lg:mb-2">
 					<div
 						class="nimble-form rounded-2xl"
 						data-form-id="662731738f6fb0b941254724"
@@ -34,9 +34,9 @@
 			<img src={question1} alt="Image2" />
 		</div>
 	</section>
-	<section class="container flex  justify-center mb-16">
+	<section class="container flex   mb-16">
 		<div class="flex flex-col gap-3 md:gap-5">
-			<div class="prose-p:mt-2 md:prose-p:text-lg">
+			<div class="md:prose-p:text-lg">
 			<p>
 				If you’re looking for the latest test lifecycle management tool, a TITAN expert can help
 				guide you to the service you requiren.

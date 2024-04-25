@@ -3,19 +3,19 @@
 	import Cta from '$lib/components/shared/CTA.svelte';
 	import type { PageData } from './$types';
 	import bgimage from '$lib/assets/white-titan-logo.webp';
+	
 
 	export let data: PageData;
 </script>
 
 <div class="gradient min-h-screen flex flex-col justify-center items-center text-center">
-    <section>
-        <div>
+   
+       
             <img src={bgimage} alt="Image1" class="w-64 h-64 mx-auto mb-2 rounded-full" />
-            <p class="text-white fluid-subtitle w-2/5 mx-auto">
+            <p class={data.lang === "ja"?"text-white fluid-subtitle text-left w-2/5":"text-white fluid-subtitle w-2/5 "}>
 				{data.page?.highlights?.subtitle}
             </p>
-        </div>
-    </section>
+        
     <section class="grid sm:grid-cols-2 lg:grid-cols-3 gap-16 p-14">
         {#each data.page?.highlights?.cards || [] as card}
             <IconCard
@@ -23,7 +23,7 @@
                 description={card?.description || ''}
                 imgSrc={card?.media?.data?.attributes?.url}
                 imgAlt={card?.media?.data?.attributes?.alternativeText || ''}
-                className="items-center text-center gap-5 md:py-10 shadow border bg-white"
+                className="items-center gap-5 md:py-10 shadow border bg-white {data.lang === "ja" ? "text-left":"text-center"}"
             />
         {/each}
     </section>
