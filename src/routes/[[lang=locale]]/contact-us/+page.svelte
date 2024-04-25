@@ -20,7 +20,7 @@
 
 			<section class="flex justify-center items-center gap-20 flex-col lg:flex-row mb-10">
 				<!-- Form Section -->
-				<div class="lg:w-[500px]  border  lg:mb-2">
+				<div class="lg:w-[500px] lg:mb-2">
 					<div
 						class="nimble-form rounded-2xl"
 						data-form-id="662731738f6fb0b941254724"
@@ -34,9 +34,9 @@
 			<img src={question1} alt="Image2" />
 		</div>
 	</section>
-	<section class="container flex  justify-center mb-16">
+	<section class="container flex   mb-16">
 		<div class="flex flex-col gap-3 md:gap-5">
-			<div class="prose-p:mt-2 md:prose-p:text-lg">
+			<div class="md:prose-p:text-lg">
 			<p>
 				If you’re looking for the latest test lifecycle management tool, a TITAN expert can help
 				guide you to the service you requiren.

@@ -34,13 +34,15 @@
 	
 </section>
 
-<section class="flex flex-col lg:flex-row pb-20 gap-10 justify-between container">
-
+<section class="flex flex-col  pb-20 gap-10 justify-between container  prose prose-sm prose-h3:text-3xl prose-h3:text-blue-500 prose-h3:mb-10 prose-li:m-0 lg:prose ">
+	
 	<article
-		class="w-full lg:w-1/2 prose prose-sm prose-ol:max-w-sm prose-li:m-0 lg:prose"
+		class="w-full "
 	>
-	<h2>{data.page?.subtitle}</h2>
+	<h3 class="text-center">{data.page?.subtitle}</h3>
+	<img src={requestDemoIllustration} class="w-full " alt="Titan Request Demo" />
 		{@html resolveRichText(data.page?.content)}
+
 	</article>
-	<img src={requestDemoIllustration} class="w-full lg:w-1/2" alt="Titan Request Demo" />
+	
 </section>
