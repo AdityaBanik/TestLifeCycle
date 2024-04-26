@@ -1,39 +1,43 @@
 import { json } from '@sveltejs/kit';
 import type { RequestHandler } from './$types';
 
-export const POST: RequestHandler = async ({request,platform}) => {
+export const POST: RequestHandler = async ({ request, platform }) => {
+	const req = await request.json();
 
-    const req = await request.json();
+	let key;
 
-    let key
+	if (req.model === 'titan-homepage') {
+		key = `/`;
+        if (req.entry.locale === 'ja') {
+			key = `/ja`;
+		}
+		await platform?.env.KV.delete(key);
+		return json({ success: true });
+	}
 
-    if (req.model === 'nav-menu') {
-        key = 'nav-menu';
-        if(req.entry.locale === 'ja'){
-            key = `${key}-ja`;
-        }
-        await platform?.env.KV.delete(key);
-        return json({success: true});
-    }
 
-    if (req.model === 'titan-functional') {
-        key = `/functional-test-area/${req.entry.slug}`;
-    }
-    else if (req.model === 'titan-homepage') {
-        key = `/`;
-    }
-    else if (req.model === 'titan-solution'){
-        key = `/solutions/${req.entry.slug}`;
-    }
-    else if (req.model === 'titan-customer-service'){
-        key = `/customer-service/${req.entry.slug}`;
-    }
+	else if (req.model === 'nav-menu') {
+		key = 'nav-menu';
+		if (req.entry.locale === 'ja') {
+			key = `${key}-ja`;
+		}
+		await platform?.env.KV.delete(key);
+		return json({ success: true });
+	}
 
-    if(req.entry.locale === 'ja'){
-        key = `/ja${key}`;
-    }
+	if (req.model === 'titan-functional') {
+		key = `/functional-test-area/${req.entry.slug}`;
+	} else if (req.model === 'titan-solution') {
+		key = `/solutions/${req.entry.slug}`;
+	} else if (req.model === 'titan-customer-service') {
+		key = `/customer-service/${req.entry.slug}`;
+	}
 
-    await platform?.env.KV.delete(key);
+	if (req.entry.locale === 'ja') {
+		key = `/ja${key}`;
+	}
 
-    return json({success: true});
+	await platform?.env.KV.delete(key);
+
+	return json({ success: true });
 };
