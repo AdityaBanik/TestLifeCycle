@@ -9,17 +9,62 @@
 	$: currentPage = data.currentPage || 1;
 
 	function navigateToPage(pageNumber: any) {
-		goto(`/blog?page=${pageNumber}`);
-	}
+        if (selectedCategories.length === 0) {
+            goto(`/blog?page=${pageNumber}`);
+        } else {
+            goto(`/blog?page=${pageNumber}&category=${selectedCategories.join(',')}`);
+        }
+    }
+
+	const categories = ['Engineering', 'Design', 'Marketing', 'Sales'];
+	let selectedCategories:string[] = [];
+	$: {
+        const url = new URL(data.url);
+        selectedCategories = url.searchParams.get('category')?.split(',') || [];
+    }
+
+	function toggleCategory(category: string) {
+        const index = selectedCategories.indexOf(category);
+        if (index === -1) {
+            selectedCategories.push(category);
+        } else {
+            selectedCategories.splice(index, 1);
+        }
+        filterByCategory();
+    }
+
+	
+	function filterByCategory() {
+        if (selectedCategories.length === 0) {
+            goto('/blog');
+        } else {
+            goto(`/blog?category=${selectedCategories.join(',')}`);
+        }
+    }
 </script>
 
-<div class="py-4 px-4 xl:container">
+<section class="py-4 px-4 xl:container">
 	<h1
-		class="  text-base md:text-3xl mt-10 md:mt-15 p-4 font-bold border-l-blue-500 border-l-[6px] mb-6 drop-shadow-md"
+		class="  text-base md:text-3xl mt-10 md:mt-15 p-4 font-bold border-l-blue-500 border-l-[6px] mb-10 drop-shadow-md"
 	>
 		{data.lang === 'ja' ? 'すべてのブログ' : 'All Blogs'}
 	</h1>
-</div>
+
+	<div class="inline-flex items-center gap-4 flex-wrap">
+		<span class="text-sm mr-4 font-medium">Categories :</span>
+		{#each categories as category}
+			<button
+				on:click={() => toggleCategory(category)}
+				class:selected={selectedCategories.includes(category)}
+				class="border text-rose-500  font-medium  px-4 py-2  text-xs    uppercase  rounded-full  hover:bg-gray-900/10 active:bg-gray-900/20 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+				type="button"
+			>
+				{category}
+			</button>
+		{/each}
+	</div>
+</section>
+
 <section
 	class="px-4 xl:container grid md:grid-cols-2 items-stretch lg:grid-cols-3 2xl:grid-cols-4 gap-10 py-10"
 >
@@ -75,5 +120,9 @@
 <style lang="postcss">
 	.active {
 		@apply text-white bg-gray-900;
+	}
+
+	.selected{
+		@apply bg-rose-500 text-white border-rose-500;
 	}
 </style>
