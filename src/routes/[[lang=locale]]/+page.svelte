@@ -16,13 +16,47 @@
 	import logo4 from '$lib/assets/svgIconForClientsLogo/Asset4.svg';
 	import logo5 from '$lib/assets/svgIconForClientsLogo/Asset5.svg';
 	import logo6 from '$lib/assets/svgIconForClientsLogo/Asset6.svg';
-	import { onMount } from 'svelte';
+
 	import Animate from '$lib/components/animation/animate.svelte';
 	import AnimateX from '$lib/components/animation/AnimateX.svelte';
 	import Fade from '$lib/components/animation/fade.svelte';
 
-
 	export let data: PageData;
+
+
+	const buttons = [
+		'Automated Reports',
+		'Project Insights',
+		'Data Management',
+		'Incident Management',
+		'KPI Dashboard'
+	];
+// let background:string;
+	let currentSlide: number;
+	const changeSlide = (index: number) => {
+		currentSlide = index + 1;
+		// Remove 'can-zoom' class from all slides
+		document.querySelectorAll('.zoom-container').forEach((container) => {
+			container.classList.remove('can-zoom');
+		});
+
+		// Set the active slide
+		const activeSlide = document.getElementById(`s${currentSlide}`);
+		activeSlide!.checked = true;
+
+		
+		const activeContainer = document.querySelector(`.zoom-container[data-slide="${currentSlide}"]`);
+		if (activeContainer) {
+			activeContainer.classList.add('can-zoom');
+		}
+
+		// Move to the next slide
+		currentSlide++;
+		if (currentSlide > 5) {
+			currentSlide = 0;
+		}
+// background="bg-white"
+	};
 </script>
 
 {#key data.url}
@@ -32,9 +66,9 @@
 		<div>
 			<h1
 				in:fly|global={{ y: 200, delay: 500, easing: backOut }}
-				class="leading-normal text-lg font-bold {data.lang==="ja"?"titleForJa ":"fluid-title"}"
-	
-				
+				class="leading-normal text-lg font-bold {data.lang === 'ja'
+					? 'titleForJa '
+					: 'fluid-title'}"
 			>
 				{data.page?.Hero?.title}
 			</h1>
@@ -45,9 +79,10 @@
 		</div>
 		<div in:fade|global={{ delay: 1100, easing: backOut }}>
 			<Button
-				text={data.page?.Hero?.Button?.name + ' about titan' || ''}
+				text={data.page?.Hero?.Button?.name +
+					(data.lang === 'ja' ? ' タイタンについて' : ' about titan') || ''}
 				link={data.page?.Hero?.Button?.link || ''}
-				className="lg:py-3 capitalize" 
+				className="lg:py-3 capitalize"
 			/>
 		</div>
 	</section>
@@ -74,9 +109,9 @@
 <section class="py-3">
 	<div class=" flex justify-center items-center gap-6 lg:gap-12 md:gap-16">
 		<hr />
-		<h5 class="text-center text-gray-500 font-medium lg:text-4xl md:text-2xl py-6">
+		<h3 class="text-center text-gray-500 font-medium lg:text-4xl md:text-2xl py-6">
 			{data.lang === 'ja' ? 'TITANご愛用中のお客様' : 'Our Clients'}
-		</h5>
+		</h3>
 		<hr />
 	</div>
 
@@ -102,7 +137,95 @@
 	</div>
 </section>
 
-<section class="container flex flex-col lg:flex-row justify-between lg:items-center py-20 lg:gap-20">
+<section
+	class="bg-gradient-to-b from-blue-500 to-indigo-700 lg:h-[800px] lg:flex lg:flex-col lg:justify-center"
+>
+	<div class="container lg:flex lg:flex-col lg:items-center">
+		<div class="flex flex-col lg:flex-row lg:py-10">
+			<div class="lg:flex lg:flex-col lg:justify-center lg:px-10 lg:w-[50%]">
+				<div>
+					<h2 class="font-bold lg:text-2xl text-sm">
+						<span class="text-yellow-500 font-bold"
+							>One platform to monitor your Test Lifecycle Insights
+						</span><span class="font-bold text-white"
+							>in real-time, analyze data, generate value-added reports, and more.</span
+						>
+					</h2>
+				</div>
+				<div class="lg:px-4 lg:mt-6">
+					<h2 class="font-bold text-white lg:text-xl text-sm">{buttons[currentSlide]}</h2>
+					<ul class="text-xs">
+						{#each ['Use multiple report templates', 'Review and Approved/Reject using Titan', 'Store & release in the system'] as bullet}
+							<li class="text-white p-0 m-0">{bullet}</li>
+						{/each}
+					</ul>
+				</div>
+			</div>
+
+			<div class="lg:w-[90%]" id="slider">
+				<input type="radio" name="slider" id="s1" data-slide="1" checked/>
+				<input type="radio" name="slider" id="s2" data-slide="2" />
+				<input type="radio" name="slider" id="s3" data-slide="3" />
+				<input type="radio" name="slider" id="s4" data-slide="4" />
+				<input type="radio" name="slider" id="s5" data-slide="5" />
+				<label for="s1" id="slide1">
+					<div class="zoom-container" data-slide="1">
+						<img
+							src="https://static.wixstatic.com/media/454d4b_f10d028ff64c40c88714a1946769b321~mv2.png"
+							alt="Image1"
+						/>
+					</div>
+				</label>
+				<label for="s2" id="slide2">
+					<div class="zoom-container" data-slide="2">
+						<img
+							src="https://static.wixstatic.com/media/454d4b_bc43930910954f1bb609ef6272dcd8be~mv2.png"
+							alt="Image2"
+						/>
+					</div>
+				</label>
+				<label for="s3" id="slide3">
+					<div class="zoom-container" data-slide="3">
+						<img
+							src="https://static.wixstatic.com/media/454d4b_37b4f865d11645aba4c9dc56ee2d603d~mv2.png"
+							alt="Image3"
+						/>
+					</div>
+				</label>
+				<label for="s4" id="slide4">
+					<div class="zoom-container" data-slide="4">
+						<img
+							src="https://static.wixstatic.com/media/454d4b_c60b3face6594c989633f674d1a28083~mv2.png"
+							alt="Image4"
+						/>
+					</div>
+				</label>
+				<label for="s5" id="slide5">
+					<div class="zoom-container" data-slide="5">
+						<img
+							src="https://static.wixstatic.com/media/454d4b_11a433609b06446d9dd7ed0e8bbb6578~mv2.png"
+							alt="Image5"
+						/>
+					</div>
+				</label>
+			</div>
+		</div>
+
+		<div class="flex lg:flex-row lg:gap-4 text-center lg:py-14 flex-col gap-4">
+			{#each buttons as button, index}
+				<button
+					on:click={() => changeSlide(index)}
+					class="bg-cyan-500 no-underline lg:text-sm font-medium lg:px-6  lg:py-2 text-white rounded-full hover:bg-white hover:text-blue-500 active:bg-gray-400"
+					>{button}</button
+				>
+			{/each}
+		</div>
+	</div>
+</section>
+
+<section
+	class="container flex flex-col lg:flex-row justify-between lg:items-center py-20 lg:gap-20"
+>
 	<Fade>
 		<h2 class="text-xl lg:text-3xl font-bold mb-6 md:mb-16">
 			{data.lang === 'ja'
@@ -173,7 +296,7 @@
 		font-size: clamp(1.5rem, 4.8vw, 5rem) !important;
 	}
 
-	.titleForJa{
+	.titleForJa {
 		font-size: clamp(1.5rem, 4.8vw, 4rem) !important;
 	}
 	.fluid-subtitle {
@@ -215,5 +338,113 @@
 		100% {
 			transform: translateX(-100%);
 		}
+	}
+
+	.slide {
+		display: flex;
+		position: relative;
+		overflow: hidden;
+	}
+
+	#slider {
+		position: relative;
+	    height: 30vw;
+	    perspective: 500px;
+		transform-style: preserve-3d;
+		border-radius: 12px;
+}
+
+.active{
+	background-color: white;
+}
+
+	input[type='radio'] {
+		display: none;
+		position: relative;
+		top: 108%;
+		left: 50%;
+		width: 20px;
+		height: 20px;
+		margin: 0 15px 0 0;
+		background: #ccc;
+		border: 2px solid #ccc;
+		border-radius: 50%;
+		cursor: pointer;
+		transform: translateX(-83px);
+		transition:
+			background 300ms ease,
+			border 300ms ease;
+	}
+
+	input[type='radio']:checked {
+		background: #ff5a5f;
+		border: 2px solid #ff5a5f;
+	}
+
+	#slider label,
+	#slider label img {
+		position: absolute;
+		width: 100%;
+		/* height: 100%; */
+		left: 0;
+		top: 0;
+		border-radius: 12px;
+		transition:
+			transform 400ms ease,
+			opacity 400ms ease;
+	}
+
+	.zoom-container {
+		overflow: hidden; 
+	}
+
+	/* Zoom effect */
+	.zoom-container:hover {
+		cursor: default; /* Change cursor to zoom-in icon */
+	}
+
+	/* .zoom-container.can-zoom:hover img {
+		transform: scale(1.4);
+		transition: transform 0.5s ease-in-out;
+	} */
+
+	#s1:checked ~ #slide1,
+	#s2:checked ~ #slide2,
+	#s3:checked ~ #slide3,
+	#s4:checked ~ #slide4,
+	#s5:checked ~ #slide5 {
+		transform: translate3d(0%, 0, 0px);
+	}
+
+	#s1:checked ~ #slide2,
+	#s2:checked ~ #slide3,
+	#s3:checked ~ #slide4,
+	#s4:checked ~ #slide5,
+	#s5:checked ~ #slide1 {
+		transform: translate3d(20%, 0, -100px);
+	}
+
+	#s1:checked ~ #slide3,
+	#s2:checked ~ #slide4,
+	#s3:checked ~ #slide5,
+	#s4:checked ~ #slide1,
+	#s5:checked ~ #slide2 {
+		transform: translate3d(40%, 0, -250px);
+	}
+
+	#s1:checked ~ #slide4,
+	#s2:checked ~ #slide5,
+	#s3:checked ~ #slide1,
+	#s4:checked ~ #slide2,
+	#s5:checked ~ #slide3 {
+		transform: translate3d(-40%, 0, -250px);
+	}
+
+	#s1:checked ~ #slide5,
+	#s2:checked ~ #slide1,
+	#s3:checked ~ #slide2,
+	#s4:checked ~ #slide3,
+	#s5:checked ~ #slide4 {
+		transform: translate3d(-20%, 0, -100px);
 	}
 </style>
