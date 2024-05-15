@@ -1,8 +1,3 @@
 
 
-name = "testlifecycle"
-
-[[kv_namespaces]]
-binding = "KV"
-id = "c55be652716849128a06b82d39d2fb9e"
 
